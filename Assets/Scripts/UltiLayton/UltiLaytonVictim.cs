@@ -13,11 +13,14 @@ public class UltiLaytonVictim : MonoBehaviour
     AttackMelee attackCmpnt;
     int indexBlock = 0;
 
+    public GameObject ultiPref;
+
     // Start is called before the first frame update
     void Start()
     {
         mainMngr = FindObjectOfType<MainManager>();
         platformer = GetComponent<Platformer>();
+        ultiPref = GameObject.Find("UltiLaytonPos");
         Ultimate();
     }
 
@@ -42,9 +45,9 @@ public class UltiLaytonVictim : MonoBehaviour
         {
             attackCmpnt = GetComponent<AttackMelee>();
             attackCmpnt.enabled = false;
-            for (int i = 0; i < mainMngr.posUltiLay.Length; i++)
+            for (int i = 0; i < ultiPref.transform.childCount; i++)
             {
-                GameObject block = Instantiate(block_Pref, mainMngr.posUltiLay[i]);
+                GameObject block = Instantiate(block_Pref, ultiPref.transform.GetChild(i));
                 block.transform.parent = null;
                 block.GetComponent<UltiLaytonBlock>().idBlock = i;
             }

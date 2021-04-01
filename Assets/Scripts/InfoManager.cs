@@ -22,10 +22,14 @@ public class InfoManager : MonoBehaviour
     public SpriteRenderer pj2Portrait;
     public GameObject[] pj2Lifes;
 
+    MainManager mainMngr;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainMngr = FindObjectOfType<MainManager>();
+        portraitPj1Test = mainMngr.charP1;
+        portraitPj2Test = mainMngr.charP2;
     }
 
     // Update is called once per frame

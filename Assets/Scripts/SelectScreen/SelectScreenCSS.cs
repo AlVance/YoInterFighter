@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SelectScreenCSS : MonoBehaviour
 {
+    MainManager mainMngr;
+
     public Transform rootChars;
 
     public List<CharacterPickSO> characters = new List<CharacterPickSO>();
@@ -17,6 +19,8 @@ public class SelectScreenCSS : MonoBehaviour
 
     bool selectP1;
     bool selectP2;
+    bool startP1;
+    bool startP2;
 
     public Color colorP1;
     public Color colorP2;
@@ -29,13 +33,20 @@ public class SelectScreenCSS : MonoBehaviour
     IEnumerator randomRoutine1;
     IEnumerator randomRoutine2;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
+        mainMngr = FindObjectOfType<MainManager>();
         foreach(CharacterPickSO character in characters)
         {
             SpawnCharacterCell(character);
             UpdateCells();
+            panelP1.transform.Find("StartSelectP1").gameObject.SetActive(false);
+            panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(false);
+            panelP2.transform.Find("StartSelectP2").gameObject.SetActive(false);
+            panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(false);
         }
     }
 
@@ -103,7 +114,13 @@ public class SelectScreenCSS : MonoBehaviour
             {
                 UpdateCells();
                 SelectPlayer(1, false);
+                startP1 = false;
                 selectP1 = false;
+            }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                startP1 = true;
+                CheckStart();
             }
         }
 
@@ -147,8 +164,26 @@ public class SelectScreenCSS : MonoBehaviour
             {
                 UpdateCells();
                 SelectPlayer(2, false);
+                startP2 = false;
                 selectP2 = false;
             }
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                startP2 = true;
+                CheckStart();
+            }
+        }
+    }
+
+    public void CheckStart()
+    {
+        panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(startP1);
+        panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(startP2);
+        if (startP1 && startP2)
+        {
+            mainMngr.charP1 = indexP1;
+            mainMngr.charP2 = indexP2;
+            mainMngr.StartGame();
         }
     }
 
@@ -165,6 +200,8 @@ public class SelectScreenCSS : MonoBehaviour
                     panelP1.transform.Find("Foto").GetComponent<Image>().color = Color.white;
                     panelP1.transform.Find("Nombre").GetComponent<Text>().text = characters[indexP1].characterName;
                     cells[indexP1].transform.Find("Check1").gameObject.SetActive(true);
+                    panelP1.transform.Find("StartSelectP1").gameObject.SetActive(true);
+                    panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(false);
                 }
                 else
                 {
@@ -186,6 +223,8 @@ public class SelectScreenCSS : MonoBehaviour
                     panelP2.transform.Find("Foto").GetComponent<Image>().color = Color.white;
                     panelP2.transform.Find("Nombre").GetComponent<Text>().text = characters[indexP2].characterName;
                     cells[indexP2].transform.Find("Check2").gameObject.SetActive(true);
+                    panelP2.transform.Find("StartSelectP2").gameObject.SetActive(true);
+                    panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(false);
                 }
                 else
                 {
@@ -208,6 +247,8 @@ public class SelectScreenCSS : MonoBehaviour
                 panelP1.transform.Find("Foto").GetComponent<Image>().color = colorP1;
                 panelP1.transform.Find("Nombre").GetComponent<Text>().text = "???";
                 cells[indexP1].transform.Find("Check1").gameObject.SetActive(false);
+                panelP1.transform.Find("StartSelectP1").gameObject.SetActive(false);
+                panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(false);
             }
             else if (player == 2)
             {
@@ -216,9 +257,12 @@ public class SelectScreenCSS : MonoBehaviour
                 panelP2.transform.Find("Foto").GetComponent<Image>().color = colorP2;
                 panelP2.transform.Find("Nombre").GetComponent<Text>().text = "???";
                 cells[indexP2].transform.Find("Check2").gameObject.SetActive(false);
+                panelP2.transform.Find("StartSelectP2").gameObject.SetActive(false);
+                panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(false);
             }
         }
     }
+
     private IEnumerator RandomCharacter(float waitTime, int player)
     {
         for (int i = 0; i < characters.Count -1; i++)
@@ -240,18 +284,26 @@ public class SelectScreenCSS : MonoBehaviour
         int rndChar = Random.Range(0, characters.Count - 1);
         if (player == 1)
         {
+            indexP1 = rndChar;
             panelP1.transform.Find("Foto").GetComponent<Image>().sprite = characters[rndChar].characterSprite;
             panelP1.transform.Find("Foto").GetComponent<Image>().color = Color.white;
             panelP1.transform.Find("Nombre").GetComponent<Text>().text = characters[rndChar].characterName;
             cells[indexP1].transform.Find("Check1").gameObject.SetActive(true);
+            panelP1.transform.Find("StartSelectP1").gameObject.SetActive(true);
+            panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(false);
+            UpdateCells();
             StopCoroutine(randomRoutine1);
         }
         else if (player == 2)
         {
+            indexP2 = rndChar;
             panelP2.transform.Find("Foto").GetComponent<Image>().sprite = characters[rndChar].characterSprite;
             panelP2.transform.Find("Foto").GetComponent<Image>().color = Color.white;
             panelP2.transform.Find("Nombre").GetComponent<Text>().text = characters[rndChar].characterName;
             cells[indexP2].transform.Find("Check2").gameObject.SetActive(true);
+            panelP2.transform.Find("StartSelectP2").gameObject.SetActive(true);
+            panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(false);
+            UpdateCells();
             StopCoroutine(randomRoutine2);
         }
 
