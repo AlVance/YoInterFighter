@@ -58,8 +58,8 @@ public class SelectScreenCSS : MonoBehaviour
 
         Transform maskObj = charCell.transform.Find("Mask");
 
-        Image portrait = maskObj.Find("RetratoMask").GetComponentInChildren<Image>();
         Text name = maskObj.Find("Nombre").GetComponent<Text>();
+        Image portrait = maskObj.Find("RetratoMask").GetComponentInChildren<Image>();
 
         charCell.transform.Find("Border1").gameObject.SetActive(false);
         charCell.transform.Find("Border2").gameObject.SetActive(false);
