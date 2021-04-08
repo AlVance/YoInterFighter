@@ -33,7 +33,12 @@ public class MainManager : MonoBehaviour
         LoadScene(1);
     }
 
-    public void LoadScene(int sceneToLoad)
+    public void GoToWinnerScreen()
+    {
+        LoadScene(3);
+    }
+
+    private void LoadScene(int sceneToLoad)
     {
         StartCoroutine(LoadLevel(sceneToLoad));
     }
