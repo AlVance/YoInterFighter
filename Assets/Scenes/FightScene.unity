@@ -1853,6 +1853,7 @@ MonoBehaviour:
   characterPortraits:
   - {fileID: 21300000, guid: bd979f6571ec6164da06eea79c54fc4e, type: 3}
   - {fileID: 21300000, guid: 3c9ef6a03d6cf0642bf39b2ed657758a, type: 3}
+  - {fileID: 21300000, guid: 68786469dfeeb454ab76d01a57337206, type: 3}
   - {fileID: 21300000, guid: 039b8229f2df5e342838ece964f5184e, type: 3}
   - {fileID: 21300000, guid: 0a4052a51761ab849b6971bf926f8d23, type: 3}
   pj1Portrait: {fileID: 1906811632}

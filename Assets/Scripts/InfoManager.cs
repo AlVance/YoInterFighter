@@ -42,37 +42,9 @@ public class InfoManager : MonoBehaviour
 
     public void SetPortraits(int characterChosenPj1, int characterChosenPj2)
     {
-        switch (characterChosenPj1)
-        {
-            case 0:
-                pj1Portrait.sprite = characterPortraits[0];
-                break;
-            case 1:
-                pj1Portrait.sprite = characterPortraits[1];
-                break;
-            case 2:
-                pj1Portrait.sprite = characterPortraits[2];
-                break;
-            case 3:
-                pj1Portrait.sprite = characterPortraits[3];
-                break;
-        }
+        pj1Portrait.sprite = characterPortraits[characterChosenPj1];
 
-        switch (characterChosenPj2)
-        {
-            case 0:
-                pj2Portrait.sprite = characterPortraits[0];
-                break;
-            case 1:
-                pj2Portrait.sprite = characterPortraits[1];
-                break;
-            case 2:
-                pj2Portrait.sprite = characterPortraits[2];
-                break;
-            case 3:
-                pj2Portrait.sprite = characterPortraits[3];
-                break;
-        }
+        pj2Portrait.sprite = characterPortraits[characterChosenPj2];
     }
 
     public void SetVisualHealthPj1(int healthPj1)

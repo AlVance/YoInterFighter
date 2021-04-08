@@ -22,13 +22,23 @@ public class SelectScreenCSS : MonoBehaviour
     bool startP1;
     bool startP2;
 
+    public Color colorStart;
     public Color colorP1;
     public Color colorP2;
 
     public GameObject panelP1;
     public GameObject panelP2;
 
+    public GameObject startBtn;
+    public Sprite[] normalStart;
+    public Sprite[] selectStart;
+    public Sprite[] playerStart;
+
     float startSize = 130f;
+
+    public Sprite[] frontBorder;
+    public Sprite[] selectBorder;
+    public Sprite[] playerBorder;
 
     IEnumerator randomRoutine1;
     IEnumerator randomRoutine2;
@@ -43,10 +53,7 @@ public class SelectScreenCSS : MonoBehaviour
         {
             SpawnCharacterCell(character);
             UpdateCells();
-            panelP1.transform.Find("StartSelectP1").gameObject.SetActive(false);
-            panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(false);
-            panelP2.transform.Find("StartSelectP2").gameObject.SetActive(false);
-            panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(false);
+            SelectStart();
         }
     }
 
@@ -56,19 +63,12 @@ public class SelectScreenCSS : MonoBehaviour
 
         charCell.name = character.characterSiglas;
 
-        Transform maskObj = charCell.transform.Find("Mask");
+        Transform maskObj = charCell.transform;
 
-        Text name = maskObj.Find("Nombre").GetComponent<Text>();
-        Image portrait = maskObj.Find("RetratoMask").GetComponentInChildren<Image>();
-
-        charCell.transform.Find("Border1").gameObject.SetActive(false);
-        charCell.transform.Find("Border2").gameObject.SetActive(false);
-        charCell.transform.Find("Check1").gameObject.SetActive(false);
-        charCell.transform.Find("Check2").gameObject.SetActive(false);
+        Image portrait = maskObj.Find("Retrato Mask").Find("Retrato").GetComponentInChildren<Image>();
 
 
         portrait.sprite = character.characterSprite;
-        name.text = character.characterName;
         cells.Add(charCell);
     }
 
@@ -76,7 +76,7 @@ public class SelectScreenCSS : MonoBehaviour
     {
         if (!selectP1)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 if (indexP1 == 0)
                 {
@@ -89,7 +89,7 @@ public class SelectScreenCSS : MonoBehaviour
                 UpdateCells();
                 SelectPlayer(1, false);
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 if (indexP1 == cells.Count - 1)
                 {
@@ -106,6 +106,7 @@ public class SelectScreenCSS : MonoBehaviour
             {
                 SelectPlayer(1, true);
                 selectP1 = true;
+                SelectStart();
             }
         }
         else
@@ -116,6 +117,7 @@ public class SelectScreenCSS : MonoBehaviour
                 SelectPlayer(1, false);
                 startP1 = false;
                 selectP1 = false;
+                SelectStart();
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
@@ -126,7 +128,7 @@ public class SelectScreenCSS : MonoBehaviour
 
         if (!selectP2)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 if (indexP2 == 0)
                 {
@@ -139,7 +141,7 @@ public class SelectScreenCSS : MonoBehaviour
                 UpdateCells();
                 SelectPlayer(2, false);
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 if (indexP2 == cells.Count - 1)
                 {
@@ -152,22 +154,24 @@ public class SelectScreenCSS : MonoBehaviour
                 UpdateCells();
                 SelectPlayer(2, false);
             }
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
             {
                 SelectPlayer(2, true);
                 selectP2 = true;
+                SelectStart();
             }
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Keypad2))
+            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
             {
                 UpdateCells();
                 SelectPlayer(2, false);
                 startP2 = false;
                 selectP2 = false;
+                SelectStart();
             }
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
             {
                 startP2 = true;
                 CheckStart();
@@ -175,10 +179,41 @@ public class SelectScreenCSS : MonoBehaviour
         }
     }
 
+    public void SelectStart()
+    {
+        if (selectP1 && !selectP2)
+        {
+            startBtn.transform.Find("StartSelectP1").GetComponent<Image>().sprite = playerStart[0];
+            startBtn.transform.Find("StartSelectP1").GetComponent<Image>().color = colorP1;
+            startBtn.transform.Find("StartSelectP2").GetComponent<Image>().sprite = selectStart[1];
+            startBtn.transform.Find("StartSelectP2").GetComponent<Image>().color = colorP1;
+        }
+        else if (!selectP1 && selectP2)
+        {
+            startBtn.transform.Find("StartSelectP1").GetComponent<Image>().sprite = selectStart[0];
+            startBtn.transform.Find("StartSelectP1").GetComponent<Image>().color = colorP2;
+            startBtn.transform.Find("StartSelectP2").GetComponent<Image>().sprite = playerStart[1];
+            startBtn.transform.Find("StartSelectP2").GetComponent<Image>().color = colorP2;
+        }
+        else if (selectP1 && selectP2)
+        {
+            startBtn.transform.Find("StartSelectP1").GetComponent<Image>().sprite = playerStart[0];
+            startBtn.transform.Find("StartSelectP1").GetComponent<Image>().color = colorP1;
+            startBtn.transform.Find("StartSelectP2").GetComponent<Image>().sprite = playerStart[1];
+            startBtn.transform.Find("StartSelectP2").GetComponent<Image>().color = colorP2;
+        }
+        else if(!selectP1 && !selectP2)
+        {
+            startBtn.transform.Find("StartSelectP1").GetComponent<Image>().sprite = normalStart[0];
+            startBtn.transform.Find("StartSelectP1").GetComponent<Image>().color = colorStart;
+            startBtn.transform.Find("StartSelectP2").GetComponent<Image>().sprite = normalStart[1];
+            startBtn.transform.Find("StartSelectP2").GetComponent<Image>().color = colorStart;
+        }
+    }
+
     public void CheckStart()
     {
-        panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(startP1);
-        panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(startP2);
+        SelectStart();
         if (startP1 && startP2)
         {
             mainMngr.charP1 = indexP1;
@@ -194,17 +229,15 @@ public class SelectScreenCSS : MonoBehaviour
             if (player == 1)
             {
                 if (!panelP1.activeSelf) { panelP1.SetActive(true); }
-                if (indexP1 < characters.Count -1)
+                if (cells[indexP1].name != "Rnd")
                 {
                     panelP1.transform.Find("Foto").GetComponent<Image>().sprite = characters[indexP1].characterSprite;
                     panelP1.transform.Find("Foto").GetComponent<Image>().color = Color.white;
                     panelP1.transform.Find("Nombre").GetComponent<Text>().text = characters[indexP1].characterName;
-                    cells[indexP1].transform.Find("Check1").gameObject.SetActive(true);
-                    panelP1.transform.Find("StartSelectP1").gameObject.SetActive(true);
-                    panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(false);
+                    SelectStart();
                 }
                 else
-                {
+                { 
                     if(randomRoutine1 != null)
                     {
                         StopCoroutine(randomRoutine1);
@@ -217,14 +250,12 @@ public class SelectScreenCSS : MonoBehaviour
             else if (player == 2)
             {
                 if (!panelP2.activeSelf) { panelP2.SetActive(true); }
-                if (indexP2 < characters.Count -1 )
+                if (cells[indexP2].name != "Rnd")
                 {
                     panelP2.transform.Find("Foto").GetComponent<Image>().sprite = characters[indexP2].characterSprite;
                     panelP2.transform.Find("Foto").GetComponent<Image>().color = Color.white;
                     panelP2.transform.Find("Nombre").GetComponent<Text>().text = characters[indexP2].characterName;
-                    cells[indexP2].transform.Find("Check2").gameObject.SetActive(true);
-                    panelP2.transform.Find("StartSelectP2").gameObject.SetActive(true);
-                    panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(false);
+                    SelectStart();
                 }
                 else
                 {
@@ -246,9 +277,7 @@ public class SelectScreenCSS : MonoBehaviour
                 panelP1.transform.Find("Foto").GetComponent<Image>().sprite = characters[indexP1].siluetaSprite;
                 panelP1.transform.Find("Foto").GetComponent<Image>().color = colorP1;
                 panelP1.transform.Find("Nombre").GetComponent<Text>().text = "???";
-                cells[indexP1].transform.Find("Check1").gameObject.SetActive(false);
-                panelP1.transform.Find("StartSelectP1").gameObject.SetActive(false);
-                panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(false);
+                SelectStart();
             }
             else if (player == 2)
             {
@@ -256,9 +285,7 @@ public class SelectScreenCSS : MonoBehaviour
                 panelP2.transform.Find("Foto").GetComponent<Image>().sprite = characters[indexP2].siluetaSprite;
                 panelP2.transform.Find("Foto").GetComponent<Image>().color = colorP2;
                 panelP2.transform.Find("Nombre").GetComponent<Text>().text = "???";
-                cells[indexP2].transform.Find("Check2").gameObject.SetActive(false);
-                panelP2.transform.Find("StartSelectP2").gameObject.SetActive(false);
-                panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(false);
+                SelectStart();
             }
         }
     }
@@ -281,78 +308,85 @@ public class SelectScreenCSS : MonoBehaviour
             }
             yield return new WaitForSeconds(waitTime);
         }
-        int rndChar = Random.Range(0, characters.Count - 1);
-        if (player == 1)
-        {
-            indexP1 = rndChar;
-            panelP1.transform.Find("Foto").GetComponent<Image>().sprite = characters[rndChar].characterSprite;
-            panelP1.transform.Find("Foto").GetComponent<Image>().color = Color.white;
-            panelP1.transform.Find("Nombre").GetComponent<Text>().text = characters[rndChar].characterName;
-            cells[indexP1].transform.Find("Check1").gameObject.SetActive(true);
-            panelP1.transform.Find("StartSelectP1").gameObject.SetActive(true);
-            panelP1.transform.Find("StartSelectP1").Find("Check").gameObject.SetActive(false);
-            UpdateCells();
-            StopCoroutine(randomRoutine1);
-        }
-        else if (player == 2)
-        {
-            indexP2 = rndChar;
-            panelP2.transform.Find("Foto").GetComponent<Image>().sprite = characters[rndChar].characterSprite;
-            panelP2.transform.Find("Foto").GetComponent<Image>().color = Color.white;
-            panelP2.transform.Find("Nombre").GetComponent<Text>().text = characters[rndChar].characterName;
-            cells[indexP2].transform.Find("Check2").gameObject.SetActive(true);
-            panelP2.transform.Find("StartSelectP2").gameObject.SetActive(true);
-            panelP2.transform.Find("StartSelectP2").Find("Check").gameObject.SetActive(false);
-            UpdateCells();
-            StopCoroutine(randomRoutine2);
-        }
+        SelectRandomChar(player);
+        yield break;
+    }
 
+    public void SelectRandomChar(int player)
+    {
+        int rndChar = Random.Range(0, characters.Count);
+        if (cells[rndChar].name != "Rnd")
+        {
+            if (player == 1)
+            {
+                indexP1 = rndChar;
+                panelP1.transform.Find("Foto").GetComponent<Image>().sprite = characters[rndChar].characterSprite;
+                panelP1.transform.Find("Foto").GetComponent<Image>().color = Color.white;
+                panelP1.transform.Find("Nombre").GetComponent<Text>().text = characters[rndChar].characterName;
+                SelectStart();
+                UpdateCells();
+            }
+            else if (player == 2)
+            {
+                indexP2 = rndChar;
+                panelP2.transform.Find("Foto").GetComponent<Image>().sprite = characters[rndChar].characterSprite;
+                panelP2.transform.Find("Foto").GetComponent<Image>().color = Color.white;
+                panelP2.transform.Find("Nombre").GetComponent<Text>().text = characters[rndChar].characterName;
+                SelectStart();
+                UpdateCells();
+            }
+        }
+        else
+        {
+            SelectRandomChar(player);
+        }
     }
 
     public void UpdateCells()
     {
         for (int i = 0; i < cells.Count; i++)
         {
-            Transform border1 = cells[i].transform.Find("Border1");
-            Transform border2 = cells[i].transform.Find("Border2");
-            GameObject mark1 = cells[i].transform.Find("Mark1").gameObject;
-            GameObject mark2 = cells[i].transform.Find("Mark2").gameObject;
-            startSize = border1.GetComponent<RectTransform>().sizeDelta.x;
+
+            GameObject borderP1_F = cells[i].transform.Find("Border_F_L").gameObject;
+            GameObject borderP1_B = cells[i].transform.Find("Border_B_L").gameObject;
+            GameObject borderP2_F = cells[i].transform.Find("Border_F_R").gameObject;
+            GameObject borderP2_B = cells[i].transform.Find("Border_B_R").gameObject;
+
             if (i == indexP1 && indexP1 == indexP2)
             {
-                border1.gameObject.SetActive(true);
-                border2.gameObject.SetActive(true);
-                border1.gameObject.GetComponent<Image>().color = colorP1;
-                border2.gameObject.GetComponent<Image>().color = colorP2;
-                mark1.SetActive(true);
-                mark2.SetActive(true);
+                borderP1_F.gameObject.GetComponent<Image>().color = colorP1;
+                borderP1_B.gameObject.GetComponent<Image>().sprite = playerBorder[0];
+                borderP1_B.gameObject.GetComponent<Image>().color = colorP1;
+                borderP2_F.gameObject.GetComponent<Image>().color = colorP2;
+                borderP2_B.gameObject.GetComponent<Image>().sprite = playerBorder[1];
+                borderP2_B.gameObject.GetComponent<Image>().color = colorP2;
             }
             else if (i == indexP1 && indexP1 != indexP2)
             {
-                border1.gameObject.SetActive(true);
-                border2.gameObject.SetActive(true);
-                border1.gameObject.GetComponent<Image>().color = colorP1;
-                border2.gameObject.GetComponent<Image>().color = colorP1;
-                mark1.SetActive(true);
-                mark2.SetActive(false);
+                borderP1_F.gameObject.GetComponent<Image>().color = colorP1;
+                borderP1_B.gameObject.GetComponent<Image>().sprite = playerBorder[0];
+                borderP1_B.gameObject.GetComponent<Image>().color = colorP1;
+                borderP2_F.gameObject.GetComponent<Image>().color = colorP1;
+                borderP2_B.gameObject.GetComponent<Image>().sprite = selectBorder[1];
+                borderP2_B.gameObject.GetComponent<Image>().color = colorP1;
             }
             else if (i == indexP2 && indexP1 != indexP2)
-            {
-                border1.gameObject.SetActive(true);
-                border2.gameObject.SetActive(true);
-                border1.gameObject.GetComponent<Image>().color = colorP2;
-                border2.gameObject.GetComponent<Image>().color = colorP2;
-                mark1.SetActive(false);
-                mark2.SetActive(true);
+            {                                                             
+                borderP1_F.gameObject.GetComponent<Image>().color = colorP2;
+                borderP1_B.gameObject.GetComponent<Image>().sprite = selectBorder[0];
+                borderP1_B.gameObject.GetComponent<Image>().color = colorP2;
+                borderP2_F.gameObject.GetComponent<Image>().color = colorP2;
+                borderP2_B.gameObject.GetComponent<Image>().sprite = playerBorder[1];
+                borderP2_B.gameObject.GetComponent<Image>().color = colorP2;
             }
             else
             {
-                border1.gameObject.SetActive(false);
-                border2.gameObject.SetActive(false);
-                border1.gameObject.GetComponent<Image>().color = Color.white;
-                border2.gameObject.GetComponent<Image>().color = Color.white;
-                mark1.SetActive(false);
-                mark2.SetActive(false);
+                borderP1_F.gameObject.GetComponent<Image>().color = colorStart;
+                borderP1_B.gameObject.GetComponent<Image>().sprite = frontBorder[0];
+                borderP1_B.gameObject.GetComponent<Image>().color = colorStart;
+                borderP2_F.gameObject.GetComponent<Image>().color = colorStart;
+                borderP2_B.gameObject.GetComponent<Image>().sprite = frontBorder[1];
+                borderP2_B.gameObject.GetComponent<Image>().color = colorStart;
             }
         }
     }
