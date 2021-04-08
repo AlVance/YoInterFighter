@@ -7282,7 +7282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 2114837407}
   player2: {fileID: 1136432691}
-  mainManager: {fileID: 0}
+  mainManager: {fileID: 549911862}
   damageAtFall: 1
 --- !u!61 &2086520327
 BoxCollider2D:
@@ -7499,7 +7499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ad1abe07ee9ef4286875e96c1e67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 2
 --- !u!114 &2114837414
 MonoBehaviour:
   m_ObjectHideFlags: 0
