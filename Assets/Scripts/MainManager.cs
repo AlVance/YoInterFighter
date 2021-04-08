@@ -13,6 +13,9 @@ public class MainManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
+
+    public Animator transition;
+    public float transitionTime;
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -25,8 +28,20 @@ public class MainManager : MonoBehaviour
         LoadScene(2);
     }
 
+    public void GoToSelectScreen()
+    {
+        LoadScene(1);
+    }
+
     public void LoadScene(int sceneToLoad)
     {
+        StartCoroutine(LoadLevel(sceneToLoad));
+    }
+
+    private IEnumerator LoadLevel(int sceneToLoad)
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneToLoad);
     }
 
