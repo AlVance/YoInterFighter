@@ -576,7 +576,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   transition: {fileID: 1740502927}
-  transitionTime: 1
+  transitionTime: 2
 --- !u!1 &747365223
 GameObject:
   m_ObjectHideFlags: 0

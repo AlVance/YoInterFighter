@@ -154,7 +154,7 @@ public class SelectScreenCSS : MonoBehaviour
                 UpdateCells();
                 SelectPlayer(2, false);
             }
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.RightControl))
             {
                 SelectPlayer(2, true);
                 selectP2 = true;
@@ -163,7 +163,7 @@ public class SelectScreenCSS : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.RightShift))
             {
                 UpdateCells();
                 SelectPlayer(2, false);
@@ -171,7 +171,7 @@ public class SelectScreenCSS : MonoBehaviour
                 selectP2 = false;
                 SelectStart();
             }
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.RightControl))
             {
                 startP2 = true;
                 CheckStart();

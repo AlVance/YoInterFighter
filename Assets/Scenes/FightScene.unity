@@ -1848,8 +1848,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portraitPj1Test: 0
   portraitPj2Test: 1
-  HealthPj1: 3
-  HealthPj2: 3
   characterPortraits:
   - {fileID: 21300000, guid: bd979f6571ec6164da06eea79c54fc4e, type: 3}
   - {fileID: 21300000, guid: 3c9ef6a03d6cf0642bf39b2ed657758a, type: 3}
@@ -7500,7 +7498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ad1abe07ee9ef4286875e96c1e67f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 3
 --- !u!114 &2114837414
 MonoBehaviour:
   m_ObjectHideFlags: 0

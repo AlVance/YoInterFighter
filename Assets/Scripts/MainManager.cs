@@ -31,6 +31,7 @@ public class MainManager : MonoBehaviour
     public void GoToSelectScreen()
     {
         LoadScene(1);
+        
     }
 
     public void GoToWinnerScreen()
@@ -48,6 +49,7 @@ public class MainManager : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneToLoad);
+        if(sceneToLoad == 1) Destroy(this.gameObject);
     }
 
 }

@@ -9,10 +9,10 @@ public class InfoManager : MonoBehaviour
     public int portraitPj1Test;
     [Range(0, 3)]
     public int portraitPj2Test;
-    [Range(0, 3)]
+    /*[Range(0, 3)]
     public int HealthPj1 = 3;
     [Range(0, 3)]
-    public int HealthPj2 = 3;
+    public int HealthPj2 = 3;*/
 
     public Sprite[] characterPortraits;
     [Header("Pj1Info")]
@@ -36,8 +36,8 @@ public class InfoManager : MonoBehaviour
     void Update()
     {
         SetPortraits(portraitPj1Test, portraitPj2Test);
-        SetVisualHealthPj1(HealthPj1);
-        SetVisualHealthPj2(HealthPj2);
+        //SetVisualHealthPj1(HealthPj1);
+        //SetVisualHealthPj2(HealthPj2);
     }
 
     public void SetPortraits(int characterChosenPj1, int characterChosenPj2)
