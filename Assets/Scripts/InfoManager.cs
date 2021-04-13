@@ -9,10 +9,10 @@ public class InfoManager : MonoBehaviour
     public int portraitPj1Test;
     [Range(0, 3)]
     public int portraitPj2Test;
-    [Range(0, 3)]
+    /*[Range(0, 3)]
     public int HealthPj1 = 3;
     [Range(0, 3)]
-    public int HealthPj2 = 3;
+    public int HealthPj2 = 3;*/
 
     public Sprite[] characterPortraits;
     [Header("Pj1Info")]
@@ -22,53 +22,29 @@ public class InfoManager : MonoBehaviour
     public SpriteRenderer pj2Portrait;
     public GameObject[] pj2Lifes;
 
+    MainManager mainMngr;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainMngr = FindObjectOfType<MainManager>();
+        portraitPj1Test = mainMngr.charP1;
+        portraitPj2Test = mainMngr.charP2;
     }
 
     // Update is called once per frame
     void Update()
     {
         SetPortraits(portraitPj1Test, portraitPj2Test);
-        SetVisualHealthPj1(HealthPj1);
-        SetVisualHealthPj2(HealthPj2);
+        //SetVisualHealthPj1(HealthPj1);
+        //SetVisualHealthPj2(HealthPj2);
     }
 
     public void SetPortraits(int characterChosenPj1, int characterChosenPj2)
     {
-        switch (characterChosenPj1)
-        {
-            case 0:
-                pj1Portrait.sprite = characterPortraits[0];
-                break;
-            case 1:
-                pj1Portrait.sprite = characterPortraits[1];
-                break;
-            case 2:
-                pj1Portrait.sprite = characterPortraits[2];
-                break;
-            case 3:
-                pj1Portrait.sprite = characterPortraits[3];
-                break;
-        }
+        pj1Portrait.sprite = characterPortraits[characterChosenPj1];
 
-        switch (characterChosenPj2)
-        {
-            case 0:
-                pj2Portrait.sprite = characterPortraits[0];
-                break;
-            case 1:
-                pj2Portrait.sprite = characterPortraits[1];
-                break;
-            case 2:
-                pj2Portrait.sprite = characterPortraits[2];
-                break;
-            case 3:
-                pj2Portrait.sprite = characterPortraits[3];
-                break;
-        }
+        pj2Portrait.sprite = characterPortraits[characterChosenPj2];
     }
 
     public void SetVisualHealthPj1(int healthPj1)
