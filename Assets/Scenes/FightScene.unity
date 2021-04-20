@@ -1679,7 +1679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 2114837407}
   player2: {fileID: 1136432691}
-  limitY: {x: 0, y: 4}
+  limitY: {x: -2.5, y: 4}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

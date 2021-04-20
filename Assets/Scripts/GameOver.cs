@@ -6,16 +6,20 @@ public class GameOver : MonoBehaviour
 {
     public GameObject player1, player2;
     private HealthManager hM1, hM2;
-    public GameObject mainManager;
     private MainManager sceneManager;
     private InfoManager infoManager;
     public int damageAtFall;
     private Vector2 initialPosPj1, initialPosPj2;
+
+    private void Awake()
+    {
+        sceneManager = FindObjectOfType<MainManager>();
+        infoManager = FindObjectOfType<InfoManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        infoManager = mainManager.GetComponent<InfoManager>();
-        sceneManager = mainManager.GetComponent<MainManager>();
         
         hM1 = player1.GetComponent<HealthManager>();
         infoManager.SetVisualHealthPj1(hM1.health);

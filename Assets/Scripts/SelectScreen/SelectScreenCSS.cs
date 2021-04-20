@@ -43,6 +43,8 @@ public class SelectScreenCSS : MonoBehaviour
     IEnumerator randomRoutine1;
     IEnumerator randomRoutine2;
 
+    bool started;
+
 
 
     // Start is called before the first frame update
@@ -218,7 +220,11 @@ public class SelectScreenCSS : MonoBehaviour
         {
             mainMngr.charP1 = indexP1;
             mainMngr.charP2 = indexP2;
-            mainMngr.StartGame();
+            if (!started)
+            {
+                mainMngr.StartGame();
+                started = true;
+            }
         }
     }
 

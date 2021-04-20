@@ -13,9 +13,13 @@ public class MainManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
+    AnimatorManager AnimMngr;
 
-    public Animator transition;
-    public float transitionTime;
+    private void Awake()
+    {
+        AnimMngr = FindObjectOfType<AnimatorManager>();
+    }
+
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -46,10 +50,9 @@ public class MainManager : MonoBehaviour
 
     private IEnumerator LoadLevel(int sceneToLoad)
     {
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(transitionTime);
+        AnimMngr.End();
+        yield return new WaitForSeconds(AnimMngr.transitionTime);
         SceneManager.LoadScene(sceneToLoad);
-        if(sceneToLoad == 1) Destroy(this.gameObject);
     }
 
 }
