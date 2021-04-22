@@ -2165,7 +2165,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602767484}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
@@ -3454,6 +3454,8 @@ MonoBehaviour:
   percentText: {fileID: 1478753691}
   attackScrpt: {fileID: 0}
   x: 0
+  particle_jump: {fileID: 6555548582416551729, guid: 95d629c1a6cf85d458ad05cfeb0f582c,
+    type: 3}
 --- !u!50 &1136432695
 Rigidbody2D:
   serializedVersion: 4
@@ -5154,7 +5156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402697440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1334602784}
@@ -7955,7 +7957,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 2114837407}
   player2: {fileID: 1136432691}
-  mainManager: {fileID: 549911862}
   damageAtFall: 1
 --- !u!61 &2086520327
 BoxCollider2D:
@@ -8218,6 +8219,7 @@ MonoBehaviour:
   percentText: {fileID: 1478753691}
   attackScrpt: {fileID: 0}
   x: 0
+  particle_jump: {fileID: 0}
 --- !u!114 &2114837412
 MonoBehaviour:
   m_ObjectHideFlags: 0

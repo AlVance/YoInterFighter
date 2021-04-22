@@ -45,6 +45,12 @@ public class SelectScreenCSS : MonoBehaviour
 
     bool started;
 
+    public GameObject spawn_blue_part;
+    public GameObject spawn_red_part;
+
+    public Transform root_blue_part;
+    public Transform root_red_part;
+
 
 
     // Start is called before the first frame update
@@ -78,7 +84,7 @@ public class SelectScreenCSS : MonoBehaviour
     {
         if (!selectP1)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetAxisRaw("Horizontal") < 0)
             {
                 if (indexP1 == 0)
                 {
@@ -91,7 +97,7 @@ public class SelectScreenCSS : MonoBehaviour
                 UpdateCells();
                 SelectPlayer(1, false);
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetAxisRaw("Horizontal") < 0)
             {
                 if (indexP1 == cells.Count - 1)
                 {
@@ -104,7 +110,7 @@ public class SelectScreenCSS : MonoBehaviour
                 UpdateCells();
                 SelectPlayer(1, false);
             }
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetButtonDown("Attack"))
             {
                 SelectPlayer(1, true);
                 selectP1 = true;
@@ -113,7 +119,7 @@ public class SelectScreenCSS : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetButtonDown("Cancel"))
             {
                 UpdateCells();
                 SelectPlayer(1, false);
@@ -121,7 +127,7 @@ public class SelectScreenCSS : MonoBehaviour
                 selectP1 = false;
                 SelectStart();
             }
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetButtonDown("Attack"))
             {
                 startP1 = true;
                 CheckStart();
@@ -130,7 +136,7 @@ public class SelectScreenCSS : MonoBehaviour
 
         if (!selectP2)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetAxisRaw("Horizontal_2") < 0)
             {
                 if (indexP2 == 0)
                 {
@@ -143,7 +149,7 @@ public class SelectScreenCSS : MonoBehaviour
                 UpdateCells();
                 SelectPlayer(2, false);
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetAxisRaw("Horizontal_2") < 0)
             {
                 if (indexP2 == cells.Count - 1)
                 {
@@ -156,7 +162,7 @@ public class SelectScreenCSS : MonoBehaviour
                 UpdateCells();
                 SelectPlayer(2, false);
             }
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.RightControl))
+            if (Input.GetButtonDown("Attack_2"))
             {
                 SelectPlayer(2, true);
                 selectP2 = true;
@@ -165,7 +171,7 @@ public class SelectScreenCSS : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.RightShift))
+            if (Input.GetButtonDown("Cancel_2"))
             {
                 UpdateCells();
                 SelectPlayer(2, false);
@@ -173,7 +179,7 @@ public class SelectScreenCSS : MonoBehaviour
                 selectP2 = false;
                 SelectStart();
             }
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.RightControl))
+            if (Input.GetButtonDown("Attack_2"))
             {
                 startP2 = true;
                 CheckStart();
@@ -394,6 +400,22 @@ public class SelectScreenCSS : MonoBehaviour
                 borderP2_B.gameObject.GetComponent<Image>().sprite = frontBorder[1];
                 borderP2_B.gameObject.GetComponent<Image>().color = colorStart;
             }
+        }
+    }
+
+    void SpawnParticles(int id)
+    {
+        if(id == 1)
+        {
+            GameObject partIns = Instantiate(spawn_blue_part, root_blue_part);
+            float timePart = partIns.GetComponent<ParticleSystem>().main.duration;
+            Destroy(partIns, timePart);
+        }
+        else if (id == 2)
+        {
+            GameObject partIns = Instantiate(spawn_red_part, root_red_part);
+            float timePart = partIns.GetComponent<ParticleSystem>().main.duration;
+            Destroy(partIns, timePart);
         }
     }
 }

@@ -54,6 +54,8 @@ public class Platformer : MonoBehaviour
     public AttackMelee attackScrpt;
     public float x = 0;
 
+    public GameObject particle_jump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,11 +111,11 @@ public class Platformer : MonoBehaviour
         {
             rb.velocity = new Vector2(moveBy, rb.velocity.y);
         }
-        if ((Input.GetKeyDown(KeyCode.A)&&!player2)|| (Input.GetKeyDown(KeyCode.LeftArrow) && player2))
+        if (x < 0)
         {
             xScale = -1;
         }
-        if ((Input.GetKeyDown(KeyCode.D) && !player2) || (Input.GetKeyDown(KeyCode.RightArrow) && player2))
+        if (x > 0)
         {
             xScale = 1;
         }
@@ -123,7 +125,7 @@ public class Platformer : MonoBehaviour
     {
         if (!player2)
         {
-            if (Input.GetKeyDown(KeyCode.W) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || additionalJumps > 0 || (wallJumpIndex > 0 && onWall)))
+            if (Input.GetButtonDown("Jump") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || additionalJumps > 0 || (wallJumpIndex > 0 && onWall)))
             {
                 if (isGrounded)
                 {
@@ -142,11 +144,14 @@ public class Platformer : MonoBehaviour
                         wallJumpIndex--;
                     }
                 }
+                GameObject partJump = Instantiate(particle_jump, isGroundedChecker);
+                partJump.transform.parent = null;
+                Destroy(partJump, 1f);
             }
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || additionalJumps > 0 || (wallJumpIndex > 0 && onWall)))
+            if (Input.GetButtonDown("Jump_2") && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor || additionalJumps > 0 || (wallJumpIndex > 0 && onWall)))
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 if (defaultAdditionalJumps != 0 && !onWall)
@@ -157,9 +162,13 @@ public class Platformer : MonoBehaviour
                 {
                     wallJumpIndex--;
                 }
+                GameObject partJump = Instantiate(particle_jump, isGroundedChecker);
+                partJump.transform.parent = null;
+                Destroy(partJump, 1f);
             }
         }
     }
+
     void BetterJump()
     {
         if (rb.velocity.y < 0)
