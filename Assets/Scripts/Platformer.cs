@@ -113,11 +113,11 @@ public class Platformer : MonoBehaviour
         }
         if (x < 0)
         {
-            xScale = -1;
+            xScale = 1;
         }
         if (x > 0)
         {
-            xScale = 1;
+            xScale = -1;
         }
         transform.localScale = new Vector3(xScale, transform.localScale.y, transform.localScale.z);
     }

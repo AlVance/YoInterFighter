@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2844437510333617025}
   serializedVersion: 6
-  lengthInSec: 0.3
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -168,7 +168,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1541,7 +1541,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 2
-      scalar: 1
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1549,12 +1549,12 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0.6216202
-          inSlope: 5.511963
-          outSlope: 5.511963
+          inSlope: 8.189201
+          outSlope: 8.189201
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0.17161717
+          outWeight: 0.11881188
         - serializedVersion: 3
           time: 1
           value: -1
@@ -1573,12 +1573,12 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 4.878666
-          outSlope: 4.878666
+          inSlope: 11.162477
+          outSlope: 11.162477
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.15511551
+          outWeight: 0.12841667
         - serializedVersion: 3
           time: 1
           value: -0.56756437
@@ -4764,7 +4764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7769745884001076817}
   m_Layer: 0
-  m_Name: ParticleJump
+  m_Name: ParticleJump 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
