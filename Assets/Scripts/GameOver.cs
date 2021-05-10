@@ -6,14 +6,16 @@ public class GameOver : MonoBehaviour
 {
     public GameObject player1, player2;
     private HealthManager hM1, hM2;
-    private MainManager sceneManager;
+    private MainManager mainManager;
     private InfoManager infoManager;
     public int damageAtFall;
     private Vector2 initialPosPj1, initialPosPj2;
+    [HideInInspector]
+    
 
     private void Awake()
     {
-        sceneManager = FindObjectOfType<MainManager>();
+        mainManager = FindObjectOfType<MainManager>();
         infoManager = FindObjectOfType<InfoManager>();
     }
 
@@ -41,9 +43,10 @@ public class GameOver : MonoBehaviour
                 infoManager.SetVisualHealthPj1(hM1.health);
                 player1.transform.localPosition = initialPosPj1;
             }
-            else
+            else if(hM1.health <= 0)
             {
-                sceneManager.GoToWinnerScreen();
+                mainManager.GoToWinnerScreen();
+                mainManager.pj2Win = true;
             }
 
         }
@@ -55,9 +58,10 @@ public class GameOver : MonoBehaviour
                 infoManager.SetVisualHealthPj2(hM2.health);
                 player2.transform.localPosition = initialPosPj2;
             }
-            else
+            else if (hM2.health <= 0)
             {
-                sceneManager.GoToWinnerScreen();
+                mainManager.GoToWinnerScreen();
+                mainManager.pj1Win = true;
             }
             
         }

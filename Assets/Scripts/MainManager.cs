@@ -15,6 +15,7 @@ public class MainManager : MonoBehaviour
 
     AnimatorManager AnimMngr;
 
+    public bool pj1Win, pj2Win;
     private void Awake()
     {
         AnimMngr = FindObjectOfType<AnimatorManager>();
