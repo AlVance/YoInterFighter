@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Player2
   - hitCtrl
+  - Floor
   layers:
   - Default
   - TransparentFX
