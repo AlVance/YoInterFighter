@@ -492,7 +492,7 @@ MonoBehaviour:
   - {fileID: 500329313}
   obstaclePrefab: {fileID: 7397190379122732482, guid: d38dba925a230fd4aa9b1023534eed69,
     type: 3}
-  timeToSpawnInterval: {x: 2.5, y: 2.7}
+  timeToSpawnInterval: {x: 2.3, y: 2.5}
   minTimeToSpawnInterval: {x: 0.5, y: 0.8}
 --- !u!4 &1279468977
 Transform:
@@ -595,10 +595,10 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.25
   jumpForce: 7
-  fallMultiplier: 2.8
-  lowJumpMultiplier: 1.3
+  fallMultiplier: 2.65
+  lowJumpMultiplier: 1.75
 --- !u!4 &1360237722
 Transform:
   m_ObjectHideFlags: 0
@@ -838,8 +838,8 @@ MonoBehaviour:
   gameOverScreen: {fileID: 2107606363}
   puntuationText: {fileID: 1928559972}
   puntuation: 0
-  maxVelocity: 20
-  velocityObstacles: 3.3
+  maxVelocityObstacles: 16
+  velocityObstacles: 3.4
 --- !u!4 &1785559167
 Transform:
   m_ObjectHideFlags: 0
