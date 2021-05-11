@@ -75,14 +75,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                bC.size = new Vector2(0.75f, 1);
+                bC.size = new Vector2(0.5f, 1);
                 bC.offset = new Vector2(0, -0.5f);
                 playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
                
             }
             else
             {
-                bC.size = new Vector2(0.75f, 2);
+                bC.size = new Vector2(0.5f, 2);
                 bC.offset = new Vector2(0, 0);
                 playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
                 

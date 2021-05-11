@@ -485,13 +485,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2aab98a290ccea4997c9ee447e1199e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dMM: {fileID: 1785559166}
   spawnPoints:
   - {fileID: 1421367036}
   - {fileID: 1084435828}
   - {fileID: 500329313}
   obstaclePrefab: {fileID: 7397190379122732482, guid: d38dba925a230fd4aa9b1023534eed69,
     type: 3}
-  timeToSpawnInterval: {x: 1, y: 2.5}
+  timeToSpawnInterval: {x: 2.5, y: 2.7}
+  minTimeToSpawnInterval: {x: 0.5, y: 0.8}
 --- !u!4 &1279468977
 Transform:
   m_ObjectHideFlags: 0
@@ -573,7 +575,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 2}
+  m_Size: {x: 0.5, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &1360237721
 MonoBehaviour:
@@ -595,7 +597,7 @@ MonoBehaviour:
     m_Bits: 256
   groundCheckRadius: 0.2
   jumpForce: 7
-  fallMultiplier: 2.5
+  fallMultiplier: 2.8
   lowJumpMultiplier: 1.3
 --- !u!4 &1360237722
 Transform:
@@ -605,7 +607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360237718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: -1.7302766, z: 0}
+  m_LocalPosition: {x: -7, y: -1.7302766, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2848780352787620470}
@@ -835,6 +837,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 2107606363}
   puntuationText: {fileID: 1928559972}
+  puntuation: 0
+  maxVelocity: 20
+  velocityObstacles: 3.3
 --- !u!4 &1785559167
 Transform:
   m_ObjectHideFlags: 0
@@ -952,7 +957,7 @@ Transform:
   m_GameObject: {fileID: 1787668972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.23, y: -4, z: 0}
-  m_LocalScale: {x: 23.757627, y: 2.2769399, z: 1}
+  m_LocalScale: {x: 23.757627, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1358,7 +1363,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 8122117711492672827}
   m_Bounds:
-    m_Center: {x: -0.0010150075, y: 0.00015503168, z: 0.01}
+    m_Center: {x: -0.0010159612, y: 0.00015503168, z: 0.01}
     m_Extent: {x: 0.68561494, y: 0.57483494, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -1517,7 +1522,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 5934187855277812023}
   m_Bounds:
-    m_Center: {x: 0.0012831092, y: 0.0011447966, z: -0.049999997}
+    m_Center: {x: 0.0012850165, y: 0.0011447966, z: -0.049999997}
     m_Extent: {x: 0.32861516, y: 0.29875517, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -3157,7 +3162,7 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 3355257991525767203}
   m_Bounds:
-    m_Center: {x: -0.0000030696392, y: -0.0009799898, z: -0.02}
+    m_Center: {x: -0.000004976988, y: -0.0009799898, z: -0.02}
     m_Extent: {x: 0.22499502, y: 0.2588901, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

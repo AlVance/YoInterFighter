@@ -7,19 +7,28 @@ public class DinoMainManager : MonoBehaviour
 {
     public GameObject gameOverScreen;
     public Text puntuationText;
-    private float puntuation;
+    public float puntuation;
     private int shownPuntuation;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    public float maxVelocityObstacles;
+    public float velocityObstacles;
+    private float acceleration = 0.001f;
+ 
+    
     // Update is called once per frame
     void Update()
     {
         puntuation += Time.deltaTime;
         shownPuntuation = Mathf.RoundToInt(puntuation * 10);
         puntuationText.text = shownPuntuation.ToString();
+        
+        if(velocityObstacles < maxVelocityObstacles)
+        {
+            velocityObstacles += acceleration;
+        }
+        
+        
     }
+
+
 }

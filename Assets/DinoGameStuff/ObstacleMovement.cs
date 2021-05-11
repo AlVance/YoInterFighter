@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class ObstacleMovement : MonoBehaviour
 {
-    public float velocity;
+    private float velocity;
+    public DinoMainManager dMM;
     // Start is called before the first frame update
     void Start()
     {
+        dMM = FindObjectOfType<DinoMainManager>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += Vector3.left * velocity * Time.deltaTime; 
+        velocity = dMM.velocityObstacles;
+        this.transform.position += Vector3.left * velocity * Time.deltaTime;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
