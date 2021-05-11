@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public DinoMainManager dMM;
     private Rigidbody2D rb;
     private BoxCollider2D bC;
     public GameObject playerSprite;
@@ -90,5 +91,12 @@ public class PlayerMovement : MonoBehaviour
       
     }
 
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Obstacle")
+        {
+            Time.timeScale = 0;
+            dMM.gameOverScreen.SetActive(true);
+        }
+    }
 }
