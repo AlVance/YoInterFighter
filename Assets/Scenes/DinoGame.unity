@@ -492,8 +492,8 @@ MonoBehaviour:
   - {fileID: 500329313}
   obstaclePrefab: {fileID: 7397190379122732482, guid: d38dba925a230fd4aa9b1023534eed69,
     type: 3}
-  timeToSpawnInterval: {x: 2.3, y: 2.5}
-  minTimeToSpawnInterval: {x: 0.5, y: 0.8}
+  timeToSpawnInterval: {x: 2.2, y: 2.4}
+  minTimeToSpawnInterval: {x: 0.4, y: 0.7}
 --- !u!4 &1279468977
 Transform:
   m_ObjectHideFlags: 0
