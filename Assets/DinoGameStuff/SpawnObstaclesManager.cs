@@ -11,6 +11,7 @@ public class SpawnObstaclesManager : MonoBehaviour
     public Vector2 minTimeToSpawnInterval;
     private float timeToSpawn;
     private float currentTime;
+    public float spawnTimeReducer = 0.0002f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +29,8 @@ public class SpawnObstaclesManager : MonoBehaviour
             currentTime = 0;
             SetTimeToSpawn();
         }
-        if(timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= 0.0002f;
-        if(timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= 0.0002f;
+        if(timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= spawnTimeReducer;
+        if(timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= spawnTimeReducer;
     }
 
     private void SpawnObstacle()

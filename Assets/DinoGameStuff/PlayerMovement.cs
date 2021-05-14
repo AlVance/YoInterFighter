@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
+    public float jumpingGravityScale = 0.8f;
 
     private bool jumpRequest;
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, m_WhatIsGround);
+       
         
         Jump();
         Crouch();
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, m_WhatIsGround);
 
         if (jumpRequest)
         {
@@ -54,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 1f;
+            rb.gravityScale = jumpingGravityScale;
         }
     }
 

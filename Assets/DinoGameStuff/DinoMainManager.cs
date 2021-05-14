@@ -12,7 +12,7 @@ public class DinoMainManager : MonoBehaviour
 
     public float maxVelocityObstacles;
     public float velocityObstacles;
-    private float acceleration = 0.001f;
+    public float acceleration = 0.0005f;
  
     
     // Update is called once per frame

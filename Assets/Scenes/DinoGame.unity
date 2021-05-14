@@ -472,7 +472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1279468976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,8 +492,9 @@ MonoBehaviour:
   - {fileID: 500329313}
   obstaclePrefab: {fileID: 7397190379122732482, guid: d38dba925a230fd4aa9b1023534eed69,
     type: 3}
-  timeToSpawnInterval: {x: 2.2, y: 2.4}
-  minTimeToSpawnInterval: {x: 0.4, y: 0.7}
+  timeToSpawnInterval: {x: 3.8, y: 4.2}
+  minTimeToSpawnInterval: {x: 0.8, y: 1.2}
+  spawnTimeReducer: 0.0002
 --- !u!4 &1279468977
 Transform:
   m_ObjectHideFlags: 0
@@ -597,8 +598,9 @@ MonoBehaviour:
     m_Bits: 256
   groundCheckRadius: 0.25
   jumpForce: 7
-  fallMultiplier: 2.65
-  lowJumpMultiplier: 1.75
+  fallMultiplier: 3.5
+  lowJumpMultiplier: 2
+  jumpingGravityScale: 1
 --- !u!4 &1360237722
 Transform:
   m_ObjectHideFlags: 0
@@ -838,8 +840,9 @@ MonoBehaviour:
   gameOverScreen: {fileID: 2107606363}
   puntuationText: {fileID: 1928559972}
   puntuation: 0
-  maxVelocityObstacles: 16
-  velocityObstacles: 3.4
+  maxVelocityObstacles: 12
+  velocityObstacles: 3.3
+  acceleration: 0.0005
 --- !u!4 &1785559167
 Transform:
   m_ObjectHideFlags: 0
@@ -956,8 +959,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787668972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.23, y: -4, z: 0}
-  m_LocalScale: {x: 23.757627, y: 2.5, z: 1}
+  m_LocalPosition: {x: 0.718, y: -4, z: 0}
+  m_LocalScale: {x: 26.7822, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
