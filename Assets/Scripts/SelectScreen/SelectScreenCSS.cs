@@ -51,6 +51,8 @@ public class SelectScreenCSS : MonoBehaviour
     public Transform root_blue_part;
     public Transform root_red_part;
 
+    bool resetJoyP1;
+    bool resetJoyP2;
 
 
     // Start is called before the first frame update
@@ -84,7 +86,8 @@ public class SelectScreenCSS : MonoBehaviour
     {
         if (!selectP1)
         {
-            if (Input.GetAxisRaw("Horizontal") < 0)
+            //if(Input.GetAxisRaw("Horizontal"))
+            if (((Hinput.gamepad[0].leftStick.horizontal <= -1) && resetJoyP1) || (Input.GetAxisRaw("Horizontal") < 0) && resetJoyP1)
             {
                 if (indexP1 == 0)
                 {
@@ -96,8 +99,9 @@ public class SelectScreenCSS : MonoBehaviour
                 }
                 UpdateCells();
                 SelectPlayer(1, false);
+                resetJoyP1 = false;
             }
-            if (Input.GetAxisRaw("Horizontal") < 0)
+            if ((Hinput.gamepad[0].leftStick.horizontal >= 1) && resetJoyP1 || (Input.GetAxisRaw("Horizontal") > 0) && resetJoyP1)
             {
                 if (indexP1 == cells.Count - 1)
                 {
@@ -109,8 +113,13 @@ public class SelectScreenCSS : MonoBehaviour
                 }
                 UpdateCells();
                 SelectPlayer(1, false);
+                resetJoyP1 = false;
             }
-            if (Input.GetButtonDown("Attack"))
+            if((Hinput.gamepad[0].leftStick.horizontal < 0.2f && Hinput.gamepad[0].leftStick.horizontal > -0.2f) && (Input.GetAxisRaw("Horizontal") < 0.2f && Input.GetAxisRaw("Horizontal") > -0.2f))
+            {
+                resetJoyP1 = true;
+            }
+            if (Hinput.gamepad[0].A.pressed || Input.GetButtonDown("Attack"))
             {
                 SelectPlayer(1, true);
                 selectP1 = true;
@@ -119,7 +128,7 @@ public class SelectScreenCSS : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Cancel"))
+            if (Hinput.gamepad[0].B.pressed || Input.GetButtonDown("Cancel"))
             {
                 UpdateCells();
                 SelectPlayer(1, false);
@@ -127,7 +136,7 @@ public class SelectScreenCSS : MonoBehaviour
                 selectP1 = false;
                 SelectStart();
             }
-            if (Input.GetButtonDown("Attack"))
+            if (Hinput.gamepad[0].A.pressed || Input.GetButtonDown("Attack"))
             {
                 startP1 = true;
                 CheckStart();
@@ -136,7 +145,7 @@ public class SelectScreenCSS : MonoBehaviour
 
         if (!selectP2)
         {
-            if (Input.GetAxisRaw("Horizontal_2") < 0)
+            if (((Hinput.gamepad[1].leftStick.horizontal <= -1) && resetJoyP2) || (Input.GetAxisRaw("Horizontal_2") < 0) && resetJoyP2)
             {
                 if (indexP2 == 0)
                 {
@@ -148,8 +157,9 @@ public class SelectScreenCSS : MonoBehaviour
                 }
                 UpdateCells();
                 SelectPlayer(2, false);
+                resetJoyP2 = false;
             }
-            if (Input.GetAxisRaw("Horizontal_2") < 0)
+            if ((Hinput.gamepad[1].leftStick.horizontal >= 1) && resetJoyP2 || (Input.GetAxisRaw("Horizontal_2") > 0) && resetJoyP2)
             {
                 if (indexP2 == cells.Count - 1)
                 {
@@ -161,8 +171,13 @@ public class SelectScreenCSS : MonoBehaviour
                 }
                 UpdateCells();
                 SelectPlayer(2, false);
+                resetJoyP2 = false;
             }
-            if (Input.GetButtonDown("Attack_2"))
+            if ((Hinput.gamepad[1].leftStick.horizontal < 0.2f && Hinput.gamepad[1].leftStick.horizontal > -0.2f) && (Input.GetAxisRaw("Horizontal") < 0.2f && Input.GetAxisRaw("Horizontal") > -0.2f))
+            {
+                resetJoyP2 = true;
+            }
+            if (Hinput.gamepad[1].A.pressed || Input.GetButtonDown("Attack_2"))
             {
                 SelectPlayer(2, true);
                 selectP2 = true;
@@ -171,7 +186,7 @@ public class SelectScreenCSS : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Cancel_2"))
+            if (Hinput.gamepad[1].B.pressed || Input.GetButtonDown("Cancel_2"))
             {
                 UpdateCells();
                 SelectPlayer(2, false);
@@ -179,7 +194,7 @@ public class SelectScreenCSS : MonoBehaviour
                 selectP2 = false;
                 SelectStart();
             }
-            if (Input.GetButtonDown("Attack_2"))
+            if (Hinput.gamepad[1].A.pressed || Input.GetButtonDown("Attack_2"))
             {
                 startP2 = true;
                 CheckStart();
