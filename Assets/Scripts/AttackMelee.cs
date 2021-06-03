@@ -20,10 +20,13 @@ public class AttackMelee : MonoBehaviour
     public float timeCombo = .5f;
     bool onCombo;
 
+    AnimMngrPj myAnimCtrl;
+
     // Start is called before the first frame update
     void Start()
     {
         mainManager = FindObjectOfType<MainManager>();
+        myAnimCtrl = GetComponent<AnimMngrPj>();
         canAttack = true;
         SetGameobjectArray(attackVisuals, -1);
         attackCount = 0;
@@ -50,6 +53,9 @@ public class AttackMelee : MonoBehaviour
                     StopAllCoroutines();
                     StartCoroutine(AttackCicle(timeAttack));
                     SetGameobjectArray(attackVisuals, attackCount);
+                    myAnimCtrl.onAttack = true;
+                    myAnimCtrl.statePj = "Attack";
+                    myAnimCtrl.attackCount = attackCount;
                     canAttack = false;
                 }
                 else
@@ -66,6 +72,9 @@ public class AttackMelee : MonoBehaviour
                     StopAllCoroutines();
                     StartCoroutine(AttackCicle(timeAttack));
                     SetGameobjectArray(attackVisuals, attackCount);
+                    myAnimCtrl.onAttack = true;
+                    myAnimCtrl.statePj = "Attack";
+                    myAnimCtrl.attackCount = attackCount;
                     canAttack = false;
                 }
             }
@@ -86,6 +95,7 @@ public class AttackMelee : MonoBehaviour
         onCombo = true;
         yield return new WaitForSeconds(timeCombo);
         onCombo = false;
+        myAnimCtrl.onAttack = false;
         attackCount = 0;
         yield return null;
     }

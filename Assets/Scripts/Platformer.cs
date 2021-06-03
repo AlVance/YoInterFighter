@@ -10,6 +10,9 @@ public class Platformer : MonoBehaviour
     public enum TypeAttack { Melee, Range}
     public TypeAttack typeSelect = TypeAttack.Melee;
 
+    public enum PosiblesStates { Idle, Walk, Jump, Fall}
+    public string currentState = PosiblesStates.Idle.ToString();
+
     public bool player2;
 
     [Header("Player Local Variable")]
@@ -110,6 +113,11 @@ public class Platformer : MonoBehaviour
         if (x != 0)
         {
             rb.velocity = new Vector2(moveBy, rb.velocity.y);
+            currentState = PosiblesStates.Walk.ToString();
+        }
+        else
+        {
+            currentState = PosiblesStates.Idle.ToString();
         }
         if (x < 0)
         {

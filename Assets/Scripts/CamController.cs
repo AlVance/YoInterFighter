@@ -21,7 +21,7 @@ public class CamController : MonoBehaviour
     void Update()
     {
         middlePos = Vector3.Lerp(player1.transform.position, player2.transform.position, 0.5f);
-        Debug.Log(middlePos);
+        //Debug.Log(middlePos);
         transform.position = new Vector3(middlePos.x, middlePos.y, transform.position.z);
     }
 }

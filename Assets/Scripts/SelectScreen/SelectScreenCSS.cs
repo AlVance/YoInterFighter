@@ -87,7 +87,7 @@ public class SelectScreenCSS : MonoBehaviour
         if (!selectP1)
         {
             //if(Input.GetAxisRaw("Horizontal"))
-            if (((Hinput.gamepad[0].leftStick.horizontal <= -1) && resetJoyP1) || (Input.GetAxisRaw("Horizontal") < 0) && resetJoyP1)
+            if (((Hinput.gamepad[0].leftStick.horizontal <= -1) && resetJoyP1) || (Input.GetAxisRaw("Horizontal") <= -1) && resetJoyP1)
             {
                 if (indexP1 == 0)
                 {
@@ -101,7 +101,7 @@ public class SelectScreenCSS : MonoBehaviour
                 SelectPlayer(1, false);
                 resetJoyP1 = false;
             }
-            if ((Hinput.gamepad[0].leftStick.horizontal >= 1) && resetJoyP1 || (Input.GetAxisRaw("Horizontal") > 0) && resetJoyP1)
+            if ((Hinput.gamepad[0].leftStick.horizontal >= 1) && resetJoyP1 || (Input.GetAxisRaw("Horizontal") >= 1) && resetJoyP1)
             {
                 if (indexP1 == cells.Count - 1)
                 {
@@ -145,7 +145,7 @@ public class SelectScreenCSS : MonoBehaviour
 
         if (!selectP2)
         {
-            if (((Hinput.gamepad[1].leftStick.horizontal <= -1) && resetJoyP2) || (Input.GetAxisRaw("Horizontal_2") < 0) && resetJoyP2)
+            if (((Hinput.gamepad[1].leftStick.horizontal <= -1) && resetJoyP2) || (Input.GetAxisRaw("Horizontal_2") <= -1) && resetJoyP2)
             {
                 if (indexP2 == 0)
                 {
@@ -159,7 +159,7 @@ public class SelectScreenCSS : MonoBehaviour
                 SelectPlayer(2, false);
                 resetJoyP2 = false;
             }
-            if ((Hinput.gamepad[1].leftStick.horizontal >= 1) && resetJoyP2 || (Input.GetAxisRaw("Horizontal_2") > 0) && resetJoyP2)
+            if ((Hinput.gamepad[1].leftStick.horizontal >= 1) && resetJoyP2 || (Input.GetAxisRaw("Horizontal_2") >= 1) && resetJoyP2)
             {
                 if (indexP2 == cells.Count - 1)
                 {
@@ -173,7 +173,7 @@ public class SelectScreenCSS : MonoBehaviour
                 SelectPlayer(2, false);
                 resetJoyP2 = false;
             }
-            if ((Hinput.gamepad[1].leftStick.horizontal < 0.2f && Hinput.gamepad[1].leftStick.horizontal > -0.2f) && (Input.GetAxisRaw("Horizontal") < 0.2f && Input.GetAxisRaw("Horizontal") > -0.2f))
+            if ((Hinput.gamepad[1].leftStick.horizontal < 0.2f && Hinput.gamepad[1].leftStick.horizontal > -0.2f) && (Input.GetAxisRaw("Horizontal_2") < 0.2f && Input.GetAxisRaw("Horizontal_2") > -0.2f))
             {
                 resetJoyP2 = true;
             }
