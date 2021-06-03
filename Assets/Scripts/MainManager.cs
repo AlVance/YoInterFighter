@@ -18,12 +18,19 @@ public class MainManager : MonoBehaviour
     public bool pj1Win, pj2Win;
     private void Awake()
     {
-        AnimMngr = FindObjectOfType<AnimatorManager>();
     }
 
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Update()
+    {
+        if (AnimMngr == null)
+        {
+            AnimMngr = FindObjectOfType<AnimatorManager>();
+        }
     }
 
     public void StartGame()
@@ -47,6 +54,7 @@ public class MainManager : MonoBehaviour
     private void LoadScene(int sceneToLoad)
     {
         StartCoroutine(LoadLevel(sceneToLoad));
+        AnimMngr = null;
     }
 
     private IEnumerator LoadLevel(int sceneToLoad)
