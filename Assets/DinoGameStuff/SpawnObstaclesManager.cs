@@ -40,25 +40,25 @@ public class SpawnObstaclesManager : MonoBehaviour
         {
             GameObject newObstacle = Instantiate(obstaclePrefab, spawnPoints[0].position, Quaternion.Euler(0,0,0));
             int rndx = Random.Range(1, 11);
-            if (rndx > 6 && dMM.velocityObstacles > 4.5f) newObstacle.transform.localScale += new Vector3(Random.Range(0.4f, 0.75f), 0, 0);
+            if (rndx > 6 && dMM.velocityObstacles > 4.5f) newObstacle.transform.localScale += new Vector3(Random.Range(0.3f, 0.65f), 0, 0);
             int rndy = Random.Range(1, 11);
             if (rndy > 6 && dMM.velocityObstacles > 4f) 
             {
-                newObstacle.transform.localScale += new Vector3(0, Random.Range(0.3f, 0.55f), 0);
-                newObstacle.transform.localPosition += new Vector3(0, 0.25f, 0);
+                newObstacle.transform.localScale += new Vector3(0, Random.Range(0.2f, 0.45f), 0);
+                newObstacle.transform.localPosition += new Vector3(0, 0.15f, 0);
             } 
         }
         else if(rnd > 60 && rnd <= 90)
         {
             GameObject newObstacle = Instantiate(obstaclePrefab, spawnPoints[1].position, Quaternion.Euler(0, 0, 0));
             int rndx = Random.Range(1, 11);
-            if (rndx > 6) newObstacle.transform.localScale += new Vector3(Random.Range(0.4f, 0.85f), 0, 0);
+            if (rndx > 6) newObstacle.transform.localScale += new Vector3(Random.Range(0.3f, 0.65f), 0, 0);
         }
         else
         {
             GameObject newObstacle = Instantiate(obstaclePrefab, spawnPoints[2].position, Quaternion.Euler(0, 0, 0));
             int rndx = Random.Range(1, 11);
-            if (rndx > 6) newObstacle.transform.localScale += new Vector3(Random.Range(0.4f, 0.85f), 0, 0);
+            if (rndx > 6) newObstacle.transform.localScale += new Vector3(Random.Range(0.3f, 0.65f), 0, 0);
         }
     }
     private void SetTimeToSpawn()

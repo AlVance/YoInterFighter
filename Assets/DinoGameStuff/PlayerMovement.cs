@@ -13,18 +13,24 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public LayerMask m_WhatIsGround;
     public float groundCheckRadius;
+    public Transform jumpHeight;
     
     public float jumpForce;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public float jumpingGravityScale = 0.8f;
+    private float initialGravityScale;
+    public float fallGravityScale;
 
     private bool jumpRequest;
+    private bool canJump = true;
     // Start is called before the first frame update
     void Start()
     {
+
         bC = this.GetComponent<BoxCollider2D>();
         rb = this.GetComponent<Rigidbody2D>();
+        initialGravityScale = rb.gravityScale;
     }
 
     // Update is called once per frame
@@ -38,14 +44,21 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, m_WhatIsGround);
-
-        if (jumpRequest)
+       
+        
+        if (jumpRequest && canJump)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            jumpRequest = false;
+            rb.gravityScale = initialGravityScale;
+            transform.Translate(Vector3.up * jumpForce * Time.deltaTime);
+            //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if(this.transform.position.y >= jumpHeight.position.y || !Input.GetKey(KeyCode.UpArrow))
+            {
+                //jumpRequest = false;
+                StartCoroutine(StayUpCD());
+            }
         }
 
-        if (rb.velocity.y < 0)
+        /*if (rb.velocity.y < 0)
         {
             rb.gravityScale = fallMultiplier;
         }
@@ -56,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.gravityScale = jumpingGravityScale;
-        }
+        }*/
     }
 
     private void Jump()
@@ -99,5 +112,15 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 0;
             dMM.gameOverScreen.SetActive(true);
         }
+    }
+
+    private IEnumerator StayUpCD()
+    {
+        canJump = false;
+        //rb.gravityScale = 0f;
+        yield return new WaitForSeconds(0.1f);
+        rb.gravityScale = fallGravityScale;
+        jumpRequest = false;
+        canJump = true;
     }
 }
