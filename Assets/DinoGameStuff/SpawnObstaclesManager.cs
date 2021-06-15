@@ -7,6 +7,7 @@ public class SpawnObstaclesManager : MonoBehaviour
     public DinoMainManager dMM;
     public Transform[] spawnPoints;
     public GameObject obstaclePrefab;
+    public GameObject obstacleLargePrefab;
     public Vector2 timeToSpawnInterval;
     public Vector2 minTimeToSpawnInterval;
     private float timeToSpawn;
@@ -50,9 +51,10 @@ public class SpawnObstaclesManager : MonoBehaviour
         }
         else if(rnd > 60 && rnd <= 90)
         {
-            GameObject newObstacle = Instantiate(obstaclePrefab, spawnPoints[1].position, Quaternion.Euler(0, 0, 0));
+            GameObject newObstacle = Instantiate(obstacleLargePrefab, spawnPoints[1].position, Quaternion.Euler(0, 0, 0));
+            
             int rndx = Random.Range(1, 11);
-            if (rndx > 6) newObstacle.transform.localScale += new Vector3(Random.Range(0.3f, 0.65f), 0, 0);
+            //if (rndx > 6) newObstacle.transform.localScale += new Vector3(Random.Range(0.3f, 0.65f), 0, 0);
         }
         else
         {
