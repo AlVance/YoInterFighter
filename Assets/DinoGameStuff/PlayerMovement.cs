@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform jumpHeight;
     
     public float jumpForce;
-    public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
-    public float jumpingGravityScale = 0.8f;
+    //public float fallMultiplier = 2.5f;
+    //public float lowJumpMultiplier = 2f;
+    //public float jumpingGravityScale = 0.8f;
     private float initialGravityScale;
     public float fallGravityScale;
 
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (jumpRequest && canJump)
         {
-            rb.gravityScale = initialGravityScale;
+            rb.gravityScale = initialGravityScale;        
             transform.Translate(Vector3.up * jumpForce * Time.deltaTime);
             //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             if(this.transform.position.y >= jumpHeight.position.y || !Input.GetKey(KeyCode.UpArrow))
