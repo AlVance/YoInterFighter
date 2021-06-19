@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D bC;
     public GameObject playerSprite;
+    public Animator anim;
 
     public Transform groundCheck;
     private bool isGrounded;
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
         bC = this.GetComponent<BoxCollider2D>();
         rb = this.GetComponent<Rigidbody2D>();
         initialGravityScale = rb.gravityScale;
@@ -44,7 +45,16 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, m_WhatIsGround);
-       
+       if(isGrounded)
+       {
+            anim.SetBool("IsRunning", true);
+            anim.SetBool("IsJumping", false);
+        }
+        else
+        {
+            anim.SetBool("IsRunning", false);
+            anim.SetBool("IsJumping", true);
+        }
         
         if (jumpRequest && canJump)
         {
