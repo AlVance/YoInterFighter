@@ -101,15 +101,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 bC.size = new Vector2(0.5f, 1);
                 bC.offset = new Vector2(0, -0.5f);
-                playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
-               
+                //playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
+                anim.SetBool("IsSliding", true);
             }
             else
             {
                 bC.size = new Vector2(0.5f, 2);
                 bC.offset = new Vector2(0, 0);
-                playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-                
+                //playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+                anim.SetBool("IsSliding", false);
+
             }
         }
       
