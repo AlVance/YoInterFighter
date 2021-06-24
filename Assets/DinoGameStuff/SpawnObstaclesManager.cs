@@ -6,8 +6,9 @@ public class SpawnObstaclesManager : MonoBehaviour
 {
     public DinoMainManager dMM;
     public Transform[] spawnPoints;
-    public GameObject obstaclePrefab;
-    public GameObject obstacleLargePrefab;
+    public GameObject obstacleBotPrefab;
+    public GameObject obstacleMidPrefab;
+    public GameObject obstacleTopPrefab;
     public Vector2 timeToSpawnInterval;
     public Vector2 minTimeToSpawnInterval;
     private float timeToSpawn;
@@ -39,7 +40,7 @@ public class SpawnObstaclesManager : MonoBehaviour
         int rnd = Random.Range(1, 100);
         if(rnd <= 60)
         {
-            GameObject newObstacle = Instantiate(obstaclePrefab, spawnPoints[0].position, Quaternion.Euler(0,0,0));
+            GameObject newObstacle = Instantiate(obstacleBotPrefab, spawnPoints[0].position, Quaternion.Euler(0,0,0));
             int rndx = Random.Range(1, 11);
             if (rndx > 6 && dMM.velocityObstacles > 4.5f) newObstacle.transform.localScale += new Vector3(Random.Range(0.3f, 0.65f), 0, 0);
             int rndy = Random.Range(1, 11);
@@ -51,14 +52,14 @@ public class SpawnObstaclesManager : MonoBehaviour
         }
         else if(rnd > 60 && rnd <= 90)
         {
-            GameObject newObstacle = Instantiate(obstacleLargePrefab, spawnPoints[1].position, Quaternion.Euler(0, 0, 0));
+            GameObject newObstacle = Instantiate(obstacleMidPrefab, spawnPoints[1].position, Quaternion.Euler(0, 0, 0));
             
             int rndx = Random.Range(1, 11);
             //if (rndx > 6) newObstacle.transform.localScale += new Vector3(Random.Range(0.3f, 0.65f), 0, 0);
         }
         else
         {
-            GameObject newObstacle = Instantiate(obstaclePrefab, spawnPoints[2].position, Quaternion.Euler(0, 0, 0));
+            GameObject newObstacle = Instantiate(obstacleTopPrefab, spawnPoints[2].position, Quaternion.Euler(0, 0, 0));
             int rndx = Random.Range(1, 11);
             if (rndx > 6) newObstacle.transform.localScale += new Vector3(Random.Range(0.3f, 0.65f), 0, 0);
         }

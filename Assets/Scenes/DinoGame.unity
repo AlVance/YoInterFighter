@@ -789,11 +789,13 @@ MonoBehaviour:
   - {fileID: 1421367036}
   - {fileID: 1084435828}
   - {fileID: 500329313}
-  obstaclePrefab: {fileID: 7397190379122732482, guid: d38dba925a230fd4aa9b1023534eed69,
+  obstacleBotPrefab: {fileID: 7397190379122732482, guid: d38dba925a230fd4aa9b1023534eed69,
     type: 3}
-  obstacleLargePrefab: {fileID: 7397190379122732482, guid: 1b738b1a087e956498c0dd233d07a9de,
+  obstacleMidPrefab: {fileID: 7397190379122732482, guid: 1b738b1a087e956498c0dd233d07a9de,
     type: 3}
-  timeToSpawnInterval: {x: 2.2, y: 2.25}
+  obstacleTopPrefab: {fileID: 6727605636715032147, guid: f991bdef45129af4da954143be1b59f6,
+    type: 3}
+  timeToSpawnInterval: {x: 2.1, y: 2.15}
   minTimeToSpawnInterval: {x: 0.7, y: 0.75}
   spawnTimeReducer: 0.00015
 --- !u!4 &1279468977
@@ -988,6 +990,8 @@ MonoBehaviour:
   dMM: {fileID: 1785559166}
   playerSprite: {fileID: 5657977807039777937}
   anim: {fileID: 5657977807039777938}
+  jumpParticles: {fileID: 6555548582416551729, guid: 95d629c1a6cf85d458ad05cfeb0f582c,
+    type: 3}
   groundCheck: {fileID: 784558416}
   m_WhatIsGround:
     serializedVersion: 2
@@ -1145,7 +1149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422521333}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.026, y: -0.87, z: 0}
+  m_LocalPosition: {x: -0.025, y: -0.87, z: 0}
   m_LocalScale: {x: 0.046840813, y: 0.45357645, z: 1.2545}
   m_Children: []
   m_Father: {fileID: 1787668975}

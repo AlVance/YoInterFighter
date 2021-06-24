@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D bC;
     public GameObject playerSprite;
     public Animator anim;
+    public GameObject jumpParticles;
 
     public Transform groundCheck;
     private bool isGrounded;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool jumpRequest;
     private bool canJump = true;
+    private bool isSliding = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,12 +56,15 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("IsRunning", false);
             anim.SetBool("IsJumping", true);
+            anim.SetBool("IsSliding", false);
+            isSliding = false;
         }
         
         if (jumpRequest && canJump)
         {
             rb.gravityScale = initialGravityScale;        
             transform.Translate(Vector3.up * jumpForce * Time.deltaTime);
+            
             //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             if(this.transform.position.y >= jumpHeight.position.y || !Input.GetKey(KeyCode.UpArrow))
             {
@@ -89,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         {
                        
             jumpRequest = true;
-                        
+            Instantiate(jumpParticles, groundCheck.transform.position, Quaternion.identity);
         }
     }
 
@@ -103,9 +108,11 @@ public class PlayerMovement : MonoBehaviour
                 bC.offset = new Vector2(0, -0.5f);
                 //playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
                 anim.SetBool("IsSliding", true);
+                isSliding = true;
             }
             else
             {
+                isSliding = false;
                 bC.size = new Vector2(0.5f, 2);
                 bC.offset = new Vector2(0, 0);
                 //playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
