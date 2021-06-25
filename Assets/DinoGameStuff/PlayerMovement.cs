@@ -13,27 +13,26 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform groundCheck;
     private bool isGrounded;
-    public LayerMask m_WhatIsGround;
-    public float groundCheckRadius;
-    public Transform jumpHeight;
     
-    public float jumpForce;
-    //public float fallMultiplier = 2.5f;
-    //public float lowJumpMultiplier = 2f;
-    //public float jumpingGravityScale = 0.8f;
     private float initialGravityScale;
-    public float fallGravityScale;
 
-    private bool jumpRequest;
-    private bool canJump = true;
     private bool isSliding = false;
+
+    private float upwardsVelocity = 0.0f;
+    public float upwardsJumpForce = 0.0f;
+    public float gravityMultiplier = 100.0f;
+    public float maxJumpHeight = 2.0f;
+    private float iniY = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        iniY = transform.position.y;
         bC = this.GetComponent<BoxCollider2D>();
         rb = this.GetComponent<Rigidbody2D>();
         initialGravityScale = rb.gravityScale;
+
+        Physics.gravity = Vector3.down * gravityMultiplier;
     }
 
     // Update is called once per frame
@@ -42,59 +41,47 @@ public class PlayerMovement : MonoBehaviour
            
         Jump();
         Crouch();
-    }
+        anim.SetBool("IsSliding", isSliding);
 
-    void FixedUpdate()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, m_WhatIsGround);
-       if(isGrounded)
-       {
-            anim.SetBool("IsRunning", true);
-            anim.SetBool("IsJumping", false);
-        }
-        else
-        {
-            anim.SetBool("IsRunning", false);
-            anim.SetBool("IsJumping", true);
-            anim.SetBool("IsSliding", false);
-            isSliding = false;
-        }
-        
-        if (jumpRequest && canJump)
-        {
-            rb.gravityScale = initialGravityScale;        
-            transform.Translate(Vector3.up * jumpForce * Time.deltaTime);
-            
-            //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            if(this.transform.position.y >= jumpHeight.position.y || !Input.GetKey(KeyCode.UpArrow))
-            {
-                //jumpRequest = false;
-                StartCoroutine(StayUpCD());
-            }
-        }
-
-        /*if (rb.velocity.y < 0)
-        {
-            rb.gravityScale = fallMultiplier;
-        }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
-        {
-            rb.gravityScale = lowJumpMultiplier;
-        }
-        else
-        {
-            rb.gravityScale = jumpingGravityScale;
-        }*/
     }
 
     private void Jump()
     {
+      
         
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        float dt = Time.deltaTime;
+
+        upwardsVelocity += dt * Physics.gravity.y;
+        
+        if (Input.GetKey(KeyCode.UpArrow) && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
         {
-                       
-            jumpRequest = true;
-            Instantiate(jumpParticles, groundCheck.transform.position, Quaternion.identity);
+            upwardsVelocity = upwardsJumpForce;
+        }
+        
+        transform.position += Vector3.up * upwardsVelocity * dt;
+
+        isGrounded = transform.position.y <= iniY;
+
+        if (isGrounded)
+        {
+            upwardsVelocity = 0.0f;
+        }
+
+        Vector3 currentPosition = transform.position;
+        currentPosition.y = Mathf.Max(currentPosition.y, iniY);
+        transform.position = currentPosition;
+
+
+        if (isGrounded)
+        {
+            anim.SetBool("IsJumping", false);
+        }
+        else
+        {
+            
+            anim.SetBool("IsJumping", true);
+            
+            isSliding = false;
         }
     }
 
@@ -107,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
                 bC.size = new Vector2(0.5f, 1);
                 bC.offset = new Vector2(0, -0.5f);
                 //playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
-                anim.SetBool("IsSliding", true);
+                
                 isSliding = true;
             }
             else
@@ -116,7 +103,8 @@ public class PlayerMovement : MonoBehaviour
                 bC.size = new Vector2(0.5f, 2);
                 bC.offset = new Vector2(0, 0);
                 //playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-                anim.SetBool("IsSliding", false);
+                isSliding = false;
+
 
             }
         }
@@ -132,13 +120,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator StayUpCD()
-    {
-        canJump = false;
-        //rb.gravityScale = 0f;
-        yield return new WaitForSeconds(0.1f);
-        rb.gravityScale = fallGravityScale;
-        jumpRequest = false;
-        canJump = true;
-    }
+ 
 }

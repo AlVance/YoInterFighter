@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DinoMainManager : MonoBehaviour
 {
@@ -30,5 +31,10 @@ public class DinoMainManager : MonoBehaviour
         
     }
 
+    public void RestardGame()
+    {
+        SceneManager.LoadScene("DinoGame");
+        Time.timeScale = 1;
+    }
 
 }
