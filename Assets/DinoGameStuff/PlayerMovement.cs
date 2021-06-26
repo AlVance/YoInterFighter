@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxJumpHeight = 2.0f;
     private float iniY = 0.0f;
 
+    public ParticleSystem partJump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,14 +49,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-      
-        
         float dt = Time.deltaTime;
 
         upwardsVelocity += dt * Physics.gravity.y;
         
         if (Input.GetKey(KeyCode.UpArrow) && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
         {
+            partJump.Play();
             upwardsVelocity = upwardsJumpForce;
         }
         
