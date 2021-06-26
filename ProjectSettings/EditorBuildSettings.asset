@@ -6,15 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: dbdb31062d19a964a893ef598eb50081
-  - enabled: 1
-    path: Assets/Scenes/PjSelectScreen.unity
-    guid: c4b0f7b945849d248bf0c506c03988d4
-  - enabled: 1
-    path: Assets/Scenes/FightScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/WinnerScene.unity
-    guid: 36f7c03cc3ca48e4aafb238c3c8ee4ae
+    path: Assets/Scenes/DinoGame.unity
+    guid: eeebee9a62788584ab72f921547fe332
   m_configObjects: {}
