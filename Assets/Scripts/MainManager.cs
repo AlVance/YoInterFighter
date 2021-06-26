@@ -54,7 +54,7 @@ public class MainManager : MonoBehaviour
     private void LoadScene(int sceneToLoad)
     {
         StartCoroutine(LoadLevel(sceneToLoad));
-        AnimMngr = null;
+        //AnimMngr = null;
     }
 
     private IEnumerator LoadLevel(int sceneToLoad)
