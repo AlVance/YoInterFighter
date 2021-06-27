@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class DinoMainManager : MonoBehaviour
 {
     public GameObject startScreen;
+    public GameObject tutoScreen;
     public GameObject gameOverScreen;
     public Text puntuationText;
     public float puntuation;
@@ -21,6 +22,7 @@ public class DinoMainManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameStarted = false;
+        tutoScreen.SetActive(true);
         startScreen.SetActive(true);
     }
 
@@ -54,7 +56,14 @@ public class DinoMainManager : MonoBehaviour
             Time.timeScale = 1f;
             gameStarted = true;
             startScreen.SetActive(false);
+            tutoScreen.SetActive(true);
+            Invoke("TutoPanel", 5f);
         }
+    }
+
+    public void TutoPanel()
+    {
+        tutoScreen.SetActive(false);
     }
 
     public void ExitGame()
