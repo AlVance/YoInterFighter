@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         if(collision.transform.tag == "Obstacle")
         {
             Time.timeScale = 0;
-            dMM.gameOverScreen.SetActive(true);
+            dMM.GameOver();
         }
     }
 
