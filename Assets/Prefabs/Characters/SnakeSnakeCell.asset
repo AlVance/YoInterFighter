@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62327e71133d204bb89e7dab464bc38, type: 3}
   m_Name: SnakeSnakeCell
   m_EditorClassIdentifier: 
-  characterName: Snake Snake
+  characterName: Cratura Goa&Pochi
   characterSiglas: S S
   characterSprite: {fileID: 21300000, guid: 039b8229f2df5e342838ece964f5184e, type: 3}
   siluetaSprite: {fileID: 21300000, guid: f64c93989afe32a47b72ee7b2f77827c, type: 3}

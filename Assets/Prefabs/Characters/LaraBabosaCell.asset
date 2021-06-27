@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62327e71133d204bb89e7dab464bc38, type: 3}
   m_Name: LaraBabosaCell
   m_EditorClassIdentifier: 
-  characterName: Lara Babosa
+  characterName: CreaturaClavero
   characterSiglas: L B
   characterSprite: {fileID: 21300000, guid: 0a4052a51761ab849b6971bf926f8d23, type: 3}
   siluetaSprite: {fileID: 21300000, guid: d8ab849f3703b6a42ac62aa0f7ad62c4, type: 3}

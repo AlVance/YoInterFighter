@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62327e71133d204bb89e7dab464bc38, type: 3}
   m_Name: MikeSoraCell
   m_EditorClassIdentifier: 
-  characterName: Mike Sora
+  characterName: Creatura Chachi <3
   characterSiglas: M S
   characterSprite: {fileID: 21300000, guid: 3c9ef6a03d6cf0642bf39b2ed657758a, type: 3}
   siluetaSprite: {fileID: 21300000, guid: 112a9cdbe49260d49b4cf32ab90e6dce, type: 3}
