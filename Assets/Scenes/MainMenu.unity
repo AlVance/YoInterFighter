@@ -160,6 +160,8 @@ MonoBehaviour:
   - {fileID: 1404573346078384875, guid: 109bfe2a1a63dc740bcb2898be321f89, type: 3}
   player1: {fileID: 0}
   player2: {fileID: 0}
+  pj1Win: 0
+  pj2Win: 0
 --- !u!4 &87213349
 Transform:
   m_ObjectHideFlags: 0
