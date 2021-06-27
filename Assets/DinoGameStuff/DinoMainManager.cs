@@ -9,6 +9,7 @@ public class DinoMainManager : MonoBehaviour
     public GameObject startScreen;
     public GameObject tutoScreen;
     public GameObject gameOverScreen;
+    public GameObject scoreboardScreen;
     public Text puntuationText;
     public float puntuation;
     private int shownPuntuation;
@@ -18,12 +19,23 @@ public class DinoMainManager : MonoBehaviour
     public float acceleration = 0.0005f;
 
     private bool gameStarted;
+
+    public InputField nameField;
+    public Text scoreField;
+
+    string nameFinish;
+    int scoreFinish;
+
+    public ScoreboardManager scoreboardMngr;
+
     private void Awake()
     {
         Time.timeScale = 0f;
         gameStarted = false;
         tutoScreen.SetActive(true);
         startScreen.SetActive(true);
+        gameOverScreen.SetActive(false);
+        scoreboardScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,6 +70,21 @@ public class DinoMainManager : MonoBehaviour
             startScreen.SetActive(false);
             tutoScreen.SetActive(true);
             Invoke("TutoPanel", 5f);
+        }
+    }
+
+    public void GameOver()
+    {
+        scoreboardScreen.SetActive(true);
+    }
+
+    public void SaveName()
+    {
+        if(nameField.text != string.Empty)
+        {
+            nameFinish = nameField.text;
+            scoreFinish = Mathf.RoundToInt(puntuation);
+            scoreboardMngr.SetScore(nameFinish, scoreFinish);
         }
     }
 
