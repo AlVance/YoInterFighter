@@ -36,9 +36,16 @@ public class ScoreboardManager : MonoBehaviour
 
     public void ReadJson()
     {
-        string json = File.ReadAllText(jsonSavePath);
-        JsonUtility.FromJsonOverwrite(json, scoreboard_total);
-        CheckMaxScore();
+        if (File.Exists(jsonSavePath))
+        {
+            string json = File.ReadAllText(jsonSavePath);
+            JsonUtility.FromJsonOverwrite(json, scoreboard_total);
+            CheckMaxScore();
+        }
+        else
+        {
+            File.Create(jsonSavePath);
+        }
     }
 
     public void CheckMaxScore()
