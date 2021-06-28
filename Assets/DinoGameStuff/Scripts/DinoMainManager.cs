@@ -12,6 +12,7 @@ public class DinoMainManager : MonoBehaviour
     public GameObject scoreboardScreen;
     public GameObject newScorePanel;
     public GameObject scoreScorePanel;
+    public GameObject inGamePanel;
 
     public Text puntuationText;
     public float puntuation;
@@ -44,6 +45,7 @@ public class DinoMainManager : MonoBehaviour
         scoreboardScreen.SetActive(false);
         newScorePanel.SetActive(true);
         scoreScorePanel.SetActive(false);
+        inGamePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -78,7 +80,7 @@ public class DinoMainManager : MonoBehaviour
             Time.timeScale = 1f;
             gameStarted = true;
             startScreen.SetActive(false);
-            tutoScreen.SetActive(true);
+            inGamePanel.SetActive(true);
             Invoke("TutoPanel", 5f);
         }
     }
@@ -88,6 +90,8 @@ public class DinoMainManager : MonoBehaviour
         music1Audio.Stop();
         scoreField.text = shownPuntuation.ToString();
         scoreboardScreen.SetActive(true);
+        tutoScreen.SetActive(false);
+        inGamePanel.SetActive(false);
     }
 
     public void SaveName()
