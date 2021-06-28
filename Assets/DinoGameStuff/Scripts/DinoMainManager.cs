@@ -31,6 +31,9 @@ public class DinoMainManager : MonoBehaviour
 
     public ScoreboardManager scoreboardMngr;
 
+    public AudioSource buttonAudio;
+    public AudioSource music1Audio;
+
     private void Awake()
     {
         Time.timeScale = 0f;
@@ -62,6 +65,7 @@ public class DinoMainManager : MonoBehaviour
 
     public void RestardGame()
     {
+        buttonAudio.Play();
         SceneManager.LoadScene("DinoGame");
         Time.timeScale = 1;
     }
@@ -70,6 +74,7 @@ public class DinoMainManager : MonoBehaviour
     {
         if (!gameStarted)
         {
+            buttonAudio.Play();
             Time.timeScale = 1f;
             gameStarted = true;
             startScreen.SetActive(false);
@@ -80,6 +85,7 @@ public class DinoMainManager : MonoBehaviour
 
     public void GameOver()
     {
+        music1Audio.Stop();
         scoreField.text = shownPuntuation.ToString();
         scoreboardScreen.SetActive(true);
     }
@@ -88,6 +94,7 @@ public class DinoMainManager : MonoBehaviour
     {
         if(nameField.text != string.Empty)
         {
+            buttonAudio.Play();
             nameFinish = nameField.text;
             scoreFinish = shownPuntuation;
             scoreboardMngr.SetScore(nameFinish, scoreFinish);
@@ -101,6 +108,7 @@ public class DinoMainManager : MonoBehaviour
 
     public void ExitGame()
     {
+        buttonAudio.Play();
         Application.Quit();
     }
 }

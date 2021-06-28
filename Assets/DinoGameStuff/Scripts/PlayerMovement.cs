@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
     public ParticleSystem partJump;
 
+    public AudioSource jumpClip;
+    public AudioSource hitClip;
+
     private bool isOnMobile;
     private void Awake()
     {
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
         {
             partJump.Play();
+            if(isGrounded) jumpClip.Play();
             upwardsVelocity = upwardsJumpForce;
         }
         
@@ -141,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.transform.tag == "Obstacle")
         {
+            hitClip.Play();
             Time.timeScale = 0;
             dMM.GameOver();
         }
@@ -160,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(0) && Input.mousePosition.y > Screen.height * 0.3f && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
         {
             partJump.Play();
+            if (isGrounded) jumpClip.Play();
             upwardsVelocity = upwardsJumpForce;
         }
 
