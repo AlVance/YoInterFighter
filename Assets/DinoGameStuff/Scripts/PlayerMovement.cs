@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
         {
             partJump.Play();
-            if(isGrounded) jumpClip.Play();
+            if(isGrounded && Time.timeScale == 1) jumpClip.Play();
             upwardsVelocity = upwardsJumpForce;
         }
         
@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(0) && Input.mousePosition.y > Screen.height * 0.3f && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
         {
             partJump.Play();
-            if (isGrounded) jumpClip.Play();
+            if (isGrounded && Time.timeScale == 1) jumpClip.Play();
             upwardsVelocity = upwardsJumpForce;
         }
 
