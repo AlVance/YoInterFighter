@@ -25,7 +25,7 @@ public class ScoreboardManager : MonoBehaviour
 
     int maxScore;
     string maxName;
-    bool firstTime = true;
+    //bool firstTime = true;
 
     // Start is called before the first frame update
     public void Awake()
