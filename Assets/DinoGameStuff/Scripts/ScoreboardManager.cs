@@ -59,6 +59,8 @@ public class ScoreboardManager : MonoBehaviour
             }
         }
         maxScoreText.text = maxName + " > " + maxScore;
+        string jsonData = JsonUtility.ToJson(scoreboard_total, true);
+        File.WriteAllText(jsonSavePath, jsonData);
     }
 
     public void SetScore(string name, int score)
