@@ -33,7 +33,9 @@ public class DinoMainManager : MonoBehaviour
     public ScoreboardManager scoreboardMngr;
 
     public AudioSource buttonAudio;
-    public AudioSource music1Audio;
+    public GameObject music1Audio;
+    public GameObject music2Audio;
+    private AudioSource musicPlaying;
 
     private void Awake()
     {
@@ -46,12 +48,23 @@ public class DinoMainManager : MonoBehaviour
         newScorePanel.SetActive(true);
         scoreScorePanel.SetActive(false);
         inGamePanel.SetActive(false);
+
+        int rnd = Random.Range(1, 3);
+        if(rnd == 1)
+        {
+            music1Audio.SetActive(true);
+            musicPlaying = music1Audio.GetComponent<AudioSource>();
+        }
+        else
+        {
+            music2Audio.SetActive(true);
+            musicPlaying = music2Audio.GetComponent<AudioSource>();
+        }
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {      
 
         puntuation += Time.deltaTime;
         shownPuntuation = Mathf.RoundToInt(puntuation * 10);
@@ -87,7 +100,7 @@ public class DinoMainManager : MonoBehaviour
 
     public void GameOver()
     {
-        music1Audio.Stop();
+        musicPlaying.Stop();
         scoreField.text = shownPuntuation.ToString();
         scoreboardScreen.SetActive(true);
         tutoScreen.SetActive(false);
