@@ -29,7 +29,7 @@ public class ScoreboardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        jsonSavePath = Application.dataPath + "/saveload.json";
+        jsonSavePath = Application.persistentDataPath + "/saveload.json";
         fullContainer.sizeDelta = new Vector2(fullContainer.sizeDelta.x, fullContainer.transform.childCount * sizeItem);
         ReadJson();
     }
