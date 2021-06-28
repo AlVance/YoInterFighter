@@ -8187,8 +8187,8 @@ MonoBehaviour:
     type: 3}
   obstacleTopPrefab: {fileID: 6727605636715032147, guid: f991bdef45129af4da954143be1b59f6,
     type: 3}
-  timeToSpawnInterval: {x: 2.1, y: 2.15}
-  minTimeToSpawnInterval: {x: 0.5, y: 0.55}
+  timeToSpawnInterval: {x: 2, y: 2.15}
+  minTimeToSpawnInterval: {x: 0.45, y: 0.55}
   spawnTimeReducer: 0.00015
 --- !u!4 &1279468977
 Transform:

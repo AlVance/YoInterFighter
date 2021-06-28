@@ -28,7 +28,7 @@ public class ScoreboardManager : MonoBehaviour
     bool firstTime = true;
 
     // Start is called before the first frame update
-    void Awake()
+    public void Awake()
     {
         jsonSavePath = Application.persistentDataPath + "/saveload.json";
         Debug.Log(jsonSavePath);
@@ -61,7 +61,7 @@ public class ScoreboardManager : MonoBehaviour
             }
         }
         maxScoreText.text = maxName + " > " + maxScore;
-        if (firstTime)
+        /*if (firstTime)
         {
             scoreboard_item.name = "Nombre";
             scoreboard_item.score = 0;
@@ -70,7 +70,7 @@ public class ScoreboardManager : MonoBehaviour
             File.WriteAllText(jsonSavePath, jsonData);
             scoreboard_total.scoreboardTotal.Remove(scoreboard_item);
             firstTime = false;
-        }
+        }*/
     }
 
     public void SetScore(string name, int score)
