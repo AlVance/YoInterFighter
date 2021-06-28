@@ -27,9 +27,10 @@ public class ScoreboardManager : MonoBehaviour
     string maxName;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         jsonSavePath = Application.persistentDataPath + "/saveload.json";
+        Debug.Log(jsonSavePath);
         fullContainer.sizeDelta = new Vector2(fullContainer.sizeDelta.x, fullContainer.transform.childCount * sizeItem);
         ReadJson();
     }
@@ -59,8 +60,12 @@ public class ScoreboardManager : MonoBehaviour
             }
         }
         maxScoreText.text = maxName + " > " + maxScore;
+        scoreboard_item.name = "Nombre";
+        scoreboard_item.score = 0;
+        scoreboard_total.scoreboardTotal.Add(scoreboard_item);
         string jsonData = JsonUtility.ToJson(scoreboard_total, true);
         File.WriteAllText(jsonSavePath, jsonData);
+        scoreboard_total.scoreboardTotal.Remove(scoreboard_item);
     }
 
     public void SetScore(string name, int score)
