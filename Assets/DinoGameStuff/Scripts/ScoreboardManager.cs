@@ -19,7 +19,12 @@ public class ScoreboardManager : MonoBehaviour
     public ScoreboardObject scoreboard_item;
     public Scoreboard scoreboard_total;
 
+    public Text maxScoreText;
+
     string jsonSavePath;
+
+    int maxScore;
+    string maxName;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +38,20 @@ public class ScoreboardManager : MonoBehaviour
     {
         string json = File.ReadAllText(jsonSavePath);
         JsonUtility.FromJsonOverwrite(json, scoreboard_total);
+        CheckMaxScore();
+    }
+
+    public void CheckMaxScore()
+    {
+        for (int i = 0; i < scoreboard_total.scoreboardTotal.Count; i++)
+        {
+            if(scoreboard_total.scoreboardTotal[i].score > maxScore)
+            {
+                maxName = scoreboard_total.scoreboardTotal[i].name;
+                maxScore = scoreboard_total.scoreboardTotal[i].score;
+            }
+        }
+        maxScoreText.text = maxName + " > " + maxScore;
     }
 
     public void SetScore(string name, int score)
@@ -61,6 +80,7 @@ public class ScoreboardManager : MonoBehaviour
             newItem.transform.Find("ScoreText").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].score.ToString();
             fullContainer.sizeDelta = new Vector2(fullContainer.sizeDelta.x, fullContainer.transform.childCount * sizeItem);
         }
+        CheckMaxScore();
     }
 }
 
