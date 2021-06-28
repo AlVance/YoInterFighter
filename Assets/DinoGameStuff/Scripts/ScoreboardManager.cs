@@ -25,6 +25,7 @@ public class ScoreboardManager : MonoBehaviour
 
     int maxScore;
     string maxName;
+    bool firstTime = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -60,12 +61,16 @@ public class ScoreboardManager : MonoBehaviour
             }
         }
         maxScoreText.text = maxName + " > " + maxScore;
-        scoreboard_item.name = "Nombre";
-        scoreboard_item.score = 0;
-        scoreboard_total.scoreboardTotal.Add(scoreboard_item);
-        string jsonData = JsonUtility.ToJson(scoreboard_total, true);
-        File.WriteAllText(jsonSavePath, jsonData);
-        scoreboard_total.scoreboardTotal.Remove(scoreboard_item);
+        if (firstTime)
+        {
+            scoreboard_item.name = "Nombre";
+            scoreboard_item.score = 0;
+            scoreboard_total.scoreboardTotal.Add(scoreboard_item);
+            string jsonData = JsonUtility.ToJson(scoreboard_total, true);
+            File.WriteAllText(jsonSavePath, jsonData);
+            scoreboard_total.scoreboardTotal.Remove(scoreboard_item);
+            firstTime = false;
+        }
     }
 
     public void SetScore(string name, int score)
