@@ -70,7 +70,9 @@ public class PlayerMovement : MonoBehaviour
             MobileJump();
             MobileCrouch();
         }
-        
+
+        //WebJump();
+        //WebCrouch();
         anim.SetBool("IsSliding", isSliding);
 
     }
@@ -220,6 +222,71 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    private void WebJump()
+    {
+        float dt = Time.deltaTime;
+
+        upwardsVelocity += dt * Physics.gravity.y;
+
+        if ((Input.GetMouseButton(0) && Input.mousePosition.y > Screen.height * 0.3f || Input.GetKey(KeyCode.UpArrow)) && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
+        {
+            partJump.Play();
+            if (isGrounded && Time.timeScale == 1) jumpClip.Play();
+            upwardsVelocity = upwardsJumpForce;
+        }
+
+        transform.position += Vector3.up * upwardsVelocity * dt;
+
+        isGrounded = transform.position.y <= iniY;
+
+        if (isGrounded)
+        {
+            upwardsVelocity = 0.0f;
+        }
+
+        Vector3 currentPosition = transform.position;
+        currentPosition.y = Mathf.Max(currentPosition.y, iniY);
+        transform.position = currentPosition;
+
+
+        if (isGrounded)
+        {
+            anim.SetBool("IsJumping", false);
+        }
+        else
+        {
+
+            anim.SetBool("IsJumping", true);
+
+            isSliding = false;
+        }
+    }
+
+    private void WebCrouch()
+    {
+        if (isGrounded)
+        {
+            if ((Input.GetMouseButton(0) && Input.mousePosition.y < Screen.height * 0.3f) || Input.GetKey(KeyCode.DownArrow))
+            {
+                bC.size = new Vector2(0.5f, 1);
+                bC.offset = new Vector2(0, -0.5f);
+                //playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
+
+                isSliding = true;
+            }
+            else
+            {
+                isSliding = false;
+                bC.size = new Vector2(0.5f, 2);
+                bC.offset = new Vector2(0, 0);
+                //playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+                isSliding = false;
+
+
+            }
+        }
     }
 
 }

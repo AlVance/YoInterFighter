@@ -24,15 +24,19 @@ public class SpawnObstaclesManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTime += Time.deltaTime;
-        if(currentTime >= timeToSpawn)
+        if (dMM.gameStarted)
         {
-            SpawnObstacle();
-            currentTime = 0;
-            SetTimeToSpawn();
+            currentTime += Time.deltaTime;
+            if (currentTime >= timeToSpawn)
+            {
+                SpawnObstacle();
+                currentTime = 0;
+                SetTimeToSpawn();
+            }
+            if (timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= spawnTimeReducer;
+            if (timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= spawnTimeReducer;
         }
-        if(timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= spawnTimeReducer;
-        if(timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= spawnTimeReducer;
+        
     }
 
     private void SpawnObstacle()

@@ -22,7 +22,7 @@ public class DinoMainManager : MonoBehaviour
     public float velocityObstacles;
     public float acceleration = 0.0005f;
 
-    private bool gameStarted;
+    public bool gameStarted;
 
     public InputField nameField;
     public Text scoreField;
@@ -65,15 +65,18 @@ public class DinoMainManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {      
-
-        puntuation += Time.deltaTime;
-        shownPuntuation = Mathf.RoundToInt(puntuation * 10);
-        puntuationText.text = shownPuntuation.ToString();
-        
-        if(velocityObstacles < maxVelocityObstacles)
+        if(gameStarted)
         {
-            velocityObstacles += acceleration;
+            puntuation += Time.deltaTime;
+            shownPuntuation = Mathf.RoundToInt(puntuation * 10);
+            puntuationText.text = shownPuntuation.ToString();
+
+            if (velocityObstacles < maxVelocityObstacles)
+            {
+                velocityObstacles += acceleration;
+            }
         }
+        
         
         
     }
