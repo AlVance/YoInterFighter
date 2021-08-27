@@ -10,6 +10,7 @@ public class SpawnObstaclesManager : MonoBehaviour
     public GameObject obstacleBotPrefab;
     public GameObject obstacleMidPrefab;
     public GameObject obstacleTopPrefab;
+    
 
     public Vector2 timeToSpawnInterval;
     public Vector2 minTimeToSpawnInterval;
@@ -18,11 +19,20 @@ public class SpawnObstaclesManager : MonoBehaviour
     private float currentTime;
 
     public float spawnTimeReducer = 0.0002f;
+
+    [Header("Mahous")]
+    public GameObject MahouPrefab;
+    private float spawnTimeMahous =3;
+    private float currentTimeMahou;
+    public Vector2 MahouLimits;
+    public Vector2 TimeMahouLimits;
+
     // Start is called before the first frame update
     void Start()
     {
        SpawnObstacle();
        timeToSpawn = Random.Range(timeToSpawnInterval.x, timeToSpawnInterval.y);
+       
     }
 
     // Update is called once per frame
@@ -31,6 +41,7 @@ public class SpawnObstaclesManager : MonoBehaviour
         if (dMM.gameStarted)
         {
             currentTime += Time.deltaTime;
+            currentTimeMahou += Time.deltaTime;
             if (currentTime >= timeToSpawn)
             {
                 SpawnObstacle();
@@ -39,6 +50,18 @@ public class SpawnObstaclesManager : MonoBehaviour
             }
             if (timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= spawnTimeReducer;
             if (timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= spawnTimeReducer;
+
+
+            if(currentTimeMahou >= spawnTimeMahous && timeToSpawn >= 0.3)
+            {
+                //Spawn en un sitio aleatorio del mapa
+                Vector2 spawnPointY = new Vector2(spawnPoints[0].position.x, Random.Range(MahouLimits.x, MahouLimits.y));
+                Instantiate(MahouPrefab,spawnPointY, Quaternion.identity);
+
+                currentTimeMahou = 0;
+                SetTimeToSpawn();
+            }
+            
         }
         
     }
@@ -74,9 +97,11 @@ public class SpawnObstaclesManager : MonoBehaviour
     }
     private void SetTimeToSpawn()
     {
-        timeToSpawn = Random.Range(timeToSpawnInterval.x, timeToSpawnInterval.y);
-        
-        
+        if (currentTime == 0)
+            timeToSpawn = Random.Range(timeToSpawnInterval.x, timeToSpawnInterval.y);
+        else if (currentTimeMahou == 0)
+            spawnTimeMahous = Random.Range(TimeMahouLimits.x, TimeMahouLimits.y);
+
     }
 
     
