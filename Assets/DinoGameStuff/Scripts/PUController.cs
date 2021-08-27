@@ -23,7 +23,7 @@ public class PUController : MonoBehaviour
         {
             if (Vector3.Distance(this.transform.position, Camera.main.ScreenToWorldPoint(new Vector3(beerSliderTr.position.x, beerSliderTr.position.y, 0))) > 0.01f)
             {
-                this.transform.position = Vector3.Lerp(this.transform.position, Camera.main.ScreenToWorldPoint(new Vector3(beerSliderTr.position.x, beerSliderTr.position.y, 0)), 2 * Time.deltaTime);
+                this.transform.position = Vector3.Lerp(this.transform.position, Camera.main.ScreenToWorldPoint(new Vector3(beerSliderTr.position.x, beerSliderTr.position.y, 0)), 3.5f * Time.deltaTime);
             }
             else
             {
