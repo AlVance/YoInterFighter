@@ -11,7 +11,6 @@ public class ScoreboardManager : MonoBehaviour
     public GameObject newScore;
     public GameObject scoreboardFull;
 
-    public RectTransform fullContainer;
 
     public GameObject contentScore;
     public int sizeItem = 75;
@@ -32,7 +31,6 @@ public class ScoreboardManager : MonoBehaviour
     {
         jsonSavePath = Application.persistentDataPath + "/saveload.json";
         Debug.Log(jsonSavePath);
-        fullContainer.sizeDelta = new Vector2(fullContainer.sizeDelta.x, fullContainer.transform.childCount * sizeItem);
         ReadJson();
     }
 
@@ -61,16 +59,6 @@ public class ScoreboardManager : MonoBehaviour
             }
         }
         maxScoreText.text = maxName + " > " + maxScore;
-        /*if (firstTime)
-        {
-            scoreboard_item.name = "Nombre";
-            scoreboard_item.score = 0;
-            scoreboard_total.scoreboardTotal.Add(scoreboard_item);
-            string jsonData = JsonUtility.ToJson(scoreboard_total, true);
-            File.WriteAllText(jsonSavePath, jsonData);
-            scoreboard_total.scoreboardTotal.Remove(scoreboard_item);
-            firstTime = false;
-        }*/
     }
 
     public void SetScore(string name, int score)
@@ -92,13 +80,6 @@ public class ScoreboardManager : MonoBehaviour
 
     public void ShowScore()
     {
-        for (int i = 0; i < scoreboard_total.scoreboardTotal.Count; i++)
-        {
-            GameObject newItem = Instantiate(contentScore, fullContainer.transform);
-            newItem.transform.Find("NameText").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].name;
-            newItem.transform.Find("ScoreText").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].score.ToString();
-            fullContainer.sizeDelta = new Vector2(fullContainer.sizeDelta.x, fullContainer.transform.childCount * sizeItem);
-        }
         CheckMaxScore();
     }
 }
