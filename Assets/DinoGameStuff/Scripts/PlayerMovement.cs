@@ -14,11 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject laytonRig, soraRig;
 
     public Transform groundCheck;
-    private bool isGrounded;
+    public bool isGrounded;
     
     private float initialGravityScale;
 
-    private bool isSliding = false;
+    public bool isSliding = false;
 
     private float upwardsVelocity = 0.0f;
     public float upwardsJumpForce = 0.0f;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxJumpHeight = 2.0f;
     private float iniY = 0.0f;
 
-    public ParticleSystem partJump;
+    public ParticleSystem partJump, partArrastrarse, partCatchMahou;
 
     public AudioSource jumpClip;
     public AudioSource hitClip;
@@ -62,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        partArrastrarse.Stop();
+        
         iniY = transform.position.y;
         bC = this.GetComponent<BoxCollider2D>();
         rb = this.GetComponent<Rigidbody2D>();
@@ -92,6 +94,10 @@ public class PlayerMovement : MonoBehaviour
         {
            
         }
+
+        if (!isGrounded) partArrastrarse.Stop();
+
+
     }
 
     private void Jump()
@@ -103,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
         {
             partJump.Play();
+
             if(isGrounded && Time.timeScale == 1) jumpClip.Play();
             upwardsVelocity = upwardsJumpForce;
         }
@@ -143,7 +150,8 @@ public class PlayerMovement : MonoBehaviour
                 bC.size = new Vector2(0.5f, 1);
                 bC.offset = new Vector2(0, -0.5f);
                 //playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
-                
+                //partArrastrarse.Play();
+              
                 isSliding = true;
             }
             else
@@ -153,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
                 bC.offset = new Vector2(0, 0);
                 //playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
                 isSliding = false;
+                partArrastrarse.Play();
 
 
             }
@@ -174,6 +183,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.transform.tag == "InivincibilityPU")
         {
+            
+            partCatchMahou.gameObject.SetActive(true);
+            partCatchMahou.Play();
             ++currentBeers;
             collision.GetComponent<PUController>().StartCollision(beerSlider,currentBeers,lastCan);
             lastCan = collision.gameObject;
@@ -212,6 +224,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButton(0) && Input.mousePosition.y > Screen.height * 0.3f && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
         {
             partJump.Play();
+        
             if (isGrounded && Time.timeScale == 1) jumpClip.Play();
             upwardsVelocity = upwardsJumpForce;
         }
@@ -252,7 +265,7 @@ public class PlayerMovement : MonoBehaviour
                 bC.size = new Vector2(0.5f, 1);
                 bC.offset = new Vector2(0, -0.5f);
                 //playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
-
+                
                 isSliding = true;
             }
             else
@@ -262,76 +275,14 @@ public class PlayerMovement : MonoBehaviour
                 bC.offset = new Vector2(0, 0);
                 //playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
                 isSliding = false;
+                //partArrastrarse.Stop();
+                partArrastrarse.Play();
 
 
             }
         }
 
     }
-
-    private void WebJump()
-    {
-        float dt = Time.deltaTime;
-
-        upwardsVelocity += dt * Physics.gravity.y;
-
-        if ((Input.GetMouseButton(0) && Input.mousePosition.y > Screen.height * 0.3f || Input.GetKey(KeyCode.UpArrow)) && (transform.position.y <= iniY + maxJumpHeight && upwardsVelocity > 0 || isGrounded))
-        {
-            partJump.Play();
-            if (isGrounded && Time.timeScale == 1) jumpClip.Play();
-            upwardsVelocity = upwardsJumpForce;
-        }
-
-        transform.position += Vector3.up * upwardsVelocity * dt;
-
-        isGrounded = transform.position.y <= iniY;
-
-        if (isGrounded)
-        {
-            upwardsVelocity = 0.0f;
-        }
-
-        Vector3 currentPosition = transform.position;
-        currentPosition.y = Mathf.Max(currentPosition.y, iniY);
-        transform.position = currentPosition;
-
-
-        if (isGrounded)
-        {
-            anim.SetBool("IsJumping", false);
-        }
-        else
-        {
-
-            anim.SetBool("IsJumping", true);
-
-            isSliding = false;
-        }
-    }
-
-    private void WebCrouch()
-    {
-        if (isGrounded)
-        {
-            if ((Input.GetMouseButton(0) && Input.mousePosition.y < Screen.height * 0.3f) || Input.GetKey(KeyCode.DownArrow))
-            {
-                bC.size = new Vector2(0.5f, 1);
-                bC.offset = new Vector2(0, -0.5f);
-                //playerSprite.transform.localScale = new Vector3(0.5f, 0.25f, 1);
-
-                isSliding = true;
-            }
-            else
-            {
-                isSliding = false;
-                bC.size = new Vector2(0.5f, 2);
-                bC.offset = new Vector2(0, 0);
-                //playerSprite.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-                isSliding = false;
-
-
-            }
-        }
-    }
+  
 
 }
