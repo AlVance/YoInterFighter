@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private float iniY = 0.0f;
 
     public ParticleSystem partJump, partArrastrarse, partCatchMahou;
+    public Transform mahouCatchSitio;
 
     public AudioSource jumpClip;
     public AudioSource hitClip;
@@ -183,8 +184,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.transform.tag == "InivincibilityPU")
         {
-            
-            partCatchMahou.gameObject.SetActive(true);
+            ParticleSystem A = Instantiate(partCatchMahou, mahouCatchSitio.position, Quaternion.identity);
+            A.gameObject.transform.SetParent(this.transform);
             partCatchMahou.Play();
             ++currentBeers;
             collision.GetComponent<PUController>().StartCollision(beerSlider,currentBeers,lastCan);

@@ -22,7 +22,7 @@ public class SpawnObstaclesManager : MonoBehaviour
 
     [Header("Mahous")]
     public GameObject MahouPrefab;
-    private float spawnTimeMahous =3;
+    private float spawnTimeMahous =1;
     private float currentTimeMahou;
     public Vector2 MahouLimits;
     public Vector2 TimeMahouLimits;
