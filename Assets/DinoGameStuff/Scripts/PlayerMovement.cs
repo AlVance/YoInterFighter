@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public Slider beerSlider;
     public float invincibilityTime;
     private bool isInvicible;
+    public GameObject botellin;
 
     public GameObject lastCan;
     DinoMainManager dinoMainMngr;
@@ -202,6 +203,8 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Invincibility()
     {
         isInvicible = true;
+        anim.SetBool("IsRiding", true);
+        botellin.SetActive(true);
         currentBeers = 0;
         
         Time.timeScale = 2.5f;
@@ -213,6 +216,8 @@ public class PlayerMovement : MonoBehaviour
         dinoMainMngr.fillCans = 0;
         Time.timeScale = 1f;
         isInvicible = false;
+        botellin.SetActive(false);
+        anim.SetBool("IsRiding", false);
         yield return new WaitForSeconds(1f);
         bC.enabled = true;
     }
