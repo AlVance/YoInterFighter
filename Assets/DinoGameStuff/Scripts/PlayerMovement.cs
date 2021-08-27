@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource hitClip;
 
     private bool isOnMobile;
+
+    public float beersToUlti;
+    private float currentBeers = 0;
+    public Slider beerSlider;
     private void Awake()
     {
         isOnMobile = Application.platform == RuntimePlatform.Android;
@@ -45,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
             soraRig.SetActive(true);
             anim = soraRig.GetComponent<Animator>();
         }
+
+        beerSlider.maxValue = beersToUlti;
     }
     // Start is called before the first frame update
     void Start()
@@ -150,6 +157,16 @@ public class PlayerMovement : MonoBehaviour
             hitClip.Play();
             Time.timeScale = 0;
             dMM.GameOver();
+        }
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.transform.tag == "InivincibilityPU")
+        {
+            ++currentBeers;
+            collision.GetComponent<PUController>().CollectPU();
+            beerSlider.value = Mathf.Lerp(beerSlider.value, currentBeers, 1f);
         }
     }
 
