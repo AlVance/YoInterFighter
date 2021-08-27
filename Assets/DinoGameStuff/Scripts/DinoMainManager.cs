@@ -37,6 +37,12 @@ public class DinoMainManager : MonoBehaviour
     public GameObject music2Audio;
     private AudioSource musicPlaying;
 
+    public int beersToUlti;
+
+    public Vector3[] targetCans;
+    public GameObject startTargetsCan;
+    public int fillCans;
+
     private void Awake()
     {
         Time.timeScale = 0f;
@@ -60,6 +66,21 @@ public class DinoMainManager : MonoBehaviour
             music2Audio.SetActive(true);
             musicPlaying = music2Audio.GetComponent<AudioSource>();
         }
+        targetCans = new Vector3[beersToUlti];
+        float offset = 10 / beersToUlti;
+
+        for (int i = 0; i < beersToUlti; i++)
+        {
+            if(i == 0)
+            {
+                targetCans[i] = startTargetsCan.transform.position;
+            }
+            else
+            {
+                targetCans[i] = new Vector3(targetCans[i - 1].x + offset, targetCans[i - 1].y,targetCans[i-1].z);
+            }
+        }
+
     }
 
     // Update is called once per frame

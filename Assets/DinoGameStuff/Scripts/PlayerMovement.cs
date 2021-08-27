@@ -33,11 +33,14 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isOnMobile;
 
-    public float beersToUlti;
+    float _beersToUlti;
     private float currentBeers = 0;
     public Slider beerSlider;
     public float invincibilityTime;
     private bool isInvicible;
+
+    public GameObject lastCan;
+    DinoMainManager dinoMainMngr;
     private void Awake()
     {
         isOnMobile = Application.platform == RuntimePlatform.Android;
@@ -52,8 +55,9 @@ public class PlayerMovement : MonoBehaviour
             soraRig.SetActive(true);
             anim = soraRig.GetComponent<Animator>();
         }
-
-        beerSlider.maxValue = beersToUlti;
+        dinoMainMngr = FindObjectOfType<DinoMainManager>();
+        _beersToUlti = dinoMainMngr.beersToUlti;
+        beerSlider.maxValue = _beersToUlti;
     }
     // Start is called before the first frame update
     void Start()
@@ -171,12 +175,13 @@ public class PlayerMovement : MonoBehaviour
         if(collision.transform.tag == "InivincibilityPU")
         {
             ++currentBeers;
-            collision.GetComponent<PUController>().CollectPU();
-            beerSlider.value = currentBeers;
-            if(currentBeers >= beersToUlti)
+            collision.GetComponent<PUController>().StartCollision(beerSlider,currentBeers,lastCan);
+            lastCan = collision.gameObject;
+            if (currentBeers >= _beersToUlti)
             {
                 StartCoroutine(Invincibility());
             }
+            lastCan = collision.gameObject;
         }
     }
 
@@ -185,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isInvicible = true;
         currentBeers = 0;
-        beerSlider.value = Mathf.Lerp(beerSlider.value, currentBeers, invincibilityTime);
+        //beerSlider.value = Mathf.Lerp(beerSlider.value, currentBeers, invincibilityTime);
         Time.timeScale = 2.5f;
         bC.enabled = false;
         yield return new WaitForSeconds(invincibilityTime);
