@@ -8,6 +8,7 @@ public class PUController : MonoBehaviour
     private BoxCollider2D bC;
     public RectTransform beerSliderTr;
     private ObstacleMovement oM;
+    private Animator anim;
 
     private bool hasCollided = false;
 
@@ -27,6 +28,7 @@ public class PUController : MonoBehaviour
         dinoMainMngr = FindObjectOfType<DinoMainManager>();
         bC = this.GetComponent<BoxCollider2D>();
         oM = this.GetComponent<ObstacleMovement>();
+        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -87,6 +89,7 @@ public class PUController : MonoBehaviour
         bC.enabled = false;
         oM.enabled = false;
         hasCollided = true;
+        anim.SetBool("Collected", true);
         
        
     }
