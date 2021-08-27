@@ -36,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     public float beersToUlti;
     private float currentBeers = 0;
     public Slider beerSlider;
+    public float invincibilityTime;
+    private bool isInvicible;
     private void Awake()
     {
         isOnMobile = Application.platform == RuntimePlatform.Android;
@@ -82,6 +84,10 @@ public class PlayerMovement : MonoBehaviour
         //WebCrouch();
         anim.SetBool("IsSliding", isSliding);
 
+        if (isInvicible)
+        {
+           
+        }
     }
 
     private void Jump()
@@ -166,11 +172,28 @@ public class PlayerMovement : MonoBehaviour
         {
             ++currentBeers;
             collision.GetComponent<PUController>().CollectPU();
-            beerSlider.value = Mathf.Lerp(beerSlider.value, currentBeers, 1f);
+            beerSlider.value = currentBeers;
+            if(currentBeers >= beersToUlti)
+            {
+                StartCoroutine(Invincibility());
+            }
         }
     }
 
-
+    
+    private IEnumerator Invincibility()
+    {
+        isInvicible = true;
+        currentBeers = 0;
+        beerSlider.value = Mathf.Lerp(beerSlider.value, currentBeers, invincibilityTime);
+        Time.timeScale = 2.5f;
+        bC.enabled = false;
+        yield return new WaitForSeconds(invincibilityTime);
+        Time.timeScale = 1f;
+        isInvicible = false;
+        yield return new WaitForSeconds(1f);
+        bC.enabled = true;
+    }
 
 
 

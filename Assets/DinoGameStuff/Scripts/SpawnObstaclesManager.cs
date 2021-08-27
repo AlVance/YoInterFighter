@@ -6,13 +6,17 @@ public class SpawnObstaclesManager : MonoBehaviour
 {
     public DinoMainManager dMM;
     public Transform[] spawnPoints;
+
     public GameObject obstacleBotPrefab;
     public GameObject obstacleMidPrefab;
     public GameObject obstacleTopPrefab;
+
     public Vector2 timeToSpawnInterval;
     public Vector2 minTimeToSpawnInterval;
+
     private float timeToSpawn;
     private float currentTime;
+
     public float spawnTimeReducer = 0.0002f;
     // Start is called before the first frame update
     void Start()
