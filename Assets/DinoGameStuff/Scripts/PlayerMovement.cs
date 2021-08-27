@@ -203,10 +203,14 @@ public class PlayerMovement : MonoBehaviour
     {
         isInvicible = true;
         currentBeers = 0;
-        //beerSlider.value = Mathf.Lerp(beerSlider.value, currentBeers, invincibilityTime);
+        
         Time.timeScale = 2.5f;
         bC.enabled = false;
         yield return new WaitForSeconds(invincibilityTime);
+        beerSlider.value = Mathf.Lerp(beerSlider.value, currentBeers, invincibilityTime);
+        currentBeers = 0;
+        lastCan = null;
+        dinoMainMngr.fillCans = 0;
         Time.timeScale = 1f;
         isInvicible = false;
         yield return new WaitForSeconds(1f);

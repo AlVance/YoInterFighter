@@ -7420,80 +7420,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997690200}
   m_CullTransparentMesh: 0
---- !u!1001 &1014968153
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138912, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138924, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: m_Name
-      value: InivincibilityPU (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6574857937973138927, guid: fa8a27cae24acc147b62dbcb9a253f06,
-        type: 3}
-      propertyPath: beerSliderTr
-      value: 
-      objectReference: {fileID: 189901250}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fa8a27cae24acc147b62dbcb9a253f06, type: 3}
 --- !u!1 &1036474328
 GameObject:
   m_ObjectHideFlags: 0
@@ -8532,7 +8458,7 @@ MonoBehaviour:
   MahouPrefab: {fileID: 6574857937973138924, guid: fa8a27cae24acc147b62dbcb9a253f06,
     type: 3}
   MahouLimits: {x: -1, y: 1.5}
-  TimeMahouLimits: {x: 2, y: 5}
+  TimeMahouLimits: {x: 5, y: 10}
 --- !u!4 &1279468977
 Transform:
   m_ObjectHideFlags: 0

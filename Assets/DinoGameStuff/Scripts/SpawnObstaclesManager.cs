@@ -22,7 +22,7 @@ public class SpawnObstaclesManager : MonoBehaviour
 
     [Header("Mahous")]
     public GameObject MahouPrefab;
-    private float spawnTimeMahous =1;
+    private float spawnTimeMahous = 3;
     private float currentTimeMahou;
     public Vector2 MahouLimits;
     public Vector2 TimeMahouLimits;
@@ -52,7 +52,7 @@ public class SpawnObstaclesManager : MonoBehaviour
             if (timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= spawnTimeReducer;
 
 
-            if(currentTimeMahou >= spawnTimeMahous && timeToSpawn >= 0.3)
+            if(currentTimeMahou >= spawnTimeMahous && timeToSpawn >= 0.7)
             {
                 //Spawn en un sitio aleatorio del mapa
                 Vector2 spawnPointY = new Vector2(spawnPoints[0].position.x, Random.Range(MahouLimits.x, MahouLimits.y));
