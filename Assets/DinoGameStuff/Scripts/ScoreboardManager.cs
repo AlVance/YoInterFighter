@@ -111,14 +111,14 @@ public class ScoreboardManager : MonoBehaviour
             {
                 if (scoreboard_total.scoreboardTotal[i].score != 0)
                 {
-                    scoreTop[i].transform.Find("Name").GetComponent<Text>().text = (i + 1).ToString();
-                    scoreTop[i].transform.Find("Points").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].score.ToString();
+                    //scoreTop[i].transform.Find("Name").GetComponent<Text>().text = (i + 1).ToString();
+                    //scoreTop[i].transform.Find("Points").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].score.ToString();
                 }
             }
             else
             {
-                scoreTop[i].transform.Find("Name").GetComponent<Text>().text = "";
-                scoreTop[i].transform.Find("Points").GetComponent<Text>().text = "";
+                //scoreTop[i].transform.Find("Points").GetComponent<Text>().text = "";
+                //scoreTop[i].transform.Find("Name").GetComponent<Text>().text = "";
             }
         }
         CheckMaxScore();

@@ -42,6 +42,7 @@ namespace Code
             _playFabLogin.OnSuccess += playerId => _playerId = playerId;
 
             _playFabUpdatePlayerStatistics = new PlayFabUpdatePlayerStatistics();
+            _playFabUpdatePlayerStatistics.OnSuccess += OnGetLeaderboardButtonPressed;
 
             _playFabGetLeaderboardAroundPlayer = new PlayFabGetLeaderboardAroundPlayer();
             _playFabGetLeaderboardAroundPlayer.OnSuccess += result => _resultsText.text = result;
@@ -53,15 +54,9 @@ namespace Code
 
         void GetLeaderboardOnSuccess(string result)
         {
-            string _pos;
-            string _name;
-            string _value;
-
-            string[] array = result.Split('|');
-            for (int i = 0; i < array.Length; i++)
-            {
-                Debug.Log(i + " | " + array[i]);
-            }
+            //string[] array = result.Split('|');
+            Debug.Log(result.Split('|').Length);
+            _dinoMngr.ShowScore(result.Split('|'));
         }
 
         private void DoLogin()
@@ -71,7 +66,7 @@ namespace Code
 
         private void AddListeners()
         {
-            _getLeaderboardButton.onClick.AddListener(OnGetLeaderboardButtonPressed);
+            _getLeaderboardButton.onClick.AddListener(() => OnGetLeaderboardButtonPressed(""));
             _getLeaderboardAroundPlayerButton.onClick.AddListener(OnGetLeaderboardAroundPlayerButtonPressed);
             _getPlayerScoreButton.onClick.AddListener(OnGetPlayerScoreButtonPressed);
             //_addPlayerScoreButton.onClick.AddListener(OnAddPlayerScoreButtonPressed);
@@ -109,7 +104,7 @@ namespace Code
                .GetLeaderboardAroundPlayer(_playerId, 3, LeaderboardScore);
         }
 
-        private void OnGetLeaderboardButtonPressed()
+        public void OnGetLeaderboardButtonPressed(string enoty)
         {
             _playFabGetLeaderboard.GetLeaderboardEntries(0, 5, LeaderboardScore);
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using PlayFab;
 using PlayFab.ClientModels;
@@ -7,6 +8,7 @@ namespace Code
 {
     public class PlayFabUpdatePlayerStatistics
     {
+        public event Action<string> OnSuccess;
         public void UpdatePlayerStatistics(string leaderboardName, int score)
         {
             var request = new UpdatePlayerStatisticsRequest
@@ -35,6 +37,8 @@ namespace Code
         private void OnUpdatePlayerStatisticsSuccess(UpdatePlayerStatisticsResult result)
         {
             Debug.Log("Updated");
+
+            OnSuccess();
         }
     }
 }

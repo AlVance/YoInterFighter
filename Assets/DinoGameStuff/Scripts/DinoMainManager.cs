@@ -147,10 +147,40 @@ public class DinoMainManager : MonoBehaviour
 
     public void SubmitNameText(InputField namefield)
     {
-        if (namefield.text != string.Empty)
+        if (namefield.text.Length >= 3)
         {
             main.SubmitName(namefield);
         }
+    }
+
+    public void ShowScore(string[] arrayStr)
+    {
+        if (arrayStr.Length > 2)
+        {
+            scoreboardMngr.scoreTop[0].transform.Find("Name").GetComponent<Text>().text = arrayStr[1];
+            scoreboardMngr.scoreTop[0].transform.Find("Points").GetComponent<Text>().text = arrayStr[2];
+        }
+        if (arrayStr.Length > 5)
+        {
+            scoreboardMngr.scoreTop[1].transform.Find("Name").GetComponent<Text>().text = arrayStr[4];
+            scoreboardMngr.scoreTop[1].transform.Find("Points").GetComponent<Text>().text = arrayStr[5];
+        }
+        if (arrayStr.Length > 8)
+        {
+            scoreboardMngr.scoreTop[2].transform.Find("Name").GetComponent<Text>().text = arrayStr[7];
+            scoreboardMngr.scoreTop[2].transform.Find("Points").GetComponent<Text>().text = arrayStr[8];
+        }
+        if (arrayStr.Length > 11)
+        {
+            scoreboardMngr.scoreTop[3].transform.Find("Name").GetComponent<Text>().text = arrayStr[10];
+            scoreboardMngr.scoreTop[3].transform.Find("Points").GetComponent<Text>().text = arrayStr[11];
+        }
+        if (arrayStr.Length > 14)
+        {
+            scoreboardMngr.scoreTop[4].transform.Find("Name").GetComponent<Text>().text = arrayStr[13];
+            scoreboardMngr.scoreTop[4].transform.Find("Points").GetComponent<Text>().text = arrayStr[14];
+        }
+
     }
 
     public void SaveName()
