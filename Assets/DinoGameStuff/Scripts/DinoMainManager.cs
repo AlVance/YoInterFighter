@@ -47,6 +47,7 @@ public class DinoMainManager : MonoBehaviour
     public int fillCans;
 
     Main main;
+    bool named;
 
     private void Awake()
     {
@@ -155,6 +156,7 @@ public class DinoMainManager : MonoBehaviour
     {
         if(nameField.text != string.Empty)
         {
+            named = true;
             buttonAudio.Play();
             main.SubmitName(nameField);
             scoreboardScreen.SetActive(true);

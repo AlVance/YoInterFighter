@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DevAccountEmail: kiwiteam.dev@gmail.com
   DevAccountToken: 6bbf5krogftpff5d171j1s7adensp9rahacnj8m9i5oubi68zknhp4aci7upeks8xihrmybx5qfn8rr71cjw51ieucd6yt1keaopo15bg9cjttch37gazweeqq5ehkybctbgq7n67tedutaiimkkux4kemartneqcn56i97ha7c97qq1cb45tqz3qwphewag5cbbggpm
-  SelectedStudio: 
+  SelectedStudio: KiwiTeam
   SdkPath: Assets/PlayFabSDK
   EdExPath: 
   LocalCloudScriptPath: 

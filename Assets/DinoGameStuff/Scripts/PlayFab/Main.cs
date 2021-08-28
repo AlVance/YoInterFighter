@@ -17,6 +17,7 @@ namespace Code
         [SerializeField] private Button _submitNameButton;
         [SerializeField] private Text _resultsText;
         [SerializeField] private DinoMainManager _dinoMngr;
+        [SerializeField] private LoginResult loginRslt;
 
         private const string LeaderboardScore = "high_score";
         private const string LeaderboardName = "names";
