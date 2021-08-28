@@ -13,6 +13,8 @@ public class ScoreboardManager : MonoBehaviour
 
     public Text maxScoreText;
 
+    public GameObject[] scoreTop;
+
     string jsonSavePath;
 
     int maxScore;
@@ -25,6 +27,10 @@ public class ScoreboardManager : MonoBehaviour
     public void Awake()
     {
         jsonSavePath = Application.persistentDataPath + "/saveload.json";
+        for (int i = 0; i < scoreTop.Length; i++)
+        {
+            scoreboard_total
+        }
         Debug.Log(jsonSavePath);
         ReadJson();
     }
@@ -69,7 +75,25 @@ public class ScoreboardManager : MonoBehaviour
         currentScore = score;
         scoreboard_item.name = name;
         scoreboard_item.score = score;
-        scoreboard_total.scoreboardTotal.Add(scoreboard_item);
+
+        int saveScore = 0;
+
+        for (int i = 0; i < scoreboard_total.scoreboardTotal.Count; i++)
+        {
+            if (saveScore != 0)
+            {
+                saveScore = scoreboard_total.scoreboardTotal[i].score;
+                scoreboard_total.scoreboardTotal[i].score = currentScore;
+            }
+            else
+            {
+                if (currentScore > scoreboard_total.scoreboardTotal[i].score)
+                {
+                    saveScore = scoreboard_total.scoreboardTotal[i].score;
+                    scoreboard_total.scoreboardTotal[i].score = currentScore;
+                }
+            }
+        }
 
         Debug.Log(scoreboard_total);
 
@@ -81,6 +105,7 @@ public class ScoreboardManager : MonoBehaviour
 
     public void ShowScore()
     {
+
         CheckMaxScore();
     }
 }
