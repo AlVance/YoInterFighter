@@ -32,13 +32,13 @@ public class TwitterShare : MonoBehaviour
     {
         sM = FindObjectOfType<ScoreboardManager>();
         puntuation = sM.lastScore.text;
-        tweetText = "¡Mi puntuación en Yo,Creatureto es de " + puntuation + " puntos!" + "\n" + "Prueba a superarme: https://kiwiteam.itch.io/yocreatureto-dinogame " + "#HoldMyBeer" + "\n" + "[Hay captura de la puntuación en tu galería :D]";
+        
 
     }
     public void ShareOnTwitter()
     {
 
-       
+        tweetText = "¡Mi puntuación en Yo,Creatureto es de " + puntuation + " puntos!" + "\n" + "Prueba a superarme: https://kiwiteam.itch.io/yocreatureto-dinogame " + "#HoldMyBeer" + "\n" + "[Hay captura de la puntuación en tu galería :D]";
         string fileName = "YoCreatureto_LastPuntuation.png";
         ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(pathName, fileName));
         Debug.Log(pathName + fileName);
