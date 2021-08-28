@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,9 @@ public class ScoreboardManager : MonoBehaviour
     string maxName;
 
     int currentScore;
+
+    int saveScore = 0;
+    int saveScore2 = 0;
     //bool firstTime = true;
 
     // Start is called before the first frame update
@@ -73,28 +77,19 @@ public class ScoreboardManager : MonoBehaviour
         scoreboard_item.name = name;
         scoreboard_item.score = score;
 
-        int saveScore = 0;
-        if(scoreboard_total.scoreboardTotal.Count == 0)
+        scoreboard_total.scoreboardTotal.Add(scoreboard_item);
+
+        scoreboard_total.scoreboardTotal.Sort(delegate (ScoreboardObject x, ScoreboardObject y)
         {
-            scoreboard_total.scoreboardTotal.Add(scoreboard_item);
-        }
-        else
+            if (x.score == null && y.score == null) return 0;
+            else if (x.score == null) return -1;
+            else if (y.score == null) return 1;
+            else return y.score.CompareTo(x.score);
+        });
+
+        if(scoreboard_total.scoreboardTotal.Count > 5)
         {
-            for (int i = 0; i < scoreboard_total.scoreboardTotal.Count; i++)
-            {
-                if (currentScore > scoreboard_total.scoreboardTotal[i].score)
-                {
-                    saveScore = scoreboard_total.scoreboardTotal[i].score;
-                    scoreboard_total.scoreboardTotal[i].score = currentScore;
-                }
-                else
-                {
-                    if (scoreboard_total.scoreboardTotal.Count < scoreTop.Length)
-                    {
-                        scoreboard_total.scoreboardTotal.Add(scoreboard_item);
-                    }
-                }
-            }
+            scoreboard_total.scoreboardTotal.RemoveAt(scoreboard_total.scoreboardTotal.Count - 1);
         }
 
         Debug.Log(scoreboard_total);
@@ -105,9 +100,26 @@ public class ScoreboardManager : MonoBehaviour
         ShowScore();
     }
 
+    public int SortByScore()
+    {
+        return 0;
+    }
+
     public void ShowScore()
     {
-
+        for (int i = 0; i < scoreTop.Length; i++)
+        {
+            if((scoreboard_total.scoreboardTotal[i].score == 0)&&(scoreboard_total.scoreboardTotal.Count < i))
+            {
+                scoreTop[i].transform.Find("Name").GetComponent<Text>().text = "";
+                scoreTop[i].transform.Find("Points").GetComponent<Text>().text = "";
+            }
+            else
+            {
+                scoreTop[i].transform.Find("Name").GetComponent<Text>().text = (i +1).ToString();
+                scoreTop[i].transform.Find("Points").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].score.ToString();
+            }
+        }
         CheckMaxScore();
     }
 }
