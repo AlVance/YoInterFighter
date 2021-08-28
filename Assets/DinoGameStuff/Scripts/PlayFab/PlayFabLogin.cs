@@ -10,6 +10,7 @@ namespace Code
     {
         public event Action<string> OnSuccess;
         public bool named;
+        LoginResult loginRslt;
         public void Login()
         {
             if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId)) 
@@ -49,18 +50,22 @@ namespace Code
         {
             Debug.Log("Login");
             //OnSuccess?.Invoke(result.PlayFabId);
-
+            loginRslt = result;
             string name = null;
             if(result.InfoResultPayload.PlayerProfile != null)
             {
                 name = result.InfoResultPayload.PlayerProfile.DisplayName;
-                if(name == null) named = true; else  named = false;
+                if(name != null) named = true; else  named = false;
                 Debug.Log(name);
             }
         }
 
+
         public bool CheckNamed()
         {
+            string name = null;
+            name = loginRslt.InfoResultPayload.PlayerProfile.DisplayName;
+            if (name != null) named = true; else named = false;
             return named;
         }
 

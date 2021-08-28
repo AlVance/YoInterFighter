@@ -15,7 +15,6 @@ namespace Code
         [SerializeField] private Button _getLeaderboardAroundPlayerButton;
         [SerializeField] private Button _getPlayerScoreButton;
         [SerializeField] private Button _submitNameButton;
-        [SerializeField] private InputField _nameField;
         [SerializeField] private Text _resultsText;
         [SerializeField] private DinoMainManager _dinoMngr;
 
@@ -61,7 +60,6 @@ namespace Code
             _getLeaderboardAroundPlayerButton.onClick.AddListener(OnGetLeaderboardAroundPlayerButtonPressed);
             _getPlayerScoreButton.onClick.AddListener(OnGetPlayerScoreButtonPressed);
             //_addPlayerScoreButton.onClick.AddListener(OnAddPlayerScoreButtonPressed);
-            _submitNameButton.onClick.AddListener(() => SubmitName(_nameField));
         }
 
 

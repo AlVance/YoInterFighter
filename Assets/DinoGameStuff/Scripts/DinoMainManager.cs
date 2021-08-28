@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PlayFab;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Code;
 
 public class DinoMainManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class DinoMainManager : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject scoreboardScreen;
     public GameObject inGamePanel;
+    public GameObject inputNamePanel;
 
     public Text puntuationText;
     public float puntuation;
@@ -43,6 +46,8 @@ public class DinoMainManager : MonoBehaviour
     public GameObject startTargetsCan;
     public int fillCans;
 
+    Main main;
+
     private void Awake()
     {
         Time.timeScale = 0f;
@@ -52,6 +57,8 @@ public class DinoMainManager : MonoBehaviour
         gameOverScreen.SetActive(false);
         scoreboardScreen.SetActive(false);
         inGamePanel.SetActive(false);
+        inputNamePanel.SetActive(false);
+        main = GetComponent<Main>();
 
         int rnd = Random.Range(1, 3);
         if(rnd == 1)
@@ -121,9 +128,27 @@ public class DinoMainManager : MonoBehaviour
         musicPlaying.Stop();
         scoreField.text = shownPuntuation.ToString();
         scoreboardMngr.SetScore(nameFinish, shownPuntuation);
-        scoreboardScreen.SetActive(true);
         tutoScreen.SetActive(false);
         inGamePanel.SetActive(false);
+        Debug.Log(main.CheckName());
+        if (main.CheckName())
+        {
+            scoreboardScreen.SetActive(true);
+            inputNamePanel.SetActive(false);
+        }
+        else
+        {
+            inputNamePanel.SetActive(true);
+            scoreboardScreen.SetActive(false);
+        }
+    }
+
+    public void SubmitNameText(InputField namefield)
+    {
+        if (namefield.text != string.Empty)
+        {
+            main.SubmitName(namefield);
+        }
     }
 
     public void SaveName()
@@ -131,9 +156,9 @@ public class DinoMainManager : MonoBehaviour
         if(nameField.text != string.Empty)
         {
             buttonAudio.Play();
-            nameFinish = nameField.text;
-            scoreFinish = shownPuntuation;
-            scoreboardMngr.SetScore(nameFinish, scoreFinish);
+            main.SubmitName(nameField);
+            scoreboardScreen.SetActive(true);
+            inputNamePanel.SetActive(false);
         }
     }
 

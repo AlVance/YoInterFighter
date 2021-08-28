@@ -7852,7 +7852,7 @@ GameObject:
   - component: {fileID: 1120675661}
   - component: {fileID: 1120675660}
   m_Layer: 5
-  m_Name: ContinueButton
+  m_Name: SubmitNameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7920,7 +7920,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1120675661}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1785559166}
+        m_MethodName: SaveName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1120675661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10613,13 +10624,14 @@ MonoBehaviour:
   gameOverScreen: {fileID: 2107606363}
   scoreboardScreen: {fileID: 537195081777548537}
   inGamePanel: {fileID: 812794649}
+  inputNamePanel: {fileID: 538678112}
   puntuationText: {fileID: 1928559972}
   puntuation: 0
   maxVelocityObstacles: 24
   velocityObstacles: 8
   acceleration: 0.0007
   gameStarted: 0
-  nameField: {fileID: 0}
+  nameField: {fileID: 936653032}
   scoreField: {fileID: 537195082773034595}
   beerSlider: {fileID: 740234241}
   scoreboardMngr: {fileID: 1785559168}
@@ -10687,8 +10699,9 @@ MonoBehaviour:
   _getLeaderboardButton: {fileID: 1871915578}
   _getLeaderboardAroundPlayerButton: {fileID: 1871915578}
   _getPlayerScoreButton: {fileID: 1871915578}
-  _addPlayerScoreButton: {fileID: 1120675660}
+  _submitNameButton: {fileID: 1871915578}
   _resultsText: {fileID: 0}
+  _dinoMngr: {fileID: 0}
 --- !u!1 &1787668972
 GameObject:
   m_ObjectHideFlags: 0
