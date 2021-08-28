@@ -223,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
         isInvicible = true;
         bC.enabled = false;
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.2f);
         isReturning = true;
         Instantiate(pufParticles, this.transform);
         anim.SetBool("IsRiding", true);
