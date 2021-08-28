@@ -19,7 +19,7 @@ public class TwitterShare : MonoBehaviour
     {
 
 #if UNITY_ANDROID
-        pathName = "DCIM/Screenshot/";
+        pathName = "storage/emulated/0/DCIM/Screenshots/";
 #else
         pathName = "C:/Users/" + Environment.UserName +  "/OneDrive/Imágenes" + "/YoCreatureto/";
 #endif
@@ -39,7 +39,7 @@ public class TwitterShare : MonoBehaviour
     {
 
         tweetText = "¡Mi puntuación en Yo,Creatureto es de " + puntuation + " puntos!" + "\n" + "Prueba a superarme: https://kiwiteam.itch.io/yocreatureto-dinogame " + "#HoldMyBeer" + "\n" + "[Hay captura de la puntuación en tu galería :D]";
-        string fileName = "YoCreatureto_LastPuntuation.png";
+        string fileName = "YoCreatureto_LastPuntuation.jpg";
         ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(pathName, fileName));
         Debug.Log(pathName + fileName);
         
