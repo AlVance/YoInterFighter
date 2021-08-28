@@ -9219,7 +9219,7 @@ MonoBehaviour:
   maxJumpHeight: 2
   partJump: {fileID: 487675924}
   partArrastrarse: {fileID: 1415636810}
-  partCatchMahou: {fileID: 19800000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+  partCatchMahou: {fileID: 19800004, guid: fb7b0526ade434043b350a180d741cf3, type: 3}
   mahouCatchSitio: {fileID: 380040296}
   jumpClip: {fileID: 1942114116}
   hitClip: {fileID: 1760816664}

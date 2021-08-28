@@ -201,8 +201,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.transform.tag == "InivincibilityPU")
         {
-            ParticleSystem A = Instantiate(partCatchMahou, mahouCatchSitio.position, Quaternion.identity);
-            A.gameObject.transform.SetParent(this.transform);
+            ParticleSystem A = Instantiate(partCatchMahou, collision.transform.position, Quaternion.identity);
+            A.gameObject.transform.SetParent(this.transform.parent);
             partCatchMahou.Play();
             ++currentBeers;
             collision.GetComponent<PUController>().StartCollision(beerSlider,currentBeers,lastCan);
