@@ -17,7 +17,7 @@ namespace Code
                               StartPosition = startPosition,
                               MaxResultsCount = maxResultsCount,
                               StatisticName = leaderboardName
-                          };
+            };
             PlayFabClientAPI.GetLeaderboard(request,
                                             OnGetLeaderboardSuccess,
                                             OnGetLeaderboardFailure);
@@ -33,7 +33,7 @@ namespace Code
             var leaderboard = new StringBuilder();
             foreach (var playerLeaderboardEntry in response.Leaderboard)
             {
-                leaderboard.AppendLine($"{playerLeaderboardEntry.Position}.- {playerLeaderboardEntry.PlayFabId} {playerLeaderboardEntry.StatValue}");
+                leaderboard.AppendLine($"{playerLeaderboardEntry.Position}.- {playerLeaderboardEntry.DisplayName} {playerLeaderboardEntry.StatValue}");
             }
 
             OnSuccess?.Invoke(leaderboard.ToString());

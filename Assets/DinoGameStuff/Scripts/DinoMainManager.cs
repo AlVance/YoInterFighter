@@ -136,6 +136,7 @@ public class DinoMainManager : MonoBehaviour
         {
             scoreboardScreen.SetActive(true);
             inputNamePanel.SetActive(false);
+            main.OnAddPlayerScoreButtonPressed(shownPuntuation);
         }
         else
         {
@@ -157,6 +158,7 @@ public class DinoMainManager : MonoBehaviour
         if(nameField.text != string.Empty)
         {
             named = true;
+            main.OnAddPlayerScoreButtonPressed(shownPuntuation);
             buttonAudio.Play();
             main.SubmitName(nameField);
             scoreboardScreen.SetActive(true);

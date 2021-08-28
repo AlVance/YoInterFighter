@@ -77,10 +77,10 @@ namespace Code
             return _playFabLogin.CheckNamed();
         }
 
-        private void OnAddPlayerScoreButtonPressed()
+        public void OnAddPlayerScoreButtonPressed(int score)
         {
             _playFabUpdatePlayerStatistics
-               .UpdatePlayerStatistics(LeaderboardScore, 100);
+               .UpdatePlayerStatistics(LeaderboardScore, score);
         }
 
         private void OnGetPlayerScoreButtonPressed()
