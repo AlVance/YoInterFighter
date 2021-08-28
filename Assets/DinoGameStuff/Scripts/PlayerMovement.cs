@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private Slider _beerSlider;
     public float invincibilityTime;
     public static bool isInvicible, isReturning;
-    public GameObject botellin;
+    public GameObject botellin, lata;
     private bool canReduceSlider;
     public Animator ultTransitor;
     public GameObject pufParticles;
@@ -225,10 +225,16 @@ public class PlayerMovement : MonoBehaviour
         bC.enabled = false;
         
         yield return new WaitForSeconds(1.2f);
+        GameObject rideObject;
+        int rnd = Random.Range(0, 2);
+        if (rnd > 0) rideObject = botellin;
+        else rideObject = lata;
+
+
         isReturning = true;
         Instantiate(pufParticles, this.transform);
         anim.SetBool("IsRiding", true);
-        botellin.SetActive(true);
+        rideObject.SetActive(true);
         Time.timeScale = 2.5f;
         yield return new WaitForSeconds(invincibilityTime);
         
@@ -239,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
         isInvicible = false;
         isReturning = false;
         Instantiate(pufParticles, this.transform);
-        botellin.SetActive(false);
+        rideObject.SetActive(false);
         anim.SetBool("IsRiding", false);
         yield return new WaitForSeconds(1f);
         bC.enabled = true;
