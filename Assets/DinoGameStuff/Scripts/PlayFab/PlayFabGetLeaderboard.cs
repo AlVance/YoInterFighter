@@ -33,7 +33,7 @@ namespace Code
             var leaderboard = new StringBuilder();
             foreach (var playerLeaderboardEntry in response.Leaderboard)
             {
-                leaderboard.AppendLine($"{playerLeaderboardEntry.Position}.- {playerLeaderboardEntry.DisplayName} {playerLeaderboardEntry.StatValue}");
+                leaderboard.AppendLine($"{playerLeaderboardEntry.Position}|{playerLeaderboardEntry.DisplayName}|{playerLeaderboardEntry.StatValue}");
             }
 
             OnSuccess?.Invoke(leaderboard.ToString());

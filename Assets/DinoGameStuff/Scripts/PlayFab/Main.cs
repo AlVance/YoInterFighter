@@ -47,7 +47,21 @@ namespace Code
             _playFabGetLeaderboardAroundPlayer.OnSuccess += result => _resultsText.text = result;
 
             _playFabGetLeaderboard = new PlayFabGetLeaderboard();
-            _playFabGetLeaderboard.OnSuccess += result => _resultsText.text = result;
+            _playFabGetLeaderboard.OnSuccess += GetLeaderboardOnSuccess;
+            //_playFabGetLeaderboard.OnSuccess += result => _resultsText.text = result;
+        }
+
+        void GetLeaderboardOnSuccess(string result)
+        {
+            string _pos;
+            string _name;
+            string _value;
+
+            string[] array = result.Split('|');
+            for (int i = 0; i < array.Length; i++)
+            {
+                Debug.Log(i + " | " + array[i]);
+            }
         }
 
         private void DoLogin()
