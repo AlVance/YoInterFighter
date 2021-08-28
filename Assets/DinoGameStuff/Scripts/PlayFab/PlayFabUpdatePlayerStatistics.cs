@@ -38,7 +38,7 @@ namespace Code
         {
             Debug.Log("Updated");
 
-            OnSuccess();
+            OnSuccess?.Invoke("info");
         }
     }
 }

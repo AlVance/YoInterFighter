@@ -6,6 +6,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System.Text;
 using System;
+using System.Collections;
 
 namespace Code
 {
@@ -42,7 +43,7 @@ namespace Code
             _playFabLogin.OnSuccess += playerId => _playerId = playerId;
 
             _playFabUpdatePlayerStatistics = new PlayFabUpdatePlayerStatistics();
-            _playFabUpdatePlayerStatistics.OnSuccess += OnGetLeaderboardButtonPressed;
+            _playFabUpdatePlayerStatistics.OnSuccess += Delay;
 
             _playFabGetLeaderboardAroundPlayer = new PlayFabGetLeaderboardAroundPlayer();
             _playFabGetLeaderboardAroundPlayer.OnSuccess += result => _resultsText.text = result;
@@ -66,12 +67,26 @@ namespace Code
 
         private void AddListeners()
         {
-            _getLeaderboardButton.onClick.AddListener(() => OnGetLeaderboardButtonPressed(""));
+            _getLeaderboardButton.onClick.AddListener(() => Delay(""));
             _getLeaderboardAroundPlayerButton.onClick.AddListener(OnGetLeaderboardAroundPlayerButtonPressed);
             _getPlayerScoreButton.onClick.AddListener(OnGetPlayerScoreButtonPressed);
             //_addPlayerScoreButton.onClick.AddListener(OnAddPlayerScoreButtonPressed);
         }
+        public void Delay(string empty)
+        {
+            Debug.Log("Delay");
+            StartCoroutine(DelayShowScore());
+        }
 
+        IEnumerator DelayShowScore()
+        {
+            Debug.Log("Inciio rutina");
+            yield return new WaitForSecondsRealtime(.3f);
+            Debug.Log("Continua rutina");
+            _playFabGetLeaderboard.GetLeaderboardEntries(0, 5, LeaderboardScore);
+            //OnGetLeaderboardButtonPressed();
+
+        }
 
         public void SubmitName(InputField namefield)
         {
@@ -104,8 +119,9 @@ namespace Code
                .GetLeaderboardAroundPlayer(_playerId, 3, LeaderboardScore);
         }
 
-        public void OnGetLeaderboardButtonPressed(string enoty)
+        private void OnGetLeaderboardButtonPressed()
         {
+            Debug.Log("Checkea Score");
             _playFabGetLeaderboard.GetLeaderboardEntries(0, 5, LeaderboardScore);
 
         }
