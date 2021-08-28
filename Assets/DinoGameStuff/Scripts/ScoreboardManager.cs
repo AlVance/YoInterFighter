@@ -21,10 +21,7 @@ public class ScoreboardManager : MonoBehaviour
     int maxScore;
     string maxName;
 
-    int currentScore;
-
-    int saveScore = 0;
-    int saveScore2 = 0;
+    public Text lastScore;
     //bool firstTime = true;
 
     // Start is called before the first frame update
@@ -73,9 +70,10 @@ public class ScoreboardManager : MonoBehaviour
 
     public void SetScore(string name, int score)
     {
-        currentScore = score;
         scoreboard_item.name = name;
         scoreboard_item.score = score;
+
+        lastScore.text = scoreboard_item.score.ToString();
 
         scoreboard_total.scoreboardTotal.Add(scoreboard_item);
 
@@ -109,15 +107,18 @@ public class ScoreboardManager : MonoBehaviour
     {
         for (int i = 0; i < scoreTop.Length; i++)
         {
-            if((scoreboard_total.scoreboardTotal[i].score == 0)&&(scoreboard_total.scoreboardTotal.Count < i))
+            if (i < scoreboard_total.scoreboardTotal.Count)
             {
-                scoreTop[i].transform.Find("Name").GetComponent<Text>().text = "";
-                scoreTop[i].transform.Find("Points").GetComponent<Text>().text = "";
+                if (scoreboard_total.scoreboardTotal[i].score != 0)
+                {
+                    scoreTop[i].transform.Find("Name").GetComponent<Text>().text = (i + 1).ToString();
+                    scoreTop[i].transform.Find("Points").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].score.ToString();
+                }
             }
             else
             {
-                scoreTop[i].transform.Find("Name").GetComponent<Text>().text = (i +1).ToString();
-                scoreTop[i].transform.Find("Points").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].score.ToString();
+                scoreTop[i].transform.Find("Name").GetComponent<Text>().text = "";
+                scoreTop[i].transform.Find("Points").GetComponent<Text>().text = "";
             }
         }
         CheckMaxScore();
