@@ -16,8 +16,8 @@ public class TwitterShare : MonoBehaviour
  
     public void ShareOnTwitter()
     {
-        Application.OpenURL(twitterAdress + /*"?text=" + WWW.EscapeURL(tweetText) +*/ "?media_data=" 
-            + Convert.ToBase64String(NewBehaviourScript.CapturaFotografica()) + "?media_category="  + "tweet_image" + "&amp;lang=" + WWW.EscapeURL(tweetLanguage));
+        Application.OpenURL(twitterAdress + "?text=" + WWW.EscapeURL(tweetText) + /*"?media_data=" 
+            + Convert.ToBase64String(NewBehaviourScript.CapturaFotografica()) + "?media_category="  + "tweet_image" +*/ "&amp;lang=" + WWW.EscapeURL(tweetLanguage));
         
     }
 
