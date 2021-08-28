@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
-  DevAccountEmail: kiwiteam.dev@gmail.com
-  DevAccountToken: zz6ffmhujaodptp5oguw3jxb1nmd3ymbeqenhjaf643d1dcfrugr4xnbnqhgrw6k4or5871c8kkk3qrs9hzqm1ruxauiaz4ruj8gibn15muneadw3wm4i7h1rxrk1tyyx9hr3wx7wh6t49rceioun3bd3frgb84hzqaq6f7uq9deoyenfr91fha6cmbk7kftdzdj74d5
-  SelectedStudio: KiwiTeam
-  SdkPath: Assets/PlayFabSDK
+  DevAccountEmail: 
+  DevAccountToken: 
+  SelectedStudio: 
+  SdkPath: 
   EdExPath: 
   LocalCloudScriptPath: 
   PanelIsShown: 0
-  curMainMenuIdx: 1
+  curMainMenuIdx: 0
   curSubMenuIdx: 0
