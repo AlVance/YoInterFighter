@@ -19,9 +19,9 @@ public class TwitterShare : MonoBehaviour
     {
 
 #if UNITY_ANDROID
-        pathName = "DCIM/Screenshot";
+        pathName = "DCIM/Screenshot/";
 #else
-        string pathName = "C:/Users/" + Environment.UserName +  "/OneDrive/Imágenes" + "/YoCreatureto/";
+        pathName = "C:/Users/" + Environment.UserName +  "/OneDrive/Imágenes" + "/YoCreatureto/";
 #endif
         if (!System.IO.Directory.Exists(pathName))
         {
