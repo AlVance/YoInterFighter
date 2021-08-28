@@ -24,14 +24,11 @@ public class ScoreboardManager : MonoBehaviour
     //bool firstTime = true;
 
     // Start is called before the first frame update
-    public void Awake()
+    public void Start()
     {
         jsonSavePath = Application.persistentDataPath + "/saveload.json";
-        for (int i = 0; i < scoreTop.Length; i++)
-        {
-            //scoreboard_total
-        }
         Debug.Log(jsonSavePath);
+
         ReadJson();
     }
 
@@ -77,20 +74,25 @@ public class ScoreboardManager : MonoBehaviour
         scoreboard_item.score = score;
 
         int saveScore = 0;
-
-        for (int i = 0; i < scoreboard_total.scoreboardTotal.Count; i++)
+        if(scoreboard_total.scoreboardTotal.Count == 0)
         {
-            if (saveScore != 0)
-            {
-                saveScore = scoreboard_total.scoreboardTotal[i].score;
-                scoreboard_total.scoreboardTotal[i].score = currentScore;
-            }
-            else
+            scoreboard_total.scoreboardTotal.Add(scoreboard_item);
+        }
+        else
+        {
+            for (int i = 0; i < scoreboard_total.scoreboardTotal.Count; i++)
             {
                 if (currentScore > scoreboard_total.scoreboardTotal[i].score)
                 {
                     saveScore = scoreboard_total.scoreboardTotal[i].score;
                     scoreboard_total.scoreboardTotal[i].score = currentScore;
+                }
+                else
+                {
+                    if (scoreboard_total.scoreboardTotal.Count < scoreTop.Length)
+                    {
+                        scoreboard_total.scoreboardTotal.Add(scoreboard_item);
+                    }
                 }
             }
         }
@@ -126,5 +128,5 @@ public class ScoreboardObject
 [System.Serializable]
 public class Scoreboard
 {
-    public List<ScoreboardObject> scoreboardTotal = new List<ScoreboardObject>(5);
+    public List<ScoreboardObject> scoreboardTotal;
 }
