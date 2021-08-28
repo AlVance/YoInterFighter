@@ -90,7 +90,6 @@ public class ScoreboardManager : MonoBehaviour
             scoreboard_total.scoreboardTotal.RemoveAt(scoreboard_total.scoreboardTotal.Count - 1);
         }
 
-        Debug.Log(scoreboard_total);
 
         string jsonData = JsonUtility.ToJson(scoreboard_total, true);
         File.WriteAllText(jsonSavePath, jsonData);

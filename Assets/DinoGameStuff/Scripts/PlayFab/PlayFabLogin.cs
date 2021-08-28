@@ -21,17 +21,27 @@ namespace Code
             */
                 PlayFabSettings.staticSettings.TitleId = "TU TITLE ID";
             }
-
+            /*
+            var request = new LoginWithCustomIDRequest
+            {
+                CustomId = "PlayerDinoGame",
+                CreateAccount = true,
+                InfoRequestParameters = new GetPlayerCombinedInfoRequestParams { GetPlayerProfile = true, }
+            };
+            PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);*/
+            
 #if UNITY_ANDROID
             var androidRequest = new LoginWithAndroidDeviceIDRequest
             {
-                AndroidDeviceId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true
+                AndroidDeviceId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true,
+                InfoRequestParameters = new GetPlayerCombinedInfoRequestParams { GetPlayerProfile = true }
             };
             PlayFabClientAPI.LoginWithAndroidDeviceID(androidRequest, OnLoginSuccess, OnLoginFailure);
 #elif UNITY_IOS
             var iosRequest = new LoginWithIOSDeviceIDRequest
             {
-                DeviceId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true
+                DeviceId = SystemInfo.deviceUniqueIdentifier, CreateAccount = true,
+                InfoRequestParameters = new GetPlayerCombinedInfoRequestParams { GetPlayerProfile = true }
             };
             PlayFabClientAPI.LoginWithIOSDeviceID(iosRequest, OnLoginSuccess, OnLoginFailure);
 #else
@@ -41,20 +51,24 @@ namespace Code
             };
             PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
 #endif
-
+            
             // SystemInfo.deviceUniqueIdentifier;
         }
 
         private void OnLoginSuccess(LoginResult result)
         {
-            Debug.Log("Login");
-            //OnSuccess?.Invoke(result.PlayFabId);
+            Debug.Log("Login " + (result.InfoResultPayload.PlayerProfile == null));
+            OnSuccess?.Invoke(result.PlayFabId);
             string name = null;
             if(result.InfoResultPayload.PlayerProfile != null)
             {
                 name = result.InfoResultPayload.PlayerProfile.DisplayName;
                 if(name != null) named = true; else  named = false;
-                Debug.Log(name);
+                Debug.Log("Name Inicoi "+name);
+            }
+            else
+            {
+                Debug.Log("Result null");
             }
         }
 

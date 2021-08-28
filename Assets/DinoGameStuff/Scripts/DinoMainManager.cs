@@ -131,7 +131,7 @@ public class DinoMainManager : MonoBehaviour
         scoreboardMngr.SetScore(nameFinish, shownPuntuation);
         tutoScreen.SetActive(false);
         inGamePanel.SetActive(false);
-        Debug.Log(main.CheckName());
+
         if (main.CheckName())
         {
             scoreboardScreen.SetActive(true);
@@ -190,7 +190,6 @@ public class DinoMainManager : MonoBehaviour
             named = true;
             main.OnAddPlayerScoreButtonPressed(shownPuntuation);
             buttonAudio.Play();
-            main.SubmitName(nameField);
             scoreboardScreen.SetActive(true);
             inputNamePanel.SetActive(false);
         }

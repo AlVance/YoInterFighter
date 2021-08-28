@@ -30,6 +30,8 @@ namespace Code
         private PlayFabGetLeaderboardAroundPlayer _playFabGetLeaderboardAroundPlayer;
         private PlayFabGetLeaderboard _playFabGetLeaderboard;
 
+        public InputField nameField;
+
         private void Start()
         {
             AddListeners();
@@ -44,6 +46,7 @@ namespace Code
 
             _playFabUpdatePlayerStatistics = new PlayFabUpdatePlayerStatistics();
             _playFabUpdatePlayerStatistics.OnSuccess += Delay;
+            
 
             _playFabGetLeaderboardAroundPlayer = new PlayFabGetLeaderboardAroundPlayer();
             _playFabGetLeaderboardAroundPlayer.OnSuccess += result => _resultsText.text = result;
@@ -87,6 +90,7 @@ namespace Code
             //OnGetLeaderboardButtonPressed();
 
         }
+
 
         public void SubmitName(InputField namefield)
         {
