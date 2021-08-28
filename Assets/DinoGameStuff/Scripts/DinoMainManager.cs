@@ -10,8 +10,6 @@ public class DinoMainManager : MonoBehaviour
     public GameObject tutoScreen;
     public GameObject gameOverScreen;
     public GameObject scoreboardScreen;
-    public GameObject newScorePanel;
-    public GameObject scoreScorePanel;
     public GameObject inGamePanel;
 
     public Text puntuationText;
@@ -51,8 +49,6 @@ public class DinoMainManager : MonoBehaviour
         startScreen.SetActive(true);
         gameOverScreen.SetActive(false);
         scoreboardScreen.SetActive(false);
-        newScorePanel.SetActive(true);
-        scoreScorePanel.SetActive(false);
         inGamePanel.SetActive(false);
 
         int rnd = Random.Range(1, 3);
@@ -97,15 +93,12 @@ public class DinoMainManager : MonoBehaviour
                 velocityObstacles += acceleration;
             }
         }
-        
-        
-        
     }
 
     public void RestardGame()
     {
         buttonAudio.Play();
-        SceneManager.LoadScene("DinoGame");
+        SceneManager.LoadScene("ScoreBoard");
         Time.timeScale = 1;
     }
 
@@ -126,6 +119,7 @@ public class DinoMainManager : MonoBehaviour
     {
         musicPlaying.Stop();
         scoreField.text = shownPuntuation.ToString();
+        scoreboardMngr.SetScore(nameFinish, shownPuntuation);
         scoreboardScreen.SetActive(true);
         tutoScreen.SetActive(false);
         inGamePanel.SetActive(false);

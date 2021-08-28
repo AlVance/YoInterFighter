@@ -8,14 +8,6 @@ public class ScoreboardManager : MonoBehaviour
 {
     public DinoMainManager dinoMngr;
 
-    public GameObject newScore;
-    public GameObject scoreboardFull;
-
-    public RectTransform fullContainer;
-
-    public GameObject contentScore;
-    public int sizeItem = 75;
-
     public ScoreboardObject scoreboard_item;
     public Scoreboard scoreboard_total;
 
@@ -25,6 +17,8 @@ public class ScoreboardManager : MonoBehaviour
 
     int maxScore;
     string maxName;
+
+    int currentScore;
     //bool firstTime = true;
 
     // Start is called before the first frame update
@@ -32,8 +26,15 @@ public class ScoreboardManager : MonoBehaviour
     {
         jsonSavePath = Application.persistentDataPath + "/saveload.json";
         Debug.Log(jsonSavePath);
-        fullContainer.sizeDelta = new Vector2(fullContainer.sizeDelta.x, fullContainer.transform.childCount * sizeItem);
         ReadJson();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SetScore("Prueba",Mathf.RoundToInt(dinoMngr.puntuation * 10));
+        }
     }
 
     public void ReadJson()
@@ -61,23 +62,11 @@ public class ScoreboardManager : MonoBehaviour
             }
         }
         maxScoreText.text = maxName + " > " + maxScore;
-        /*if (firstTime)
-        {
-            scoreboard_item.name = "Nombre";
-            scoreboard_item.score = 0;
-            scoreboard_total.scoreboardTotal.Add(scoreboard_item);
-            string jsonData = JsonUtility.ToJson(scoreboard_total, true);
-            File.WriteAllText(jsonSavePath, jsonData);
-            scoreboard_total.scoreboardTotal.Remove(scoreboard_item);
-            firstTime = false;
-        }*/
     }
 
     public void SetScore(string name, int score)
     {
-        newScore.SetActive(false);
-        scoreboardFull.SetActive(true);
-
+        currentScore = score;
         scoreboard_item.name = name;
         scoreboard_item.score = score;
         scoreboard_total.scoreboardTotal.Add(scoreboard_item);
@@ -92,13 +81,6 @@ public class ScoreboardManager : MonoBehaviour
 
     public void ShowScore()
     {
-        for (int i = 0; i < scoreboard_total.scoreboardTotal.Count; i++)
-        {
-            GameObject newItem = Instantiate(contentScore, fullContainer.transform);
-            newItem.transform.Find("NameText").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].name;
-            newItem.transform.Find("ScoreText").GetComponent<Text>().text = scoreboard_total.scoreboardTotal[i].score.ToString();
-            fullContainer.sizeDelta = new Vector2(fullContainer.sizeDelta.x, fullContainer.transform.childCount * sizeItem);
-        }
         CheckMaxScore();
     }
 }
@@ -115,8 +97,9 @@ public class ScoreboardObject
         score = _score;
     }
 }
+
 [System.Serializable]
 public class Scoreboard
 {
-    public List<ScoreboardObject> scoreboardTotal = new List<ScoreboardObject>();
+    public List<ScoreboardObject> scoreboardTotal = new List<ScoreboardObject>(5);
 }
