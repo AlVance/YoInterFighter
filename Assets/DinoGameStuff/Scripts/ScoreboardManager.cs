@@ -123,6 +123,7 @@ public class ScoreboardManager : MonoBehaviour
         }
         CheckMaxScore();
     }
+
 }
 
 [System.Serializable]
