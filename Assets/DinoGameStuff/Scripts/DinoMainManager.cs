@@ -25,6 +25,8 @@ public class DinoMainManager : MonoBehaviour
     public InputField nameField;
     public Text scoreField;
 
+    public Slider beerSlider;
+
     string nameFinish;
     int scoreFinish;
 
@@ -76,7 +78,6 @@ public class DinoMainManager : MonoBehaviour
                 targetCans[i] = new Vector3(targetCans[i - 1].x + offset, targetCans[i - 1].y,targetCans[i-1].z);
             }
         }
-
     }
 
     // Update is called once per frame

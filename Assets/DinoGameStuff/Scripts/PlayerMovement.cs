@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float _beersToUlti;
     private float currentBeers = 0;
-    public Slider beerSlider;
+    private Slider _beerSlider;
     public float invincibilityTime;
     public static bool isInvicible, isReturning;
     public GameObject botellin;
@@ -65,7 +65,8 @@ public class PlayerMovement : MonoBehaviour
         }
         dinoMainMngr = FindObjectOfType<DinoMainManager>();
         _beersToUlti = dinoMainMngr.beersToUlti;
-        beerSlider.maxValue = _beersToUlti;
+        _beerSlider = dinoMainMngr.beerSlider;
+        _beerSlider.maxValue = _beersToUlti;
     }
     // Start is called before the first frame update
     void Start()
@@ -106,12 +107,12 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded) partArrastrarse.Stop();
 
 
-        if(isReturning && isInvicible && beerSlider.value != 0)
+        if(isReturning && isInvicible && _beerSlider.value != 0)
         {
-            beerSlider.value -= Time.deltaTime;
-            if (beerSlider.value <= 0)
+            _beerSlider.value -= Time.deltaTime;
+            if (_beerSlider.value <= 0)
             {
-                beerSlider.value = 0;
+                _beerSlider.value = 0;
             }
         }
 
@@ -205,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
             A.gameObject.transform.SetParent(this.transform.parent);
             partCatchMahou.Play();
             ++currentBeers;
-            collision.GetComponent<PUController>().StartCollision(beerSlider,currentBeers,lastCan);
+            collision.GetComponent<PUController>().StartCollision(_beerSlider,currentBeers,lastCan);
             lastCan = collision.gameObject;
             if (currentBeers >= _beersToUlti)
             {
