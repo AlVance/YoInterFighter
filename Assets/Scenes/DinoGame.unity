@@ -6665,7 +6665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &538678113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10702,6 +10702,97 @@ MonoBehaviour:
   _submitNameButton: {fileID: 1871915578}
   _resultsText: {fileID: 0}
   _dinoMngr: {fileID: 0}
+  loginRslt:
+    EntityToken:
+      Entity:
+        Id: 
+        Type: 
+      EntityToken: 
+    InfoResultPayload:
+      AccountInfo:
+        AndroidDeviceInfo:
+          AndroidDeviceId: 
+        AppleAccountInfo:
+          AppleSubjectId: 
+        CustomIdInfo:
+          CustomId: 
+        FacebookInfo:
+          FacebookId: 
+          FullName: 
+        FacebookInstantGamesIdInfo:
+          FacebookInstantGamesId: 
+        GameCenterInfo:
+          GameCenterId: 
+        GoogleInfo:
+          GoogleEmail: 
+          GoogleGender: 
+          GoogleId: 
+          GoogleLocale: 
+          GoogleName: 
+        IosDeviceInfo:
+          IosDeviceId: 
+        KongregateInfo:
+          KongregateId: 
+          KongregateName: 
+        NintendoSwitchAccountInfo:
+          NintendoSwitchAccountSubjectId: 
+        NintendoSwitchDeviceIdInfo:
+          NintendoSwitchDeviceId: 
+        OpenIdInfo: []
+        PlayFabId: 
+        PrivateInfo:
+          Email: 
+        PsnInfo:
+          PsnAccountId: 
+          PsnOnlineId: 
+        SteamInfo:
+          SteamCountry: 
+          SteamId: 
+          SteamName: 
+        TitleInfo:
+          AvatarUrl: 
+          DisplayName: 
+          TitlePlayerAccount:
+            Id: 
+            Type: 
+        TwitchInfo:
+          TwitchId: 
+          TwitchUserName: 
+        Username: 
+        XboxInfo:
+          XboxUserId: 
+      CharacterInventories: []
+      CharacterList: []
+      PlayerProfile:
+        AdCampaignAttributions: []
+        AvatarUrl: 
+        ContactEmailAddresses: []
+        DisplayName: 
+        ExperimentVariants: []
+        LinkedAccounts: []
+        Locations: []
+        Memberships: []
+        PlayerId: 
+        PublisherId: 
+        PushNotificationRegistrations: []
+        Statistics: []
+        Tags: []
+        TitleId: 
+        ValuesToDate: []
+      PlayerStatistics: []
+      UserDataVersion: 0
+      UserInventory: []
+      UserReadOnlyDataVersion: 0
+    NewlyCreated: 0
+    PlayFabId: 
+    SessionTicket: 
+    SettingsForUser:
+      GatherDeviceInfo: 0
+      GatherFocusInfo: 0
+      NeedsAttribution: 0
+    TreatmentAssignment:
+      Variables: []
+      Variants: []
 --- !u!1 &1787668972
 GameObject:
   m_ObjectHideFlags: 0
@@ -12923,7 +13014,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &537195081877217520
 MonoBehaviour:
   m_ObjectHideFlags: 0
