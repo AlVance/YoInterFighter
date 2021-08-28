@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private float currentBeers = 0;
     public Slider beerSlider;
     public float invincibilityTime;
-    private bool isInvicible;
+    public static bool isInvicible;
     public GameObject botellin;
     private bool canReduceSlider;
     public Animator ultTransitor;
@@ -204,13 +204,15 @@ public class PlayerMovement : MonoBehaviour
     
     private IEnumerator Invincibility()
     {
-        Time.timeScale = 0.5f;
-        ultTransitor.SetBool("Transition", true);
+        ultTransitor.SetTrigger("trans");
+        
         isInvicible = true;
+        
+        yield return new WaitForSeconds(0.3f);
+       
         anim.SetBool("IsRiding", true);
         botellin.SetActive(true);
         currentBeers = 0;
-        ultTransitor.SetBool("Transition", false);
         Time.timeScale = 2.5f;
         bC.enabled = false;
         yield return new WaitForSeconds(invincibilityTime);

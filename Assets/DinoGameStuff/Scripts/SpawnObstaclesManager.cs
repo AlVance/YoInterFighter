@@ -41,7 +41,8 @@ public class SpawnObstaclesManager : MonoBehaviour
         if (dMM.gameStarted)
         {
             currentTime += Time.deltaTime;
-            currentTimeMahou += Time.deltaTime;
+            if(!PlayerMovement.isInvicible)
+                currentTimeMahou += Time.deltaTime;
             if (currentTime >= timeToSpawn)
             {
                 SpawnObstacle();

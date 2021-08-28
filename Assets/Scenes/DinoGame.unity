@@ -10814,8 +10814,6 @@ MonoBehaviour:
   tutoScreen: {fileID: 1928255420}
   gameOverScreen: {fileID: 2107606363}
   scoreboardScreen: {fileID: 332344951}
-  newScorePanel: {fileID: 1885897292}
-  scoreScorePanel: {fileID: 1608213242}
   inGamePanel: {fileID: 812794649}
   puntuationText: {fileID: 1928559972}
   puntuation: 0
@@ -10862,12 +10860,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dinoMngr: {fileID: 1785559166}
-  newScore: {fileID: 1885897292}
-  scoreboardFull: {fileID: 1608213242}
-  fullContainer: {fileID: 1801556764}
-  contentScore: {fileID: 204827413736018953, guid: 0fc869d467442474a90aff8cd6cd2d01,
-    type: 3}
-  sizeItem: 75
   scoreboard_item:
     name: 
     score: 0
