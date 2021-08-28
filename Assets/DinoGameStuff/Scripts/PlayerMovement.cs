@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     public float invincibilityTime;
     private bool isInvicible;
     public GameObject botellin;
+    private bool canReduceSlider;
+    public Animator ultTransitor;
 
     public GameObject lastCan;
     DinoMainManager dinoMainMngr;
@@ -92,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         //WebCrouch();
         anim.SetBool("IsSliding", isSliding);
 
-        if (isInvicible)
+        if (canReduceSlider)
         {
            
         }
@@ -202,11 +204,13 @@ public class PlayerMovement : MonoBehaviour
     
     private IEnumerator Invincibility()
     {
+        Time.timeScale = 0.5f;
+        ultTransitor.SetBool("Transition", true);
         isInvicible = true;
         anim.SetBool("IsRiding", true);
         botellin.SetActive(true);
         currentBeers = 0;
-        
+        ultTransitor.SetBool("Transition", false);
         Time.timeScale = 2.5f;
         bC.enabled = false;
         yield return new WaitForSeconds(invincibilityTime);

@@ -37,7 +37,7 @@ public class PUController : MonoBehaviour
         
         if (collided)
         {
-            Debug.Log("Distancia " + currentBeers + ": " + Vector3.Distance(this.transform.position, targetPos) + " | " + ((Vector3.Distance(this.transform.position, targetPos) < 1.5f) && (Vector3.Distance(this.transform.position, targetPos) > 0.01f)));
+
             if (Vector3.Distance(this.transform.position, targetPos) > 1.5f)
             {
                 //Vector3 centerPos = Camera.main.ScreenToWorldPoint(new Vector3(beerSliderTr.position.x, beerSliderTr.position.y, 0));
