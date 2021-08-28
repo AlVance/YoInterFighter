@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
-using Twity.Helpers;
 using UnityEngine;
-using UnityEngine.Networking;
-using Twity;
-using Twity.DataModels.Core;
-using System.IO;
+
+
 
 public class TwitterShare : MonoBehaviour
 {
@@ -16,21 +13,38 @@ public class TwitterShare : MonoBehaviour
     private string twitterAdress = "http://twitter.com/intent/tweet";
     private string tweetLanguage = "es";
     private string tweetText;
-    
+
+    string pathName;
+    private void Awake()
+    {
+
+#if UNITY_ANDROID
+        pathName = "DCIM/Screenshot";
+#else
+        string pathName = "C:/Users/" + Environment.UserName +  "/OneDrive/Imágenes" + "/YoCreatureto/";
+#endif
+        if (!System.IO.Directory.Exists(pathName))
+        {
+            System.IO.Directory.CreateDirectory(pathName);
+        }
+    }
     private void Start()
     {
         sM = FindObjectOfType<ScoreboardManager>();
         puntuation = sM.lastScore.text;
-        tweetText = "Mi puntuación en Yo,Creatureto es " + puntuation + "/n" + "#HoldMyBeer" + "[Adjunta la captura de la puntucaión que se encuentra en tu galería]";
+        tweetText = "¡Mi puntuación en Yo,Creatureto es de " + puntuation + " puntos!" + "\n" + "Prueba a superarme: https://kiwiteam.itch.io/yocreatureto-dinogame " + "#HoldMyBeer" + "\n" + "[Hay captura de la puntuación en tu galería :D]";
 
     }
     public void ShareOnTwitter()
     {
-        string fileName = "LastPunctuation.png";
-        ScreenCapture.CaptureScreenshot(fileName);
+
        
+        string fileName = "YoCreatureto_LastPuntuation.png";
+        ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(pathName, fileName));
+        Debug.Log(pathName + fileName);
+        
         Application.OpenURL(twitterAdress + "?text=" + WWW.EscapeURL(tweetText) + /*"?media_data=" 
-            + Convert.ToBase64String(NewBehaviourScript.CapturaFotografica()) + "?media_category="  + "tweet_image" +*/ "&amp;lang=" + WWW.EscapeURL(tweetLanguage));
+           + Convert.ToBase64String(NewBehaviourScript.CapturaFotografica()) + "?media_category="  + "tweet_image" +*/ "&amp;lang=" + WWW.EscapeURL(tweetLanguage));
         
     }
 
