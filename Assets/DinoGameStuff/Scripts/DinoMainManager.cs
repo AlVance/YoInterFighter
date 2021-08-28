@@ -98,7 +98,7 @@ public class DinoMainManager : MonoBehaviour
     public void RestardGame()
     {
         buttonAudio.Play();
-        SceneManager.LoadScene("ScoreBoard");
+        SceneManager.LoadScene("DinoGame");
         Time.timeScale = 1;
     }
 
