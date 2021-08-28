@@ -29,7 +29,7 @@ public class ScoreboardManager : MonoBehaviour
         jsonSavePath = Application.persistentDataPath + "/saveload.json";
         for (int i = 0; i < scoreTop.Length; i++)
         {
-            scoreboard_total
+            //scoreboard_total
         }
         Debug.Log(jsonSavePath);
         ReadJson();

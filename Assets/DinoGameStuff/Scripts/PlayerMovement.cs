@@ -38,15 +38,18 @@ public class PlayerMovement : MonoBehaviour
     private float currentBeers = 0;
     public Slider beerSlider;
     public float invincibilityTime;
-    public static bool isInvicible;
+    public static bool isInvicible, isReturning;
     public GameObject botellin;
     private bool canReduceSlider;
     public Animator ultTransitor;
 
     public GameObject lastCan;
     DinoMainManager dinoMainMngr;
+
+
     private void Awake()
     {
+        isReturning = false;
         isOnMobile = Application.platform == RuntimePlatform.Android;
         int rnd = Random.Range(1, 3);
         if(rnd == 1)
@@ -100,6 +103,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (!isGrounded) partArrastrarse.Stop();
+
+
+        if(isReturning && isInvicible && beerSlider.value != 0)
+        {
+            beerSlider.value -= Time.deltaTime;
+            if (beerSlider.value <= 0)
+            {
+                beerSlider.value = 0;
+            }
+        }
 
 
     }
@@ -208,24 +221,25 @@ public class PlayerMovement : MonoBehaviour
         
         isInvicible = true;
         
-        yield return new WaitForSeconds(0.3f);
-       
+        yield return new WaitForSeconds(0.4f);
+        isReturning = true;
         anim.SetBool("IsRiding", true);
         botellin.SetActive(true);
-        currentBeers = 0;
         Time.timeScale = 2.5f;
         bC.enabled = false;
         yield return new WaitForSeconds(invincibilityTime);
-        beerSlider.value = Mathf.Lerp(beerSlider.value, currentBeers, invincibilityTime);
+        
         currentBeers = 0;
         lastCan = null;
         dinoMainMngr.fillCans = 0;
         Time.timeScale = 1f;
         isInvicible = false;
+        isReturning = false;
         botellin.SetActive(false);
         anim.SetBool("IsRiding", false);
         yield return new WaitForSeconds(1f);
         bC.enabled = true;
+        
     }
 
 
@@ -299,6 +313,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    
   
 
 }
