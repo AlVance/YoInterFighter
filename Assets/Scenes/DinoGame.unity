@@ -7632,7 +7632,7 @@ MonoBehaviour:
   obstacleTopPrefab: {fileID: 6727605636715032147, guid: f991bdef45129af4da954143be1b59f6,
     type: 3}
   timeToSpawnInterval: {x: 1.65, y: 1.9}
-  minTimeToSpawnInterval: {x: 0.55, y: 0.75}
+  minTimeToSpawnInterval: {x: 0.45, y: 0.7}
   spawnTimeReducer: 0.0001
   MahouPrefab: {fileID: 6574857937973138924, guid: fa8a27cae24acc147b62dbcb9a253f06,
     type: 3}

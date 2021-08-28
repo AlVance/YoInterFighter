@@ -17,15 +17,15 @@ public class NewBehaviourScript : MonoBehaviour
         //Directory.GetFiles(Application.)
     }
 
-    public static byte[] CapturaFotografica()
-    {
-        //string fileName = "LastPunctuation.png";
-        Texture2D textura = ScreenCapture.CaptureScreenshotAsTexture();
+    //public static byte[] CapturaFotografica()
+    //{
+    //    //string fileName = "LastPunctuation.png";
+    //    //ScreenCapture.CaptureScreenshot(fileName);
 
  
-        byte[] bytes;
-        bytes = textura.EncodeToPNG();
-        //string e = System.Convert.ToBase64String(bytes);
-        return bytes;
-    }
+    //    //byte[] bytes;
+    //    //bytes = textura.EncodeToPNG();
+    //    ////string e = System.Convert.ToBase64String(bytes);
+    //    //return bytes;
+    //}
 }
