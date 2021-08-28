@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isOnMobile;
 
-    float _beersToUlti;
+    private float _beersToUlti;
     private float currentBeers = 0;
     public Slider beerSlider;
     public float invincibilityTime;
@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject botellin;
     private bool canReduceSlider;
     public Animator ultTransitor;
+    public GameObject pufParticles;
 
     public GameObject lastCan;
     DinoMainManager dinoMainMngr;
@@ -220,13 +221,14 @@ public class PlayerMovement : MonoBehaviour
         ultTransitor.SetTrigger("trans");
         
         isInvicible = true;
+        bC.enabled = false;
         
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(1f);
         isReturning = true;
+        Instantiate(pufParticles, this.transform);
         anim.SetBool("IsRiding", true);
         botellin.SetActive(true);
         Time.timeScale = 2.5f;
-        bC.enabled = false;
         yield return new WaitForSeconds(invincibilityTime);
         
         currentBeers = 0;
@@ -235,6 +237,7 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1f;
         isInvicible = false;
         isReturning = false;
+        Instantiate(pufParticles, this.transform);
         botellin.SetActive(false);
         anim.SetBool("IsRiding", false);
         yield return new WaitForSeconds(1f);
