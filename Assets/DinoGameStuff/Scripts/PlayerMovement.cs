@@ -84,19 +84,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (!isOnMobile)
-       {
-           Jump();
-           Crouch();
-       }
-       else
-       {
-           MobileJump();
-           MobileCrouch();
-       }
+       //if (!isOnMobile)
+       //{
+       //    Jump();
+       //    Crouch();
+       //}
+       //else
+       //{
+       //    MobileJump();
+       //    MobileCrouch();
+       //}
 
-        //WebJump();
-        //WebCrouch();
+        WebJump();
+        WebCrouch();
         anim.SetBool("IsSliding", isSliding);
 
         if (!isGrounded) partArrastrarse.Stop();
@@ -221,9 +221,9 @@ public class PlayerMovement : MonoBehaviour
         
         yield return new WaitForSeconds(1.2f);
         GameObject rideObject;
-        int rnd = Random.Range(0, 2);
-        if (rnd > 0) rideObject = botellin;
-        else rideObject = lata;
+        float rnd = Random.Range(1, 3);
+        if (rnd < 2) rideObject = lata;
+        else rideObject = botellin;
 
 
         isReturning = true;
