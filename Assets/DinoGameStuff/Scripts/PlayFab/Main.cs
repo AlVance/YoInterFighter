@@ -66,16 +66,8 @@ namespace Code
         private void DoLogin()
         {
             string ip = string.Empty;
-            if ((_dinoMngr.scoreboardMngr.scoreboard_total.id == string.Empty)||(_dinoMngr.scoreboardMngr.scoreboard_total.id == null))
-            {
-                ip = UnityEngine.Random.Range(0, 1000000000).ToString();
-                Debug.Log(ip);
-                _dinoMngr.scoreboardMngr.SetIp(ip);
-            }
-            else
-            {
-                ip = _dinoMngr.scoreboardMngr.scoreboard_total.id;
-            }
+            ip = UnityEngine.Random.Range(0, 1000000000).ToString();
+            Debug.Log(ip);
             _playFabLogin.Login(ip);
         }
 
@@ -94,7 +86,7 @@ namespace Code
 
         IEnumerator DelayShowScore()
         {
-            Debug.Log("Inciio rutina");
+            Debug.Log("Incio rutina");
             yield return new WaitForSecondsRealtime(.3f);
             Debug.Log("Continua rutina");
             _playFabGetLeaderboard.GetLeaderboardEntries(0, 5, LeaderboardScore);
