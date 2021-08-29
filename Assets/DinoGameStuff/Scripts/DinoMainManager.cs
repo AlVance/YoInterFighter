@@ -99,7 +99,7 @@ public class DinoMainManager : MonoBehaviour
 
             if (velocityObstacles < maxVelocityObstacles)
             {
-                velocityObstacles += acceleration;
+                velocityObstacles += acceleration * Time.deltaTime;
             }
         }
     }

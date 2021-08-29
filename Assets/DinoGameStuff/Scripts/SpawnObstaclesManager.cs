@@ -49,8 +49,8 @@ public class SpawnObstaclesManager : MonoBehaviour
                 currentTime = 0;
                 SetTimeToSpawn();
             }
-            if (timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= spawnTimeReducer;
-            if (timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= spawnTimeReducer;
+            if (timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= spawnTimeReducer * Time.deltaTime;
+            if (timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= spawnTimeReducer * Time.deltaTime;
 
 
             if(currentTimeMahou >= spawnTimeMahous && timeToSpawn >= 0.7)
