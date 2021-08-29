@@ -25,7 +25,7 @@ namespace Code
 
         private string _playerId;
 
-        private PlayFabLogin _playFabLogin;
+        public PlayFabLogin _playFabLogin;
         private PlayFabUpdatePlayerStatistics _playFabUpdatePlayerStatistics;
         private PlayFabGetLeaderboardAroundPlayer _playFabGetLeaderboardAroundPlayer;
         private PlayFabGetLeaderboard _playFabGetLeaderboard;

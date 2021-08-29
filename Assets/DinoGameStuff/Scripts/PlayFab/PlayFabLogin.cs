@@ -10,6 +10,7 @@ namespace Code
     {
         public event Action<string> OnSuccess;
         public bool named;
+        LoginResult loginRslt;
         public void Login()
         {
             if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId)) 
@@ -21,15 +22,14 @@ namespace Code
             */
                 PlayFabSettings.staticSettings.TitleId = "TU TITLE ID";
             }
-            /*
             var request = new LoginWithCustomIDRequest
             {
                 CustomId = "PlayerDinoGame",
                 CreateAccount = true,
                 InfoRequestParameters = new GetPlayerCombinedInfoRequestParams { GetPlayerProfile = true, }
             };
-            PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);*/
-            
+            PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
+            /*
 #if UNITY_ANDROID
             var androidRequest = new LoginWithAndroidDeviceIDRequest
             {
@@ -51,12 +51,13 @@ namespace Code
             };
             PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
 #endif
-            
+            */
             // SystemInfo.deviceUniqueIdentifier;
         }
 
         private void OnLoginSuccess(LoginResult result)
         {
+            loginRslt = result;
             Debug.Log("Login " + (result.InfoResultPayload.PlayerProfile == null));
             OnSuccess?.Invoke(result.PlayFabId);
             string name = null;
@@ -64,11 +65,11 @@ namespace Code
             {
                 name = result.InfoResultPayload.PlayerProfile.DisplayName;
                 if(name != null) named = true; else  named = false;
-                Debug.Log("Name Inicoi "+name);
+                Debug.Log("Name Inicoi " + name);
             }
             else
             {
-                Debug.Log("Result null");
+                result.InfoResultPayload.PlayerProfile.DisplayName = "Otro Chavalito";
             }
         }
 
