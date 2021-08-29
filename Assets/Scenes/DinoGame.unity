@@ -6778,7 +6778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &587819026
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8809,8 +8809,8 @@ MonoBehaviour:
     type: 3}
   obstacleTopPrefab: {fileID: 6727605636715032147, guid: f991bdef45129af4da954143be1b59f6,
     type: 3}
-  timeToSpawnInterval: {x: 1.45, y: 1.55}
-  minTimeToSpawnInterval: {x: 0.55, y: 0.7}
+  timeToSpawnInterval: {x: 1.45, y: 1.65}
+  minTimeToSpawnInterval: {x: 0.45, y: 0.75}
   spawnTimeReducer: 0.000031
   MahouPrefab: {fileID: 6574857937973138924, guid: fa8a27cae24acc147b62dbcb9a253f06,
     type: 3}
@@ -12645,7 +12645,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7596560062718718883}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
   m_AnchorMin: {x: 0.55750006, y: 0.72444445}
   m_AnchorMax: {x: 0.99000007, y: 0.98444444}
@@ -12665,7 +12665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8867924, g: 0.7905838, b: 0.86688715, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13253,7 +13253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &537195081877217520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14750,7 +14750,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7596560062718718883}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
   m_AnchorMin: {x: 0.55, y: 0.58000004}
   m_AnchorMax: {x: 0.9562501, y: 0.8955557}
@@ -18735,8 +18735,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 537195082773034594}
   - {fileID: 537195081170267649}
+  - {fileID: 537195082773034594}
   m_Father: {fileID: 537195081777548534}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
