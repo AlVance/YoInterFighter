@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(isReturning && isInvicible && _beerSlider.value != 0)
         {
-            _beerSlider.value -= Time.deltaTime;
+            _beerSlider.value -= Time.deltaTime/2;
             if (_beerSlider.value <= 0)
             {
                 _beerSlider.value = 0;

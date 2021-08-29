@@ -53,7 +53,7 @@ public class SpawnObstaclesManager : MonoBehaviour
             if (timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= (spawnTimeReducer * (Time.deltaTime * Time.timeScale)) * 100;
 
 
-            if(currentTimeMahou >= spawnTimeMahous && timeToSpawn >= 0.1)
+            if(currentTimeMahou >= spawnTimeMahous && currentTime >= 0.2)
             {
                 //Spawn en un sitio aleatorio del mapa
                 Vector2 spawnPointY = new Vector2(spawnPoints[0].position.x, Random.Range(MahouLimits.x, MahouLimits.y));

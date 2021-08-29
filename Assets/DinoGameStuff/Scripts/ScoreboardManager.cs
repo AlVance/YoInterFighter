@@ -67,6 +67,13 @@ public class ScoreboardManager : MonoBehaviour
         }
         maxScoreText.text = maxName + " > " + maxScore;
     }
+    public void SetIp(string newID)
+    {
+        scoreboard_total.id = newID;
+        string jsonData = JsonUtility.ToJson(scoreboard_total, true);
+        File.WriteAllText(jsonSavePath, jsonData);
+
+    }
 
     public void SetScore(string name, int score)
     {
@@ -141,5 +148,6 @@ public class ScoreboardObject
 [System.Serializable]
 public class Scoreboard
 {
+    public string id;
     public List<ScoreboardObject> scoreboardTotal;
 }

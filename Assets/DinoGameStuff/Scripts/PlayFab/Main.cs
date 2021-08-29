@@ -65,8 +65,17 @@ namespace Code
 
         private void DoLogin()
         {
-            string ip = UnityEngine.Random.Range(0,1000000000).ToString();
-            Debug.Log(ip);
+            string ip = string.Empty;
+            if ((_dinoMngr.scoreboardMngr.scoreboard_total.id == string.Empty)||(_dinoMngr.scoreboardMngr.scoreboard_total.id == null))
+            {
+                ip = UnityEngine.Random.Range(0, 1000000000).ToString();
+                Debug.Log(ip);
+                _dinoMngr.scoreboardMngr.SetIp(ip);
+            }
+            else
+            {
+                ip = _dinoMngr.scoreboardMngr.scoreboard_total.id;
+            }
             _playFabLogin.Login(ip);
         }
 
