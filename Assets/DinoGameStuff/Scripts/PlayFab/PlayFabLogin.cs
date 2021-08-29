@@ -11,6 +11,8 @@ namespace Code
         public event Action<string> OnSuccess;
         public bool named;
         LoginResult loginRslt;
+        string customId;
+
         public void Login()
         {
             if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId)) 
@@ -22,12 +24,15 @@ namespace Code
             */
                 PlayFabSettings.staticSettings.TitleId = "TU TITLE ID";
             }
+
+
             var request = new LoginWithCustomIDRequest
             {
-                CustomId = "PlayerDinoGame",
+                CustomId = SystemInfo.deviceUniqueIdentifier,
                 CreateAccount = true,
-                InfoRequestParameters = new GetPlayerCombinedInfoRequestParams { GetPlayerProfile = true, }
+                InfoRequestParameters = new GetPlayerCombinedInfoRequestParams { GetPlayerProfile = true }
             };
+
             PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
             /*
 #if UNITY_ANDROID
