@@ -49,11 +49,11 @@ public class SpawnObstaclesManager : MonoBehaviour
                 currentTime = 0;
                 SetTimeToSpawn();
             }
-            if (timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= spawnTimeReducer * Time.deltaTime;
-            if (timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= spawnTimeReducer * Time.deltaTime;
+            if (timeToSpawnInterval.x > minTimeToSpawnInterval.x) timeToSpawnInterval.x -= (spawnTimeReducer * (Time.deltaTime * Time.timeScale)) * 100;
+            if (timeToSpawnInterval.y > minTimeToSpawnInterval.y) timeToSpawnInterval.y -= (spawnTimeReducer * (Time.deltaTime * Time.timeScale)) * 100;
 
 
-            if(currentTimeMahou >= spawnTimeMahous && timeToSpawn >= 0.7)
+            if(currentTimeMahou >= spawnTimeMahous && timeToSpawn >= 0.1)
             {
                 //Spawn en un sitio aleatorio del mapa
                 Vector2 spawnPointY = new Vector2(spawnPoints[0].position.x, Random.Range(MahouLimits.x, MahouLimits.y));

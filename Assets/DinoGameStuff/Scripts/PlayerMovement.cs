@@ -84,19 +84,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       //if (!isOnMobile)
-       //{
-       //    Jump();
-       //    Crouch();
-       //}
-       //else
-       //{
-       //    MobileJump();
-       //    MobileCrouch();
-       //}
+       if (!isOnMobile)
+       {
+           Jump();
+           Crouch();
+       }
+       else
+       {
+           MobileJump();
+           MobileCrouch();
+       }
 
-        WebJump();
-        WebCrouch();
+        //WebJump();
+        //WebCrouch();
         anim.SetBool("IsSliding", isSliding);
 
         if (!isGrounded) partArrastrarse.Stop();
