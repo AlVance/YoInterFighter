@@ -13,7 +13,7 @@ namespace Code
         LoginResult loginRslt;
         string customId;
 
-        public void Login()
+        public void Login(string ip)
         {
             if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId)) 
                 // Busca PlayFabSharedSettings para cambiar este valor
@@ -25,10 +25,14 @@ namespace Code
                 PlayFabSettings.staticSettings.TitleId = "TU TITLE ID";
             }
 
-
             var request = new LoginWithCustomIDRequest
             {
+#if UNITY_WEBGL
+                CustomId = ip,
+                //CustomId = SystemInfo.deviceUniqueIdentifier,
+#else
                 CustomId = SystemInfo.deviceUniqueIdentifier,
+#endif
                 CreateAccount = true,
                 InfoRequestParameters = new GetPlayerCombinedInfoRequestParams { GetPlayerProfile = true }
             };

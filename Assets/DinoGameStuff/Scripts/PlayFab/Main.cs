@@ -7,6 +7,8 @@ using PlayFab.ClientModels;
 using System.Text;
 using System;
 using System.Collections;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Code
 {
@@ -65,7 +67,22 @@ namespace Code
 
         private void DoLogin()
         {
-            _playFabLogin.Login();
+            _playFabLogin.Login(LocalIPAddress());
+        }
+        public static string LocalIPAddress()
+        {
+            IPHostEntry host;
+            string localIP = "0.0.0.0";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    localIP = ip.ToString();
+                    break;
+                }
+            }
+            return localIP;
         }
 
         private void AddListeners()
