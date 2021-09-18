@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &48781938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -285,7 +285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.821001}
   m_AnchorMin: {x: 0.74500006, y: 0.060000002}
   m_AnchorMax: {x: 0.8075, y: 0.17333333}
-  m_AnchoredPosition: {x: -5.0998535, y: -3.753296}
+  m_AnchoredPosition: {x: -5.0998535, y: -3.7531738}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &48781939
@@ -9275,7 +9275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1360237718
 GameObject:
   m_ObjectHideFlags: 0
@@ -9901,17 +9901,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476480409}
-  m_LocalRotation: {x: -0, y: -0, z: 0.21004486, w: 0.97769177}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 537195081777548534}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 24.250002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.62875, y: 0.10666666}
   m_AnchorMax: {x: 0.785, y: 0.32888892}
-  m_AnchoredPosition: {x: -33, y: -13.699951}
-  m_SizeDelta: {x: 53.00003, y: 0}
+  m_AnchoredPosition: {x: 39.78, y: -19.692}
+  m_SizeDelta: {x: 198.56467, y: 39.384583}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1476480411
 MonoBehaviour:
@@ -9945,7 +9945,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.73
-  m_Text: Haz una captura de pantalla y comparte tus resultados
+  m_Text: "\xA1Haz una captura de pantalla y comparte tus resultados en Twitter con
+    el hashtag #HoldMyBeer!\nPuede que haya sorpresas :)"
 --- !u!222 &1476480412
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10593,7 +10594,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.5
+  orthographic size: 5.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10833,6 +10834,7 @@ MonoBehaviour:
     name: 
     score: 0
   scoreboard_total:
+    id: 
     scoreboardTotal: []
   maxScoreText: {fileID: 587819027}
   scoreTop:
