@@ -62,7 +62,7 @@ public class DinoMainManager : MonoBehaviour
         main = GetComponent<Main>();
 
         int rnd = Random.Range(1, 3);
-        if(rnd == 1)
+        if (rnd == 1)
         {
             music1Audio.SetActive(true);
             musicPlaying = music1Audio.GetComponent<AudioSource>();
@@ -72,6 +72,7 @@ public class DinoMainManager : MonoBehaviour
             music2Audio.SetActive(true);
             musicPlaying = music2Audio.GetComponent<AudioSource>();
         }
+        
         targetCans = new Vector3[beersToUlti];
         float offset = 10 / beersToUlti;
 
@@ -205,5 +206,11 @@ public class DinoMainManager : MonoBehaviour
     {
         buttonAudio.Play();
         Application.Quit();
+    }
+
+    public void SetCanPlayMusic()
+    {
+        if (musicPlaying.isPlaying) musicPlaying.Stop();
+        else musicPlaying.Play();
     }
 }

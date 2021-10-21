@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject playerSprite;
     private Animator anim;
     public GameObject jumpParticles;
-    public GameObject laytonRig, soraRig;
+    public GameObject laytonRig, soraRig, diabloRig;
 
     public Transform groundCheck;
     public bool isGrounded;
@@ -52,17 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isReturning = false;
         isOnMobile = Application.platform == RuntimePlatform.Android;
-        int rnd = Random.Range(1, 3);
-        if(rnd == 1)
-        {
-            laytonRig.SetActive(true);
-            anim = laytonRig.GetComponent<Animator>();
-        }
-        else
-        {
-            soraRig.SetActive(true);
-            anim = soraRig.GetComponent<Animator>();
-        }
+        
         dinoMainMngr = FindObjectOfType<DinoMainManager>();
         _beersToUlti = dinoMainMngr.beersToUlti;
         _beerSlider = dinoMainMngr.beerSlider;
@@ -72,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         partArrastrarse.Stop();
-        
+        SetCharacter();
         iniY = transform.position.y;
         bC = this.GetComponent<BoxCollider2D>();
         rb = this.GetComponent<Rigidbody2D>();
@@ -110,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
                 _beerSlider.value = 0;
             }
         }
-
 
     }
 
@@ -386,7 +375,25 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    
-  
 
+    private void SetCharacter()
+    {
+        int rnd = Random.Range(1, 4);
+      
+        switch (rnd)
+        {
+            case 1:
+                laytonRig.SetActive(true);
+                anim = laytonRig.GetComponent<Animator>();
+                break;
+            case 2:
+                soraRig.SetActive(true);
+                anim = soraRig.GetComponent<Animator>();
+                break;
+            case 3:
+                diabloRig.SetActive(true);
+                anim = diabloRig.GetComponent<Animator>();
+                break;
+        }
+    }
 }
